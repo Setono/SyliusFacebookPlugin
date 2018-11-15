@@ -2,7 +2,7 @@
     "name": "sylius/plugin-skeleton",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
-    "description": "Acme example plugin for Sylius.",
+    "description": "Setono SyliusFacebookTrackingPlugin.",
     "license": "MIT",
     "require": {
         "php": "^7.2",
@@ -39,8 +39,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusExamplePlugin\\": "src/",
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "Setono\\SyliusFacebookTrackingPlugin\\": "src/",
+            "Tests\\Setono\\SyliusFacebookTrackingPlugin\\": "tests/"
         }
     },
     "extra": {
