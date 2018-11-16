@@ -1,0 +1,2 @@
+imports:
+- { resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/config.yml" }

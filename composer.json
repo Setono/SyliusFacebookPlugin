@@ -34,7 +34,8 @@
         "symfony/dotenv": "^3.4|^4.1",
         "symfony/intl": "^3.4|^4.1",
         "symfony/web-profiler-bundle": "^3.4|^4.1",
-        "symfony/web-server-bundle": "^3.4|^4.1"
+        "symfony/web-server-bundle": "^3.4|^4.1",
+        "symfony/maker-bundle": "^1.9"
     },
     "prefer-stable": true,
     "autoload": {

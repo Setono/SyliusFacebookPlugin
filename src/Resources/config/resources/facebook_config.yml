@@ -1,0 +1,7 @@
+sylius_resource:
+  resources:
+    setono_sylius_facebook_tracking_plugin.facebook_config:
+      driver: doctrine/orm
+      classes:
+        model: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig
+        interface: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface
