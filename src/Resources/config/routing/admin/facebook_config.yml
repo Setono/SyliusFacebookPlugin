@@ -1,0 +1,13 @@
+setono_sylius_facebook_tracking_plugin_admin_facebook_config:
+    resource: |
+        section: admin
+        alias: setono_sylius_facebook_tracking_plugin.facebook_config
+        templates: SyliusAdminBundle:Crud
+        permission: true
+        redirect: update
+        grid: setono_sylius_facebook_tracking_plugin_admin_facebook_config
+        vars:
+            all:
+               templates:
+                   form: "@SetonoSyliusFacebookTrackingPlugin/FacebookConfig/Crud/_form.html.twig"
+    type: sylius.resource

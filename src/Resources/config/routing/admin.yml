@@ -1,0 +1,2 @@
+setono_sylius_facebook_tracking_plugin_admin_facebook_config:
+   resource: admin/facebook_config.yml

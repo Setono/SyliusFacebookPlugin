@@ -1,0 +1,21 @@
+services:
+    setono_sylius_facebook_tracking_plugin.listener.menu.facebook_config:
+        class: Setono\SyliusFacebookTrackingPlugin\Menu\FacebookTrackingMenuBuilder
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addFacebookTrackingItem }
+
+    setono_sylius_facebook_tracking_plugin.form.type.facebook_config:
+        class: Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType
+        arguments:
+            - "%setono_sylius_facebook_tracking_plugin.model.facebook_config.class%"
+            - ['setono']
+        tags:
+            - { name: form.type }
+  
+    setono_sylius_facebook_tracking_plugin.form.type.translation.facebook_config:
+        class: Setono\SyliusFacebookTrackingPlugin\Form\Type\Translation\FacebookConfigTranslationType
+        arguments:
+           - "%setono_sylius_facebook_tracking_plugin.model.facebook_config_translation.class%"
+           - ['setono']
+        tags:
+           - { name: form.type }

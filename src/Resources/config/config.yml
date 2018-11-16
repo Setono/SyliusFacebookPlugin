@@ -1,2 +1,5 @@
 imports:
-- { resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/resources.yml" }
+    - { resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/resources.yml" }
+    - { resource: resources.yml }
+    - { resource: services.yml }
+    - { resource: grids.yml }
