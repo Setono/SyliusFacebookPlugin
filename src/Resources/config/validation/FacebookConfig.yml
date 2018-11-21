@@ -1,0 +1,17 @@
+Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+              fields: [code]
+              message: 'setono_sylius_facebook_trcking_plugin.facebook_config.code.unique'
+              groups: ['setono']
+    properties:
+        insert_pixel_code_here:
+            - NotBlank:
+                message: 'setono_sylius_facebook_trcking_plugin.facebook_config.insert_pixel_code_here.not_blank'
+                groups: ['setono']
+            - Length:
+                min: 2
+                max: 250
+                minMessage: 'setono_sylius_facebook_trcking_plugin.facebook_config.insert_pixel_code_here.min_length'
+                maxMessage: 'setono_sylius_facebook_trcking_plugin.facebook_config.insert_pixel_code_here.max_length'
+                groups: ['setono']

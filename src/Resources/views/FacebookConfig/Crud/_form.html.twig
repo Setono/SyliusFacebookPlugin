@@ -1,0 +1,23 @@
+{% from "@SyliusAdmin/Macro/translationForm.html.twig" import translationForm %}
+
+<div class="ui two column stackable grid">
+    <div class="column">
+        <div class="ui segment">
+            {{ form_errors(form) }}
+            <div class="ui one column stackable grid">
+                <div class="column">
+                    <div class="ui segment">
+                            {{ form_row(form.insertPixelCodeHere) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui segment">
+            <div class="ui one column stackable grid">
+                {{ translationForm(form.translations, resource) }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,15 +5,11 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookTrackingPlugin\Entity;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\ToggleableInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
+use Sylius\Component\Resource\Model\TranslationInterface;
 
-interface FacebookConfigInterface extends
-    ResourceInterface,
-    ToggleableInterface,
-    TranslatableInterface
+interface FacebookConfigTranslationInterface extends ResourceInterface, TranslationInterface
 {
-    public function getId(): int;
+    public function getId(): ?int;
 
     public function getInsertPixelCodeHere(): string;
 

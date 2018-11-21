@@ -1,0 +1,7 @@
+setono_sylius_facebook_traking_plugin:
+      ui:
+          insert_pixel_code_here: Insert Pixel Code Here
+          facebook_config_index: Facebook Config
+          facebook_tracking: Facebok Tracking
+          edit_facebook_config: Edit Facebook Config
+          new_facebook_config: New Facebook Config

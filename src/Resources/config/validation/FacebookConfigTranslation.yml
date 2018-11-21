@@ -1,0 +1,12 @@
+Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslation:
+    properties:
+        insert_pixel_code_here:
+            - NotBlank:
+                message: 'setono_sylius_facebook_tracking_plugin.facebook_config.insert_pixel_code_here.not_blank'
+                groups: ['setono']
+            - Length:
+                min: 2
+                max: 250
+                minMessage: 'setono_sylius_facebook_tracking_plugin.facebook_config.insert_pixel_code_here.min_length'
+                maxMessage: 'setono_sylius_facebook_tracking_plugin.facebook_config.insert_pixel_code_here.max_length'
+                groups: ['setono']
