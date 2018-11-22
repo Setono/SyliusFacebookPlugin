@@ -19,12 +19,3 @@ services:
            - ['setono']
         tags:
            - { name: form.type }
-
-    setono_sylius_facebook_tracking_plugin.registry_facebook_config_rule_checker:
-        class: Sylius\Component\Registry\ServiceRegistry
-        arguments:
-        - Sylius\Component\Core\Model\ProductInterface\ProductRuleCheckerInterface
-        - rule checker
-
-    setono_sylius_facebook_tracking_plugin.form_registry.facebook_config_rule_checker:
-        class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry

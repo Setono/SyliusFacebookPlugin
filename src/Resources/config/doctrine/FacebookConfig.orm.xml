@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig" table="setono_facebook_tracking_facebook_config">
+    <entity name="Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig" table="setono_facebook_tracking_facebook_config">
+
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
 
         <field name="insert_pixel_code_here" type="string" />
 
-        <one-to-many field="rules" target-entity="Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigRuleInterface" mapped-by="facebookConfig" orphan-removal="true">
-            <cascade>
-                <cascade-all />
-            </cascade>
-        </one-to-many>
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

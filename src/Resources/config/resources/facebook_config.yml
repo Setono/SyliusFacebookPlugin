@@ -5,13 +5,7 @@ sylius_resource:
             classes:
                 model: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig
                 interface: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface
-                form: Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType
             translation:
                 classes:
                     model: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslation
                     interface: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslationInterface
-        setono_sylius_facebook_tracking_plugin.facebook_config_rule:
-            driver: doctrine/orm
-            classes:
-                model: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigRule
-                interface: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigRuleInterface
