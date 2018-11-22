@@ -30,7 +30,7 @@ class FacebookConfig implements FacebookConfigInterface
         return $this->id;
     }
 
-    public function getInsertPixelCodeHere(): string
+    public function getInsertPixelCodeHere(): ?string
     {
         return $this->insert_pixel_code_here;
     }
