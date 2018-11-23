@@ -30,9 +30,10 @@ final class FacebookConfigContext implements FacebookConfigContextInterface
         if (null === $config) {
             /** @var FacebookConfigInterface $config */
             $config = $this->facebookConfigFactory->createNew();
-            $config->setInsertPixelCodeHere(self::DEFAULT_CODE);
+            $config->setPixelCode(self::DEFAULT_CODE);
             $this->facebookConfigRepository->add($config);
         }
+
         return $config;
     }
 }

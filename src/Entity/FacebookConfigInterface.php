@@ -15,7 +15,11 @@ interface FacebookConfigInterface extends
 {
     public function getId(): int;
 
-    public function getInsertPixelCodeHere(): ?string;
+    public function getPixelCode(): ?string;
 
-    public function setInsertPixelCodeHere(string $insert_pixel_code_here): void;
+    public function setPixelCode(string $pixelCode): void;
+
+    public function getName(): ?string;
+
+    public function setName(string $name): void;
 }

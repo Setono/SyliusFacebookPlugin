@@ -12,20 +12,20 @@ class FacebookConfigTranslation extends AbstractTranslation implements FacebookC
     protected $id;
 
     /** @var string */
-    protected $insert_pixel_code_here;
+    protected $name;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getInsertPixelCodeHere(): string
+    public function getName(): ?string
     {
-        return $this->insert_pixel_code_here;
+        return $this->name;
     }
 
-    public function setInsertPixelCodeHere(string $insert_pixel_code_here): void
+    public function setName(?string $name): void
     {
-        $this->insert_pixel_code_here = $insert_pixel_code_here;
+        $this->name = $name;
     }
 }

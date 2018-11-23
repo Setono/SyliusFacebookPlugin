@@ -5,9 +5,9 @@ sylius_grid:
                 options:
                     class: "%setono_sylius_facebook_tracking_plugin.model.facebook_config.class%"
             fields:
-                setono_facebook_tracking_facebook_config:
+                name:
                     type: string
-                    label: setono_sylius_facebook_tracking_plugin.ui.setono_facebook_tracking_facebook_config
+                    label: setono_sylius_facebook_tracking_plugin.ui.facebook_config
                 enabled:
                     type: twig
                     label: setono_sylius_facebook_tracking_plugin.ui.enabled

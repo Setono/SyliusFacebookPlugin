@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslationInterface;
@@ -15,6 +14,7 @@ class FacebookConfig implements FacebookConfigInterface
     use TranslatableTrait {
         __construct as protected initializeTranslationsCollection;
     }
+
     public function __construct()
     {
         $this->initializeTranslationsCollection();
@@ -24,20 +24,31 @@ class FacebookConfig implements FacebookConfigInterface
     protected $id;
 
     /** @var string */
-    protected $insert_pixel_code_here;
+    protected $pixelCode;
 
-    public function getId(): int {
+    public function getName(): ?string
+    {
+        return $this->getFacebookConfigTranslation()->getName();
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->getFacebookConfigTranslation()->setName($name);
+    }
+
+    public function getId(): int
+    {
         return $this->id;
     }
 
-    public function getInsertPixelCodeHere(): ?string
+    public function getPixelCode(): ?string
     {
-        return $this->insert_pixel_code_here;
+        return $this->pixelCode;
     }
 
-    public function setInsertPixelCodeHere(string $insert_pixel_code_here): void
+    public function setPixelCode(?string $pixelCode): void
     {
-        $this->insert_pixel_code_here = $insert_pixel_code_here;
+        $this->pixelCode = $pixelCode;
     }
 
     /**

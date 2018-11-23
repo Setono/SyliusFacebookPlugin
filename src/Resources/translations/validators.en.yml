@@ -1,6 +1,6 @@
 setono_sylius_product_callouts_plugin:
     facebook_config:
-        insert_pixel_code_here:
-            not_blank: Insert Pixel Code Here cannot be blank.
-            min_length: Insert Pixel Code Here must be at least {{ limit }} characters long.
-            max_length: Insert Pixel Code Here can not be longer than {{ limit }} characters.
+        pixel_code:
+            not_blank: Pixel Code cannot be blank.
+            min_length: Pixel Code must be at least {{ limit }} characters long.
+            max_length: Pixel Code can not be longer than {{ limit }} characters.

@@ -11,7 +11,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="insert_pixel_code_here" type="string" />
+        <field name="pixelCode" type="string" />
 
     </entity>
 

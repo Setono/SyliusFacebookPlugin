@@ -11,7 +11,7 @@ interface FacebookConfigTranslationInterface extends ResourceInterface, Translat
 {
     public function getId(): ?int;
 
-    public function getInsertPixelCodeHere(): string;
+    public function getName(): ?string;
 
-    public function setInsertPixelCodeHere(string $insert_pixel_code_here): void;
+    public function setName(?string $insert_pixel_code_here): void;
 }
