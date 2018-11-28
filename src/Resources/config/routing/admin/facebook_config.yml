@@ -2,7 +2,8 @@ setono_sylius_facebook_tracking_plugin_admin_facebook_config:
     resource: |
         section: admin
         alias: setono_sylius_facebook_tracking_plugin.facebook_config
-        templates: SyliusAdminBundle:Crud
+        templates: SetonoSyliusFacebookTrackingPlugin:Crud
+        except: ['create', 'delete']
         permission: true
         redirect: update
         grid: setono_sylius_facebook_tracking_plugin_admin_facebook_config
@@ -10,4 +11,5 @@ setono_sylius_facebook_tracking_plugin_admin_facebook_config:
             all:
                templates:
                    form: "@SetonoSyliusFacebookTrackingPlugin/FacebookConfig/Crud/_form.html.twig"
+                   breadcrumb: "@SetonoSyliusFacebookTrackingPlugin/FacebookConfig/Crud/_breadcrumb.html.twig"
     type: sylius.resource

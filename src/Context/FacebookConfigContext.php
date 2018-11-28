@@ -27,10 +27,13 @@ final class FacebookConfigContext implements FacebookConfigContextInterface
     public function getConfig(): FacebookConfigInterface
     {
         $config = $this->facebookConfigRepository->findConfig();
+
         if (null === $config) {
             /** @var FacebookConfigInterface $config */
             $config = $this->facebookConfigFactory->createNew();
+
             $config->setPixelCode(self::DEFAULT_CODE);
+
             $this->facebookConfigRepository->add($config);
         }
 
