@@ -15,8 +15,6 @@
     {{ sonata_block_render_event(event_prefix ~ '.after_header', {'resource': resource}) }}
 
     {% include 'SetonoSyliusFacebookTrackingPlugin:Crud/Update:_content.html.twig' %}
-    {#{% include '@SetonoSyliusMailChimpPlugin/Crud/Update/_content.html.twig' %}#}
-
 
     {{ sonata_block_render_event(event_prefix ~ '.after_content', {'resource': resource}) }}
 {% endblock %}

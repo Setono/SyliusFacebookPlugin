@@ -18,9 +18,6 @@ final class FacebookTrackingEventListener
     /** @var FacebookConfigContextInterface */
     private $facebookConfigContext;
 
-    /**
-     * @param string $template
-     */
     public function __construct(string $template, FacebookConfigContextInterface $facebookConfigContext)
     {
         $this->template = $template;
