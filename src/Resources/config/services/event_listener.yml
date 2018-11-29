@@ -1,7 +1,7 @@
 services:
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_init:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
-#        class: Setono\SyliusFacebookTrackingPlugin\EventListener\FacebookTrackingEventListener
+#        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        class: Setono\SyliusFacebookTrackingPlugin\EventListener\FacebookTrackingEventListener
         arguments:
             - 'SetonoSyliusFacebookTrackingPlugin::facebook_pixel_init.html.twig'
             - "@setono_sylius_analytics_plugin.context.config"

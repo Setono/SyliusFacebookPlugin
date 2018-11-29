@@ -1,0 +1,12 @@
+default:
+    suites:
+        admin_managing_facebook_configs:
+            contexts_services:
+            - sylius.behat.context.hook.doctrine_orm
+
+            - sylius.behat.context.setup.channel
+            - sylius.behat.context.setup.admin_security
+
+            - setono_sylius_facebook_tracking_plugin.behat.context.ui.admin.facebook_config
+            filters:
+                tags: "@facebook_pixel_config && @ui"

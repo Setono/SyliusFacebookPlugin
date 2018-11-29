@@ -22,7 +22,7 @@ final class FacebookConfigType extends AbstractResourceType
         $builder
             ->add('pixelCode', TextType::class, [
             'label' => 'setono_sylius_facebook_tracking_plugin.ui.pixel_code',
-            ])//TODO change name
+            ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => FacebookConfigTranslationType::class,
                 'validation_groups' => ['setono'],

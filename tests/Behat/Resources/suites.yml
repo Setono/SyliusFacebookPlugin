@@ -1,1 +1,2 @@
-# Put your Behat suites definitions here
+imports:
+    - suites/ui/managing_facebook_configs.yml

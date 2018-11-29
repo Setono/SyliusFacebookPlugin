@@ -1,6 +1,10 @@
-setono_sylius_product_callouts_plugin:
+setono_sylius_facebook_tracking_plugin:
     facebook_config:
         pixel_code:
             not_blank: Pixel Code cannot be blank.
             min_length: Pixel Code must be at least {{ limit }} characters long.
             max_length: Pixel Code can not be longer than {{ limit }} characters.
+        name:
+            not_blank: Name cannot be blank.
+            min_length: Name must be at least {{ limit }} characters long.
+            max_length: Name can not be longer than {{ limit }} characters.

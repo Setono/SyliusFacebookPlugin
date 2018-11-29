@@ -33,7 +33,9 @@ final class FacebookTrackingEventListener
         $block->setId(uniqid('', true));
         $block->setSettings(array_replace($event->getSettings(), [
             'template' => $this->template,
-            'config' => $this->facebookConfigContext->getConfig(),
+            'attr' => [
+                'config' => $this->facebookConfigContext->getConfig(),
+            ],
         ]));
         $block->setType('sonata.block.service.template');
 
