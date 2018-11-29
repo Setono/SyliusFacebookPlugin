@@ -1,6 +1,5 @@
 <script>
-    fbq('track', 'AddToCart', {
-        value: value,
-        currency: 'currency',
+    $(document).bind("ajaxSuccess", function(){
+        fbq('track', 'AddToCart');
     });
 </script>

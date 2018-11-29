@@ -1,6 +1,6 @@
 <script>
     fbq('track', 'Purchase', {
-        value: value,
-        currency: 'currency',
+        value: '{{ settings.order.total }}',
+        currency: '{{ settings.order.currencyCode }}',
     });
 </script>
