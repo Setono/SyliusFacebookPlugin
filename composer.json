@@ -35,7 +35,8 @@
         "symfony/intl": "^3.4|^4.1",
         "symfony/web-profiler-bundle": "^3.4|^4.1",
         "symfony/web-server-bundle": "^3.4|^4.1",
-        "symfony/maker-bundle": "^1.9"
+        "symfony/maker-bundle": "^1.9",
+        "friends-of-behat/page-object-extension": "^0.2.1"
     },
     "prefer-stable": true,
     "autoload": {
