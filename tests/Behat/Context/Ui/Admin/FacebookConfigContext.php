@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Context\Ui\Admin;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContextInterface;
 use Sylius\Behat\NotificationType;

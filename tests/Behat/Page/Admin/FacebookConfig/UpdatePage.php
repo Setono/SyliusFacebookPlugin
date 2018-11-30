@@ -17,5 +17,4 @@ final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     {
         $this->getDocument()->fillField('facebook_config_translations_en_US_name', $name);
     }
-
 }

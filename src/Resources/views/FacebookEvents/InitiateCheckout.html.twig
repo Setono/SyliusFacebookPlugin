@@ -1,5 +1,7 @@
 <script>
-    $(document).bind("ajaxSuccess", function() {
-        fbq('track', 'InitiateCheckout');
-    });
+    window.onload = function () {
+        $('.ui.huge.primary.fluid.labeled.icon.button').click(function () {
+            fbq('track', 'InitiateCheckout');
+        });
+    }
 </script>

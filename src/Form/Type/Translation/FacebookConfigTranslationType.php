@@ -14,7 +14,7 @@ final class FacebookConfigTranslationType extends AbstractResourceType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'setono_sylius_facebook_tracking_plugin.ui.name', //TODO change name
+                'label' => 'setono_sylius_facebook_tracking_plugin.ui.name',
             ])
         ;
     }

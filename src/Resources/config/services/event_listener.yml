@@ -21,12 +21,12 @@ services:
         tags:
         - { name: kernel.event_listener, event: sylius.shop.product.show.after_add_to_cart, method: onBlockEvent }
 
-    setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_initiate_checkout: #TODO fix event not launching properly
+    setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_initiate_checkout:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
         arguments:
         - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\InitiateCheckout.html.twig'
         tags:
-        - { name: kernel.event_listener, event: sylius.shop.checkout.address.after_support, method: onBlockEvent }
+        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.cart.summary.before_suggestions, method: onBlockEvent }
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_purchase:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
