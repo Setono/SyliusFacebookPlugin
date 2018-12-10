@@ -1,6 +1,6 @@
 setono_sylius_facebook_tracking_plugin:
       ui:
-          facebook_config_index: Facebook Pixel Configs
+          facebook_config_index: Facebook Pixel Config
           enabled: Enabled
           pixel_code: Facebook Pixel Code
           facebook_config: Facebook Pixel Config

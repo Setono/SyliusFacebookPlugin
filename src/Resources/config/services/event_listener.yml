@@ -19,7 +19,7 @@ services:
         arguments:
         - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\AddToCart.html.twig'
         tags:
-        - { name: kernel.event_listener, event: sylius.shop.product.show.after_add_to_cart, method: onBlockEvent }
+        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.after_add_to_cart, method: onBlockEvent }
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_initiate_checkout:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
