@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Setono\SyliusFacebookTrackingPlugin\Entity;
 
-use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslation;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslation;
 use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslationInterface;
 
 class FacebookConfigTranslationSpec extends ObjectBehavior

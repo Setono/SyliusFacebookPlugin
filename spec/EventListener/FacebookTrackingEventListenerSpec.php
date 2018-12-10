@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Setono\SyliusFacebookTrackingPlugin\EventListener;
 
+use PhpSpec\ObjectBehavior;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContextInterface;
 use Setono\SyliusFacebookTrackingPlugin\EventListener\FacebookTrackingEventListener;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
 
@@ -34,7 +35,7 @@ class FacebookTrackingEventListenerSpec extends ObjectBehavior
                 'attr' => ['config' => $facebookConfigContext->getConfig()],
         ]))
         ->willReturn($block);
-        ;
+
         $this->onBlockEvent($event);
     }
 }

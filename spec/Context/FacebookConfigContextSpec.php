@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace spec\Setono\SyliusFacebookTrackingPlugin\Context;
 
-use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContext;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContext;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContextInterface;
 use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface;
 use Setono\SyliusFacebookTrackingPlugin\Repository\FacebookConfigRepositoryInterface;
