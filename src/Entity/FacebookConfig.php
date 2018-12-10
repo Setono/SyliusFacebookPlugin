@@ -36,7 +36,7 @@ class FacebookConfig implements FacebookConfigInterface
         $this->getFacebookConfigTranslation()->setName($name);
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

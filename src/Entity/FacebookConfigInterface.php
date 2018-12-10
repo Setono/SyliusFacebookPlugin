@@ -13,7 +13,7 @@ interface FacebookConfigInterface extends
     ToggleableInterface,
     TranslatableInterface
 {
-    public function getId(): int;
+    public function getId(): ?int;
 
     public function getPixelCode(): ?string;
 
