@@ -7,7 +7,3 @@ sylius_resource:
                 interface: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface
                 repository: Setono\SyliusFacebookTrackingPlugin\Repository\FacebookConfigRepository
                 form: Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType
-            translation:
-                classes:
-                    model: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslation
-                    interface: Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigTranslationInterface

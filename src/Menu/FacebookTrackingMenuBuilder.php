@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Menu;
 
+use Knp\Menu\ItemInterface;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContextInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
@@ -19,6 +20,7 @@ final class FacebookTrackingMenuBuilder
 
     public function addFacebookTrackingItem(MenuBuilderEvent $event): void
     {
+        /** @var ItemInterface $catalogMenu */
         $catalogMenu = $event->getMenu()->getChild('catalog');
 
         $catalogMenu

@@ -14,14 +14,6 @@ services:
         tags:
             - { name: form.type }
 
-    setono_sylius_facebook_tracking_plugin.form.type.translation.facebook_config:
-        class: Setono\SyliusFacebookTrackingPlugin\Form\Type\Translation\FacebookConfigTranslationType
-        arguments:
-           - "%setono_sylius_facebook_tracking_plugin.model.facebook_config_translation.class%"
-           - ['setono']
-        tags:
-           - { name: form.type }
-
 imports:
     - { resource: services/menu.yml }
     - { resource: services/event_listener.yml }
