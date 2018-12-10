@@ -35,7 +35,7 @@ $bundles = [
 ### Step 3: Import routing
 
 ````yaml
-setono_sylius_pickup_point_plugin:
+setono_sylius_facebook_tracking_plugin:
     resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/routing.yml"
 ````
 
