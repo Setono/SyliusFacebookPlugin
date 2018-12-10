@@ -12,6 +12,5 @@ Feature: Adding Facebook Pixel configuration
     Scenario: Adding Facebook Pixel config
         When I go to the create config page
         And I fill the code with 123
-        And I name it "Testing"
         And I add it
         Then I should be notified that it has been successfully created

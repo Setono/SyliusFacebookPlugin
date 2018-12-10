@@ -9,6 +9,4 @@ use Sylius\Behat\Page\Admin\Crud\UpdatePageInterface as BaseUpdatePageInterface;
 interface UpdatePageInterface extends BaseUpdatePageInterface
 {
     public function fillCode(?string $code): void;
-
-    public function fillName(?string $name): void;
 }
