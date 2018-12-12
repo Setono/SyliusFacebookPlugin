@@ -1,5 +1,7 @@
 <script>
-    $(document).bind("ajaxSuccess", function(){
-        fbq('track', 'AddToCart');
-    });
+    window.addEventListener("load", function () {
+        $(document).bind("ajaxSuccess", function () {
+            fbq('track', 'AddToCart');
+        });
+    })
 </script>
