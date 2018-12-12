@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace spec\Setono\SyliusFacebookTrackingPlugin\Entity;
 
 use PhpSpec\ObjectBehavior;
-use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig;
-use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface;
+use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfig;
+use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
 
 class FacebookConfigSpec extends ObjectBehavior
 {

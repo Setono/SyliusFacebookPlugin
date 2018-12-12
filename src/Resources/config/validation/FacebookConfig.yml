@@ -1,4 +1,4 @@
-Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfig:
+Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfig:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
               fields: [pixelCode]

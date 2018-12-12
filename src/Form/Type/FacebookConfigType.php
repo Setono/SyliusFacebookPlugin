@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Form\Type;
 
-use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface;
+use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

@@ -7,7 +7,7 @@ namespace spec\Setono\SyliusFacebookTrackingPlugin\Context;
 use PhpSpec\ObjectBehavior;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContext;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContextInterface;
-use Setono\SyliusFacebookTrackingPlugin\Entity\FacebookConfigInterface;
+use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
 use Setono\SyliusFacebookTrackingPlugin\Repository\FacebookConfigRepositoryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 

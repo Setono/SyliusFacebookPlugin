@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Entity;
+namespace Setono\SyliusFacebookTrackingPlugin\Model;
 
 use Sylius\Component\Resource\Model\ToggleableTrait;
 
