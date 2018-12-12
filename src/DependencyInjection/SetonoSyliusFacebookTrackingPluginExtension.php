@@ -9,7 +9,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-final class SetonoSyliusFacebookTrackingPlugin extends AbstractResourceExtension
+final class SetonoSyliusFacebookTrackingPluginExtension extends AbstractResourceExtension
 {
     public function load(array $config, ContainerBuilder $container)
     {
@@ -20,7 +20,7 @@ final class SetonoSyliusFacebookTrackingPlugin extends AbstractResourceExtension
 
         $loader->load('services.yml');
 
-        $this->registerResources('setono_sylius_facebook', $config['driver'], $config['resources'], $container);
+        $this->registerResources('setono_sylius_facebook_tracking_plugin', $config['driver'], $config['resources'], $container);
     }
 
 }

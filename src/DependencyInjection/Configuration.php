@@ -18,7 +18,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('setono_sylius_facebook');
+        $rootNode = $treeBuilder->root('setono_sylius_facebook_tracking_plugin');
 
         $this->addResourcesSection($rootNode);
 

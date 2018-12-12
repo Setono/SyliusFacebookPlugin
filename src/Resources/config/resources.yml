@@ -1,2 +1,0 @@
-imports:
-    - { resource: resources/facebook_config.yml }
