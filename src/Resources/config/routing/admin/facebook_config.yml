@@ -1,12 +1,11 @@
 setono_sylius_facebook_tracking_plugin_admin_facebook_config:
     resource: |
         section: admin
-        alias: setono_sylius_facebook_tracking_plugin.facebook_config
+        alias: setono_sylius_facebook_tracking.facebook_config
         templates: SetonoSyliusFacebookTrackingPlugin:Crud
         except: ['create', 'delete']
         permission: true
         redirect: update
-        grid: setono_sylius_facebook_tracking_plugin_admin_facebook_config
         vars:
             all:
                templates:

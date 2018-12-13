@@ -25,7 +25,7 @@ final class FacebookTrackingMenuBuilder
 
         $catalogMenu
             ->addChild('facebook_tracking', [
-                'route' => 'setono_sylius_facebook_tracking_plugin_admin_facebook_config_update',
+                'route' => 'setono_sylius_facebook_tracking_admin_facebook_config_update',
                 'routeParameters' => ['id' => $this->facebookConfigContext->getConfig()->getId()],
             ])
             ->setLabel('setono_sylius_facebook_tracking_plugin.ui.facebook_config_index')

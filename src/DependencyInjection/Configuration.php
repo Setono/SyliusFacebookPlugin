@@ -7,6 +7,7 @@ namespace Setono\SyliusFacebookTrackingPlugin\DependencyInjection;
 use Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType;
 use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfig;
 use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
+use Setono\SyliusFacebookTrackingPlugin\Repository\FacebookConfigRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
@@ -53,7 +54,7 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('model')->defaultValue(FacebookConfig::class)->cannotBeEmpty()->end()
                                         ->scalarNode('interface')->defaultValue(FacebookConfigInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(FacebookConfigRepository::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(FacebookConfigType::class)->cannotBeEmpty()->end()
                                     ->end()
