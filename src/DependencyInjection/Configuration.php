@@ -8,6 +8,7 @@ use Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType;
 use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfig;
 use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -18,7 +19,14 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('setono_sylius_facebook_tracking_plugin');
+        $rootNode = $treeBuilder->root('setono_sylius_facebook_tracking');
+
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('driver')->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
+            ->end()
+        ;
 
         $this->addResourcesSection($rootNode);
 

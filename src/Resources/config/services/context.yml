@@ -3,5 +3,5 @@ services:
         class: Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContext
         public: true
         arguments:
-            - "@setono_sylius_facebook_tracking_plugin.repository.facebook_config"
-            - "@setono_sylius_facebook_tracking_plugin.factory.facebook_config"
+            - "@setono_sylius_facebook_tracking.repository.facebook_config"
+            - "@setono_sylius_facebook_tracking.factory.facebook_config"

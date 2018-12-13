@@ -3,7 +3,7 @@ sylius_grid:
         setono_sylius_facebook_tracking_plugin_admin_facebook_config:
             driver:
                 options:
-                    class: "%setono_sylius_facebook_tracking_plugin.model.facebook_config.class%"
+                    class: "%setono_sylius_facebook_tracking.model.facebook_config.class%"
             fields:
                 name:
                     type: string

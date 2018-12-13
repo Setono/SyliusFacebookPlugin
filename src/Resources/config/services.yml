@@ -1,3 +1,8 @@
+imports:
+    - { resource: services/menu.yml }
+    - { resource: services/event_listener.yml }
+    - { resource: services/context.yml }
+
 services:
     setono_sylius_facebook_tracking_plugin.listener.menu.facebook_config:
         class: Setono\SyliusFacebookTrackingPlugin\Menu\FacebookTrackingMenuBuilder
@@ -9,12 +14,7 @@ services:
     setono_sylius_facebook_tracking_plugin.form.type.facebook_config:
         class: Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType
         arguments:
-            - "%setono_sylius_facebook_tracking_plugin.model.facebook_config.class%"
+            - "%setono_sylius_facebook_tracking.model.facebook_config.class%"
             - ['setono']
         tags:
             - { name: form.type }
-
-imports:
-    - { resource: services/menu.yml }
-    - { resource: services/event_listener.yml }
-    - { resource: services/context.yml }
