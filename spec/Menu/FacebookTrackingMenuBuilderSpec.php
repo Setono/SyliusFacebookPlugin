@@ -36,11 +36,11 @@ class FacebookTrackingMenuBuilderSpec extends ObjectBehavior
         $menuBuilderEvent->getMenu()->willReturn($menu);
         $menu->getChild('catalog')->willReturn($catalogMenu);
         $catalogMenu->addChild('facebook_tracking', [
-            'route' => 'setono_sylius_facebook_tracking_plugin_admin_facebook_config_update',
+            'route' => 'setono_sylius_facebook_tracking_admin_facebook_config_update',
             'routeParameters' => ['id' => 1],
         ])->willReturn($facebookMenuItem);
 
-        $facebookMenuItem->setLabel('setono_sylius_facebook_tracking_plugin.ui.facebook_config_index')->willReturn($facebookMenuItem);
+        $facebookMenuItem->setLabel('setono_sylius_facebook_tracking.ui.facebook_config_index')->willReturn($facebookMenuItem);
         $facebookMenuItem->setLabelAttribute('icon', 'bullhorn')->shouldBeCalled();
 
         $this->addFacebookTrackingItem($menuBuilderEvent);

@@ -11,14 +11,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class FacebookConfigType extends AbstractResourceType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var FacebookConfigInterface $facebookConfig */
         $facebookConfig = $builder->getData();
 
         $builder
             ->add('pixelCode', TextType::class, [
-            'label' => 'setono_sylius_facebook_tracking_plugin.ui.pixel_code',
+            'label' => 'setono_sylius_facebook_tracking.ui.pixel_code',
             ])
         ;
     }

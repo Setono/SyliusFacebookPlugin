@@ -28,7 +28,7 @@ final class FacebookTrackingMenuBuilder
                 'route' => 'setono_sylius_facebook_tracking_admin_facebook_config_update',
                 'routeParameters' => ['id' => $this->facebookConfigContext->getConfig()->getId()],
             ])
-            ->setLabel('setono_sylius_facebook_tracking_plugin.ui.facebook_config_index')
+            ->setLabel('setono_sylius_facebook_tracking.ui.facebook_config_index')
             ->setLabelAttribute('icon', 'bullhorn')
         ;
     }
