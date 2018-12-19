@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace spec\Setono\SyliusFacebookTrackingPlugin\Entity;
+namespace spec\Setono\SyliusFacebookTrackingPlugin\Model;
 
 use PhpSpec\ObjectBehavior;
 use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfig;

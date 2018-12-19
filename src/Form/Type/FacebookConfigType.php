@@ -18,7 +18,7 @@ final class FacebookConfigType extends AbstractResourceType
 
         $builder
             ->add('pixelCode', TextType::class, [
-            'label' => 'setono_sylius_facebook_tracking.ui.pixel_code',
+                'label' => 'setono_sylius_facebook_tracking.ui.pixel_code',
             ])
         ;
     }

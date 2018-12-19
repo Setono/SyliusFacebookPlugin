@@ -2,6 +2,7 @@ imports:
     - { resource: services/menu.yml }
     - { resource: services/event_listener.yml }
     - { resource: services/context.yml }
+    - { resource: services/twig.yml }
 
 services:
     setono_sylius_facebook_tracking_plugin.listener.menu.facebook_config:

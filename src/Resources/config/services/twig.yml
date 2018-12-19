@@ -1,0 +1,9 @@
+services:
+    setono_sylius_facebook_plugin.twig.extension.event:
+        class: Setono\SyliusFacebookTrackingPlugin\Twig\Extension\RenderEventExtension
+        arguments:
+            - "@session"
+            - "@templating"
+        tags:
+            - { name: twig.extension }
+            

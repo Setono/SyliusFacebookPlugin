@@ -5,39 +5,39 @@ services:
             - 'SetonoSyliusFacebookTrackingPlugin::facebook_pixel_init.html.twig'
             - "@setono_sylius_facebook_tracking_plugin.context.config"
         tags:
-            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_add_payment_info:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        class: Setono\SyliusFacebookTrackingPlugin\EventListener\AddPaymentInfoEventListener
         arguments:
-        - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\AddPaymentInfo.html.twig'
+            - "@session"
         tags:
-        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.checkout.select_payment.before_form, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sylius.order.post_payment, method: addPaymentInfo }
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_add_to_cart:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        class: Setono\SyliusFacebookTrackingPlugin\EventListener\AddToCartEventListener
         arguments:
-        - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\AddToCart.html.twig'
+            - "@session"
         tags:
-        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.after_add_to_cart, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sylius.order_item.post_add, method: addToCart}
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_initiate_checkout:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        class: Setono\SyliusFacebookTrackingPlugin\EventListener\InitiateCheckoutEventListener
         arguments:
-        - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\InitiateCheckout.html.twig'
+            - "@session"
         tags:
-        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.cart.summary.before_suggestions, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sylius.order.pre_address, method: initiateCheckout }
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_purchase:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        class: Setono\SyliusFacebookTrackingPlugin\EventListener\PurchaseEventListener
         arguments:
-        - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\Purchase.html.twig'
+            - "@session"
         tags:
-        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.order.thank_you.after_message, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sylius.order.post_complete, method: purchase }
 
     setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_view_content:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        class: Setono\SyliusFacebookTrackingPlugin\EventListener\ViewContentEventListener
         arguments:
-        - 'SetonoSyliusFacebookTrackingPlugin::FacebookEvents\ViewContent.html.twig'
+            - "@session"
         tags:
-        - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.cart.summary.after_content_header, method: onBlockEvent }
+            - { name: kernel.event_listener, event: sylius.product.show, method: viewContent }

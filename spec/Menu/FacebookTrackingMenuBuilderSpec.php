@@ -7,8 +7,8 @@ namespace spec\Setono\SyliusFacebookTrackingPlugin\Menu;
 use Knp\Menu\ItemInterface;
 use PhpSpec\ObjectBehavior;
 use Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContextInterface;
-use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
 use Setono\SyliusFacebookTrackingPlugin\Menu\FacebookTrackingMenuBuilder;
+use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
 class FacebookTrackingMenuBuilderSpec extends ObjectBehavior
