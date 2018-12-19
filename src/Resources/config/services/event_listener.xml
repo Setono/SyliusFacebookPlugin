@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_init" class="Setono\SyliusFacebookTrackingPlugin\EventListener\FacebookTrackingEventListener">
+            <argument type="string">SetonoSyliusFacebookTrackingPlugin::facebook_pixel_init.html.twig</argument>
+            <argument type="service" id="setono_sylius_facebook_tracking_plugin.context.config"/>
+            <tag name="kernel.event_listener" event="sonata.block.event.sylius.shop.layout.javascripts" method="onBlockEvent"/>
+        </service>
+        <service id="setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_add_payment_info" class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddPaymentInfoEventListener">
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_listener" event="sylius.order.post_payment" method="addPaymentInfo"/>
+        </service>
+        <service id="setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_add_to_cart" class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddToCartEventListener">
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_listener" event="sylius.order_item.post_add" method="addToCart"/>
+        </service>
+        <service id="setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_initiate_checkout" class="Setono\SyliusFacebookTrackingPlugin\EventListener\InitiateCheckoutEventListener">
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_listener" event="sylius.order.pre_address" method="initiateCheckout"/>
+        </service>
+        <service id="setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_purchase" class="Setono\SyliusFacebookTrackingPlugin\EventListener\PurchaseEventListener">
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_listener" event="sylius.order.post_complete" method="purchase"/>
+        </service>
+        <service id="setono_sylius_facebook_tracking_plugin.event_listener.facebook_tracking_view_content" class="Setono\SyliusFacebookTrackingPlugin\EventListener\ViewContentEventListener">
+            <argument type="service" id="session"/>
+            <tag name="kernel.event_listener" event="sylius.product.show" method="viewContent"/>
+        </service>
+    </services>
+</container>
+
