@@ -16,6 +16,6 @@ class FacebookConfigRepository extends EntityRepository implements FacebookConfi
             ->orderBy('o.id')
             ->getQuery()
             ->getOneOrNullResult()
-            ;
+        ;
     }
 }

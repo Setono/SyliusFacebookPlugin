@@ -23,7 +23,6 @@ final class AddToCartEventListener
         }
 
         $facebookEvents = $this->session->get('facebook_events');
-
         $facebookEvents[] = ['name' => 'AddToCart'];
 
         $this->session->set('facebook_events', $facebookEvents);

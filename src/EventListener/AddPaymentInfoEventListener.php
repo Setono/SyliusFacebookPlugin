@@ -23,7 +23,6 @@ final class AddPaymentInfoEventListener
         }
 
         $facebookEvents = $this->session->get('facebook_events');
-
         $facebookEvents[] = ['name' => 'AddPaymentInfo'];
 
         $this->session->set('facebook_events', $facebookEvents);
