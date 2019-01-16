@@ -1,5 +1,5 @@
 {
-    "name": "setono/facebook-tracking-plugin",
+    "name": "setono/sylius-facebook-tracking-plugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
     "description": "Setono SyliusFacebookTrackingPlugin.",
