@@ -12,18 +12,10 @@ final class SetonoSyliusFacebookTrackingPlugin extends AbstractResourceBundle
 {
     use SyliusPluginTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSupportedDrivers(): array
     {
         return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
         ];
-    }
-
-    protected function getModelNamespace(): string
-    {
-        return 'Setono\SyliusFacebookTrackingPlugin\Model';
     }
 }

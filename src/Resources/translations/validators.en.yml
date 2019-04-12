@@ -1,6 +1,7 @@
-setono_sylius_facebook_tracking_plugin:
-    facebook_config:
-        pixel_code:
-            not_blank: Pixel Code cannot be blank.
-            min_length: Pixel Code must be at least {{ limit }} characters long.
-            max_length: Pixel Code can not be longer than {{ limit }} characters.
+setono_sylius_facebook_tracking:
+    pixel:
+        pixel_id:
+            unique: You already have one pixel with this id.
+            not_blank: Pixel id cannot be blank.
+            not_greater_than_zero: The pixel id has to be positive.
+            not_integer: Pixel id needs to be an integer.

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\DependencyInjection;
 
-use Setono\SyliusFacebookTrackingPlugin\Form\Type\FacebookConfigType;
-use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfig;
-use Setono\SyliusFacebookTrackingPlugin\Model\FacebookConfigInterface;
-use Setono\SyliusFacebookTrackingPlugin\Repository\FacebookConfigRepository;
+use Setono\SyliusFacebookTrackingPlugin\Doctrine\ORM\PixelRepository;
+use Setono\SyliusFacebookTrackingPlugin\Form\Type\PixelType;
+use Setono\SyliusFacebookTrackingPlugin\Model\Pixel;
+use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
@@ -19,8 +19,14 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('setono_sylius_facebook_tracking');
+        if (method_exists(TreeBuilder::class, 'getRootNode')) {
+            $treeBuilder = new TreeBuilder('setono_sylius_facebook_tracking');
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $treeBuilder = new TreeBuilder();
+            $rootNode = $treeBuilder->root('setono_sylius_facebook_tracking');
+        }
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -44,19 +50,19 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->arrayNode('facebook_config')
+                        ->arrayNode('pixel')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode('options')->end()
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue(FacebookConfig::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('interface')->defaultValue(FacebookConfigInterface::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('model')->defaultValue(Pixel::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('interface')->defaultValue(PixelInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->defaultValue(FacebookConfigRepository::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
-                                        ->scalarNode('form')->defaultValue(FacebookConfigType::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(PixelRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(PixelType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

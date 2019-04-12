@@ -2,9 +2,9 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_facebook_tracking_plugin.context.config" class="Setono\SyliusFacebookTrackingPlugin\Context\FacebookConfigContext" public="true">
-            <argument type="service" id="setono_sylius_facebook_tracking.repository.facebook_config"/>
-            <argument type="service" id="setono_sylius_facebook_tracking.factory.facebook_config"/>
+        <service id="setono_sylius_facebook_tracking.context.pixel" class="Setono\SyliusFacebookTrackingPlugin\Context\PixelContext">
+            <argument type="service" id="sylius.context.channel.composite"/>
+            <argument type="service" id="setono_sylius_facebook_tracking.repository.pixel"/>
         </service>
     </services>
 </container>

@@ -1,0 +1,25 @@
+sylius_grid:
+    grids:
+        setono_sylius_facebook_tracking_admin_pixel:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%setono_sylius_facebook_tracking.model.pixel.class%"
+            fields:
+                pixelId:
+                    type: string
+                    label: setono_sylius_facebook_tracking.ui.pixel_id
+                channels:
+                    type: twig
+                    label: sylius.ui.channels
+                    options:
+                        template: "@SetonoSyliusFacebookTrackingPlugin/Admin/Grid/Field/channels.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

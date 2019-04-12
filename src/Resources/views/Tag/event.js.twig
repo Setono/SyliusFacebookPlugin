@@ -1,0 +1,5 @@
+{%- if parameters is defined -%}
+    fbq('track', '{{ action }}', {{ parameters|raw }});
+{%- else -%}
+    fbq('track', '{{ action }}');
+{%- endif -%}
