@@ -1,14 +1,26 @@
 {
     "name": "setono/sylius-facebook-tracking-plugin",
     "type": "sylius-plugin",
-    "keywords": ["sylius", "sylius-plugin", "setono", "facebook"],
     "description": "Sylius plugin that tracks visitors and sends the data to Facebook",
+    "keywords": [
+        "sylius",
+        "sylius-plugin",
+        "setono",
+        "facebook"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.2",
         "setono/tag-bag-bundle": "^1.0",
         "sylius/sylius": "^1.3.0",
         "thecodingmachine/safe": "^0.1.14"
+    },
+    "conflict": {
+        "symfony/browser-kit": "4.1.8",
+        "symfony/dependency-injection": "4.1.8",
+        "symfony/dom-crawler": "4.1.8",
+        "symfony/routing": "4.1.8",
+        "symfony/symfony": "4.1.8"
     },
     "require-dev": {
         "behat/behat": "^3.4",
@@ -21,6 +33,7 @@
         "friends-of-behat/symfony-extension": "^2.0",
         "friends-of-behat/variadic-extension": "^1.1",
         "lakion/mink-debug-extension": "^1.2.3",
+        "localheinz/composer-normalize": "^1.1",
         "phpspec/phpspec": "^5.0",
         "phpstan/phpstan-doctrine": "^0.10",
         "phpstan/phpstan-shim": "^0.10",
@@ -31,21 +44,21 @@
         "sensiolabs/security-checker": "^5.0",
         "setono/sylius-tag-bag-plugin": "^1.0",
         "sylius-labs/coding-standard": "^2.0",
-        "symfony/browser-kit": "^3.4|^4.1",
-        "symfony/debug-bundle": "^3.4|^4.1",
+        "symfony/browser-kit": "^3.4 || ^4.1",
+        "symfony/debug-bundle": "^3.4 || ^4.1",
         "symfony/dotenv": "^4.2",
-        "symfony/intl": "^3.4|^4.1",
-        "symfony/web-profiler-bundle": "^3.4|^4.1",
-        "symfony/web-server-bundle": "^3.4|^4.1"
+        "symfony/intl": "^3.4 || ^4.1",
+        "symfony/web-profiler-bundle": "^3.4 || ^4.1",
+        "symfony/web-server-bundle": "^3.4 || ^4.1"
     },
-    "conflict": {
-        "symfony/symfony": "4.1.8",
-        "symfony/browser-kit": "4.1.8",
-        "symfony/dependency-injection": "4.1.8",
-        "symfony/dom-crawler": "4.1.8",
-        "symfony/routing": "4.1.8"
+    "config": {
+        "sort-packages": true
     },
-    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Setono\\SyliusFacebookTrackingPlugin\\": "src/",
@@ -53,28 +66,24 @@
         }
     },
     "autoload-dev": {
-        "classmap": ["tests/Application/Kernel.php"]
+        "classmap": [
+            "tests/Application/Kernel.php"
+        ]
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
+    "prefer-stable": true,
     "scripts": {
-        "check-style": "vendor/bin/ecs check --ansi --no-progress-bar spec src",
-        "fix-style": "vendor/bin/ecs check --ansi --no-progress-bar spec src --fix",
         "analyse": [
             "@ensure-test-container-exists",
             "./vendor/bin/phpstan analyse -c phpstan.neon -l max src"
         ],
+        "check-style": "vendor/bin/ecs check --ansi spec src",
+        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/ApplicationTests_Setono_SyliusFacebookTrackingPlugin_Application_KernelTestDebugContainer.xml ]] || (cd tests/Application && php -d memory_limit=-1 bin/console cache:clear --env=test)",
+        "fix-style": "vendor/bin/ecs check --ansi spec src --fix",
+        "phpspec": "vendor/bin/phpspec run --ansi",
         "phpunit": "vendor/bin/phpunit",
-        "phpspec": "vendor/bin/phpspec run",
         "test": [
-            "@phpunit", "@phpspec"
-        ],
-        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/ApplicationTests_Setono_SyliusFacebookTrackingPlugin_Application_KernelTestDebugContainer.xml ]] || (cd tests/Application && php -d memory_limit=-1 bin/console cache:clear --env=test)"
+            "@phpunit",
+            "@phpspec"
+        ]
     }
 }

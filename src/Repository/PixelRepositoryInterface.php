@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Repository;
 
+use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
@@ -14,7 +15,7 @@ interface PixelRepositoryInterface extends RepositoryInterface
      *
      * @param ChannelInterface $channel
      *
-     * @return array
+     * @return PixelInterface[]
      */
     public function findEnabledByChannel(ChannelInterface $channel): array;
 }

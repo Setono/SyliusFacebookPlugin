@@ -15,7 +15,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="pixelId" type="string" unique="true"/>
+        <field name="pixelId" column="pixel_id" type="string" unique="true"/>
         <field name="enabled" column="enabled" type="boolean"/>
 
         <many-to-many field="channels" target-entity="Sylius\Component\Channel\Model\ChannelInterface">

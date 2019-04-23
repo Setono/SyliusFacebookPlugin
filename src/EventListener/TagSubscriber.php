@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\EventListener;
 
+use function count;
 use Setono\SyliusFacebookTrackingPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookTrackingPlugin\Formatter\MoneyFormatter;
 use Setono\TagBagBundle\TagBag\TagBagInterface;
@@ -47,7 +48,7 @@ abstract class TagSubscriber implements EventSubscriberInterface
 
     protected function hasPixels(): bool
     {
-        return \count($this->getPixels()) > 0;
+        return count($this->getPixels()) > 0;
     }
 
     protected function getPixels(): array
