@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
-final class PurchaseBuilder extends Builder
+final class AddToCartBuilder extends Builder
 {
     use ContentIdsAwareBuilderTrait,
         ContentsAwareBuilderTrait,
@@ -12,5 +12,5 @@ final class PurchaseBuilder extends Builder
         ValueAwareBuilderTrait
     ;
 
-    public const EVENT_NAME = 'setono_sylius_facebook_tracking.builder.purchase';
+    public const EVENT_NAME = 'setono_sylius_facebook_tracking.builder.add_to_cart';
 }

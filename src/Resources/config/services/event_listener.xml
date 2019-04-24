@@ -9,7 +9,22 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="setono_sylius_facebook_tracking.event_listener.add_to_cart" class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddToCartSubscriber">
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
+            <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="sylius.context.cart.composite"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="setono_sylius_facebook_tracking.event_listener.purchase" class="Setono\SyliusFacebookTrackingPlugin\EventListener\PurchaseSubscriber">
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
+            <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
+            <argument type="service" id="event_dispatcher"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="setono_sylius_facebook_tracking.event_listener.view_content" class="Setono\SyliusFacebookTrackingPlugin\EventListener\ViewContentSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>

@@ -40,6 +40,7 @@ final class PurchaseSubscriber extends TagSubscriber
         $builder = PurchaseBuilder::create()
             ->setValue($this->moneyFormatter->format($order->getTotal()))
             ->setCurrency($order->getCurrencyCode())
+            ->setContentType(PurchaseBuilder::CONTENT_TYPE_PRODUCT)
         ;
 
         foreach ($order->getItems() as $orderItem) {
@@ -48,7 +49,7 @@ final class PurchaseSubscriber extends TagSubscriber
                 continue;
             }
 
-            $builder->addContentId($variant->getId());
+            $builder->addContentId($variant->getCode());
 
             $contentBuilder = ContentBuilder::create()
                 ->setId($variant->getCode())

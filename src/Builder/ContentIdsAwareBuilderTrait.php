@@ -13,7 +13,7 @@ trait ContentIdsAwareBuilderTrait
      */
     protected $data = [];
 
-    public function addContentId($contentId): BuilderInterface
+    public function addContentId($contentId): self
     {
         if (!isset($this->data['content_ids'])) {
             $this->data['content_ids'] = [];

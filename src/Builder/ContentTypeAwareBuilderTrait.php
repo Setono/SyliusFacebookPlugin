@@ -13,7 +13,7 @@ trait ContentTypeAwareBuilderTrait
      */
     protected $data = [];
 
-    public function setContentType(string $contentType): BuilderInterface
+    public function setContentType(string $contentType): self
     {
         Assert::oneOf($contentType, ['product', 'product_group']);
 
