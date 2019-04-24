@@ -16,6 +16,7 @@
         "thecodingmachine/safe": "^0.1.14"
     },
     "conflict": {
+        "friends-of-behat/symfony-extension": ">=2.0.5 <= 2.0.8",
         "symfony/browser-kit": "4.1.8",
         "symfony/dependency-injection": "4.1.8",
         "symfony/dom-crawler": "4.1.8",
@@ -44,12 +45,12 @@
         "sensiolabs/security-checker": "^5.0",
         "setono/sylius-tag-bag-plugin": "^1.0",
         "sylius-labs/coding-standard": "^2.0",
-        "symfony/browser-kit": "^3.4 || ^4.1",
-        "symfony/debug-bundle": "^3.4 || ^4.1",
+        "symfony/browser-kit": "^3.4|^4.1",
+        "symfony/debug-bundle": "^3.4|^4.1",
         "symfony/dotenv": "^4.2",
-        "symfony/intl": "^3.4 || ^4.1",
-        "symfony/web-profiler-bundle": "^3.4 || ^4.1",
-        "symfony/web-server-bundle": "^3.4 || ^4.1"
+        "symfony/intl": "^3.4|^4.1",
+        "symfony/web-profiler-bundle": "^3.4|^4.1",
+        "symfony/web-server-bundle": "^3.4|^4.1"
     },
     "config": {
         "sort-packages": true

@@ -1,0 +1,108 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Context\Ui\Admin;
+
+use Behat\Behat\Context\Context;
+use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
+use Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\Pixel\CreatePixelPage;
+use Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\Pixel\IndexPixelPage;
+use Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\Pixel\UpdatePixelPage;
+use Webmozart\Assert\Assert;
+
+final class ManagingPixelsContext implements Context
+{
+    /**
+     * @var IndexPixelPage
+     */
+    private $indexPixelPage;
+
+    /**
+     * @var CreatePixelPage
+     */
+    private $createPixelPage;
+
+    /**
+     * @var UpdatePixelPage
+     */
+    private $updatePixelPage;
+
+    public function __construct(IndexPixelPage $indexPixelPage, CreatePixelPage $createPixelPage, UpdatePixelPage $updatePixelPage)
+    {
+        $this->indexPixelPage = $indexPixelPage;
+        $this->createPixelPage = $createPixelPage;
+        $this->updatePixelPage = $updatePixelPage;
+    }
+
+    /**
+     * @Given I want to create a new pixel
+     */
+    public function iWantToCreateANewPixel(): void
+    {
+        $this->createPixelPage->open();
+    }
+
+    /**
+     * @When I fill the pixel id with :id
+     */
+    public function iFillThePixelId($id): void
+    {
+        $this->createPixelPage->specifyPixelId($id);
+    }
+
+    /**
+     * @When I add it
+     */
+    public function iAddIt(): void
+    {
+        $this->createPixelPage->create();
+    }
+
+    /**
+     * @Then the pixel :pixelId should appear in the store
+     */
+    public function thePropertyShouldAppearInTheStore($pixelId): void
+    {
+        $this->indexPixelPage->open();
+
+        Assert::true(
+            $this->indexPixelPage->isSingleResourceOnPage(['pixelId' => $pixelId]),
+            sprintf('Pixel %s should exist but it does not', $pixelId)
+        );
+    }
+
+    /**
+     * @Given I want to update the pixel with pixel id :pixel
+     */
+    public function iWantToUpdateThePropertyWithTrackingId(PixelInterface $pixel): void
+    {
+        $this->updatePixelPage->open([
+            'id' => $pixel->getId(),
+        ]);
+    }
+
+    /**
+     * @When I update the pixel with pixel id :pixelId
+     */
+    public function iUpdateThePropertyWithTrackingId($pixelId): void
+    {
+        $this->updatePixelPage->specifyTrackingId($pixelId);
+    }
+
+    /**
+     * @When I save my changes
+     */
+    public function iSaveMyChanges(): void
+    {
+        $this->updatePixelPage->saveChanges();
+    }
+
+    /**
+     * @Then this pixel's pixel id should be :pixelId
+     */
+    public function thisPropertysTrackingIdShouldBe($pixelId): void
+    {
+        Assert::eq($pixelId, $this->updatePixelPage->getPixelId());
+    }
+}
