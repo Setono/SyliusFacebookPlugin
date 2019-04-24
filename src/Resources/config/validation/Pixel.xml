@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Setono\SyliusFacebookTrackingPlugin\Model\Pixel">
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+            <option name="fields">
+                <value>pixelId</value>
+            </option>
+            <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.unique</option>
+            <option name="groups">
+                <value>setono_sylius_facebook_tracking</value>
+            </option>
+        </constraint>
+        <property name="pixelId">
+            <constraint name="NotBlank">
+                <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.not_blank</option>
+                <option name="groups">
+                    <value>setono_sylius_facebook_tracking</value>
+                </option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.not_integer</option>
+                <option name="groups">
+                    <value>setono_sylius_facebook_tracking</value>
+                </option>
+            </constraint>
+            <constraint name="GreaterThan">
+                <option name="value">0</option>
+                <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.not_greater_than_zero</option>
+                <option name="groups">
+                    <value>setono_sylius_facebook_tracking</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

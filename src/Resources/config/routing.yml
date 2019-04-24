@@ -1,3 +1,0 @@
-setono_sylius_facebook_tracking_plugin_admin:
-    resource: routing/admin.yml
-    prefix: /admin

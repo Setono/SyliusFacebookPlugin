@@ -1,0 +1,3 @@
+setono_sylius_facebook_tracking_admin:
+    resource: routing/admin.yaml
+    prefix: /admin

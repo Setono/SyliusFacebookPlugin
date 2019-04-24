@@ -1,7 +1,0 @@
-services:
-    setono_sylius_facebook_tracking_plugin.behat.page.admin.facebook_config.update:
-        class: Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\FacebookConfig\UpdatePage
-        parent: sylius.behat.page.admin.crud.update
-        public: false
-        arguments:
-            - 'setono_sylius_facebook_tracking_admin_facebook_config_update'

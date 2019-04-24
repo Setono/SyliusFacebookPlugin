@@ -1,2 +1,2 @@
-setono_facebook_tracking_plugin:
-  resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/routing.yml"
+setono_facebook_tracking:
+  resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/routing.yaml"
