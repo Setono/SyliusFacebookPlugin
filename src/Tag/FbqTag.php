@@ -11,7 +11,7 @@ final class FbqTag implements FbqTagInterface
     /**
      * @var string
      */
-    private $action;
+    private $event;
 
     /**
      * @var string
@@ -23,10 +23,10 @@ final class FbqTag implements FbqTagInterface
      */
     private $parameters;
 
-    public function __construct(string $key, string $action, BuilderInterface $builder = null)
+    public function __construct(string $key, string $event, BuilderInterface $builder = null)
     {
         $this->key = $key;
-        $this->action = $action;
+        $this->event = $event;
         $this->parameters = $builder;
     }
 
@@ -47,7 +47,7 @@ final class FbqTag implements FbqTagInterface
 
     public function getParameters(): array
     {
-        $ret = ['action' => $this->action];
+        $ret = ['event' => $this->event];
 
         if (null !== $this->parameters) {
             $ret['parameters'] = $this->parameters->getJson();
