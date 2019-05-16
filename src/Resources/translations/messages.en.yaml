@@ -8,4 +8,5 @@ setono_sylius_facebook_tracking:
         facebook_tracking: Facebook tracking
         manage_pixels: Manage facebook pixels
         new_pixel: New facebook pixel
+        pixel_id: Pixel id
         pixels: Facebook pixels
