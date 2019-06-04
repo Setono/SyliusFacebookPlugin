@@ -17,6 +17,7 @@
     },
     "conflict": {
         "friends-of-behat/symfony-extension": ">=2.0.5 <= 2.0.8",
+        "symfony/doctrine-bridge": "4.3.0",
         "symfony/browser-kit": "4.1.8",
         "symfony/dependency-injection": "4.1.8",
         "symfony/dom-crawler": "4.1.8",
