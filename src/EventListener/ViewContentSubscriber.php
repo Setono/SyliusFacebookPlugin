@@ -47,11 +47,11 @@ final class ViewContentSubscriber extends TagSubscriber
             ->setQuantity(1)
         ;
 
-        $this->eventDispatcher->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $product));
+        $this->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $product));
 
         $builder->addContent($contentBuilder);
 
-        $this->eventDispatcher->dispatch(ViewContentBuilder::EVENT_NAME, new BuilderEvent($builder, $product));
+        $this->dispatch(ViewContentBuilder::EVENT_NAME, new BuilderEvent($builder, $product));
 
         $this->tagBag->add(new FbqTag(
             Tags::TAG_VIEW_CONTENT,

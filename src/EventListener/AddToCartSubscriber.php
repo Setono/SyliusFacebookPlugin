@@ -75,12 +75,12 @@ final class AddToCartSubscriber extends TagSubscriber
                 ->setItemPrice($this->moneyFormatter->format($item->getDiscountedUnitPrice()))
             ;
 
-            $this->eventDispatcher->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $item));
+            $this->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $item));
 
             $builder->addContent($contentBuilder);
         }
 
-        $this->eventDispatcher->dispatch(AddToCartBuilder::EVENT_NAME, new BuilderEvent($builder, $order));
+        $this->dispatch(AddToCartBuilder::EVENT_NAME, new BuilderEvent($builder, $order));
 
         $this->tagBag->add(new FbqTag(
             Tags::TAG_ADD_TO_CART,

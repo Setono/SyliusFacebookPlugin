@@ -10,6 +10,7 @@ use Setono\SyliusFacebookTrackingPlugin\Formatter\MoneyFormatter;
 use Setono\TagBagBundle\TagBag\TagBagInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\LegacyEventDispatcherProxy;
 
 abstract class TagSubscriber implements EventSubscriberInterface
 {
@@ -31,7 +32,7 @@ abstract class TagSubscriber implements EventSubscriberInterface
     /**
      * @var EventDispatcherInterface
      */
-    protected $eventDispatcher;
+    private $eventDispatcher;
 
     /**
      * @var MoneyFormatter
@@ -40,6 +41,15 @@ abstract class TagSubscriber implements EventSubscriberInterface
 
     public function __construct(TagBagInterface $tagBag, PixelContextInterface $pixelContext, EventDispatcherInterface $eventDispatcher)
     {
+        if (class_exists(LegacyEventDispatcherProxy::class)) {
+            /**
+             * It could return null only if we pass null, but we pass not null in any case
+             *
+             * @var EventDispatcherInterface
+             */
+            $eventDispatcher = LegacyEventDispatcherProxy::decorate($eventDispatcher);
+        }
+
         $this->tagBag = $tagBag;
         $this->pixelContext = $pixelContext;
         $this->eventDispatcher = $eventDispatcher;
@@ -58,5 +68,14 @@ abstract class TagSubscriber implements EventSubscriberInterface
         }
 
         return $this->pixels;
+    }
+
+    protected function dispatch(string $eventName, $event): void
+    {
+        if (class_exists(LegacyEventDispatcherProxy::class)) {
+            $this->eventDispatcher->dispatch($event, $eventName);
+        } else {
+            $this->eventDispatcher->dispatch($eventName, $event);
+        }
     }
 }

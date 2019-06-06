@@ -56,12 +56,12 @@ final class PurchaseSubscriber extends TagSubscriber
                 ->setQuantity($orderItem->getQuantity())
             ;
 
-            $this->eventDispatcher->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $orderItem));
+            $this->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $orderItem));
 
             $builder->addContent($contentBuilder);
         }
 
-        $this->eventDispatcher->dispatch(PurchaseBuilder::EVENT_NAME, new BuilderEvent($builder, $order));
+        $this->dispatch(PurchaseBuilder::EVENT_NAME, new BuilderEvent($builder, $order));
 
         $this->tagBag->add(new FbqTag(
             Tags::TAG_PURCHASE,
