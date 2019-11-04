@@ -12,7 +12,7 @@ trait ContentIdsAwareBuilderTrait
     protected $data = [];
 
     /**
-     * @param string|int $contentId
+     * @param mixed $contentId
      */
     public function addContentId($contentId): self
     {
