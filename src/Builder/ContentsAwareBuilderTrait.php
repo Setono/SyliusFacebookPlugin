@@ -14,7 +14,7 @@ trait ContentsAwareBuilderTrait
     protected $data = [];
 
     /**
-     * @param array|BuilderInterface $content
+     * @param mixed $content
      *
      * @throws StringsException
      */
@@ -35,6 +35,7 @@ trait ContentsAwareBuilderTrait
         }
 
         $this->data['contents'][] = $content;
+        
 
         return $this;
     }
