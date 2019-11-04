@@ -8,8 +8,9 @@ use Webmozart\Assert\Assert;
 
 final class ContentBuilder extends Builder
 {
-    public const EVENT_NAME = 'setono_sylius_facebook_tracking.builder.item';
-
+    /**
+     * @param mixed $id
+     */
     public function setId($id): self
     {
         Assert::scalar($id);

@@ -6,9 +6,7 @@ namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
 trait ContentNameAwareBuilderTrait
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $data = [];
 
     public function setContentName(string $contentName): self

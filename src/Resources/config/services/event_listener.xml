@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_facebook_tracking.event_listener.add_library" class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddLibrarySubscriber">
+        <service id="setono_sylius_facebook_tracking.event_listener.add_library"
+                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddLibrarySubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="security.firewall.map"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.event_listener.add_to_cart" class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddToCartSubscriber">
+        <service id="setono_sylius_facebook_tracking.event_listener.add_to_cart"
+                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddToCartSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="sylius.context.cart.composite"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="security.firewall.map"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.event_listener.purchase" class="Setono\SyliusFacebookTrackingPlugin\EventListener\PurchaseSubscriber">
+        <service id="setono_sylius_facebook_tracking.event_listener.purchase"
+                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\PurchaseSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="security.firewall.map"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.event_listener.view_content" class="Setono\SyliusFacebookTrackingPlugin\EventListener\ViewContentSubscriber">
+        <service id="setono_sylius_facebook_tracking.event_listener.view_content"
+                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\ViewContentSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="security.firewall.map"/>
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>

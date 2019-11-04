@@ -14,22 +14,24 @@ use Setono\SyliusFacebookTrackingPlugin\Tag\Tags;
 use Setono\TagBagBundle\TagBag\TagBagInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
+use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 final class AddToCartSubscriber extends TagSubscriber
 {
-    /**
-     * @var CartContextInterface
-     */
+    /** @var CartContextInterface */
     private $cartContext;
 
     public function __construct(
         TagBagInterface $tagBag,
         PixelContextInterface $pixelContext,
         EventDispatcherInterface $eventDispatcher,
-        CartContextInterface $cartContext
+        CartContextInterface $cartContext,
+        RequestStack $requestStack,
+        FirewallMap $firewallMap
     ) {
-        parent::__construct($tagBag, $pixelContext, $eventDispatcher);
+        parent::__construct($tagBag, $pixelContext, $eventDispatcher, $requestStack, $firewallMap);
 
         $this->cartContext = $cartContext;
     }
@@ -45,7 +47,7 @@ final class AddToCartSubscriber extends TagSubscriber
 
     public function track(): void
     {
-        if (!$this->hasPixels()) {
+        if (!$this->isShopContext() || !$this->hasPixels()) {
             return;
         }
 
@@ -75,12 +77,12 @@ final class AddToCartSubscriber extends TagSubscriber
                 ->setItemPrice($this->moneyFormatter->format($item->getDiscountedUnitPrice()))
             ;
 
-            $this->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $item));
+            $this->eventDispatcher->dispatch(new BuilderEvent($contentBuilder, $item));
 
             $builder->addContent($contentBuilder);
         }
 
-        $this->dispatch(AddToCartBuilder::EVENT_NAME, new BuilderEvent($builder, $order));
+        $this->eventDispatcher->dispatch(new BuilderEvent($builder, $order));
 
         $this->tagBag->add(new FbqTag(
             Tags::TAG_ADD_TO_CART,

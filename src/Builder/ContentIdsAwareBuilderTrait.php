@@ -8,11 +8,12 @@ use Webmozart\Assert\Assert;
 
 trait ContentIdsAwareBuilderTrait
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $data = [];
 
+    /**
+     * @param string|int $contentId
+     */
     public function addContentId($contentId): self
     {
         if (!isset($this->data['content_ids'])) {

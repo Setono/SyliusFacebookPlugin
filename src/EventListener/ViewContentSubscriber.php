@@ -27,7 +27,7 @@ final class ViewContentSubscriber extends TagSubscriber
 
     public function track(ResourceControllerEvent $event): void
     {
-        if (!$this->hasPixels()) {
+        if (!$this->isShopContext() || !$this->hasPixels()) {
             return;
         }
 
@@ -47,11 +47,11 @@ final class ViewContentSubscriber extends TagSubscriber
             ->setQuantity(1)
         ;
 
-        $this->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $product));
+        $this->eventDispatcher->dispatch(new BuilderEvent($contentBuilder, $product));
 
         $builder->addContent($contentBuilder);
 
-        $this->dispatch(ViewContentBuilder::EVENT_NAME, new BuilderEvent($builder, $product));
+        $this->eventDispatcher->dispatch(new BuilderEvent($builder, $product));
 
         $this->tagBag->add(new FbqTag(
             Tags::TAG_VIEW_CONTENT,

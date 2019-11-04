@@ -6,9 +6,7 @@ namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
 trait ValueAwareBuilderTrait
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $data = [];
 
     public function setCurrency(string $currency): self

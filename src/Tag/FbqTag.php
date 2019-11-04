@@ -8,19 +8,13 @@ use Setono\SyliusFacebookTrackingPlugin\Builder\BuilderInterface;
 
 final class FbqTag implements FbqTagInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $event;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $key;
 
-    /**
-     * @var BuilderInterface|null
-     */
+    /** @var BuilderInterface|null */
     private $parameters;
 
     public function __construct(string $key, string $event, BuilderInterface $builder = null)

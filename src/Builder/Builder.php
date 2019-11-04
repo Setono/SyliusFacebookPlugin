@@ -11,11 +11,10 @@ use function Safe\json_encode;
 abstract class Builder implements BuilderInterface
 {
     public const CONTENT_TYPE_PRODUCT = 'product';
+
     public const CONTENT_TYPE_PRODUCT_GROUP = 'product_group';
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $data = [];
 
     private function __construct()
@@ -27,6 +26,9 @@ abstract class Builder implements BuilderInterface
         return new static();
     }
 
+    /**
+     * @throws JsonException
+     */
     public static function createFromJson(string $json)
     {
         $new = new static();
@@ -41,8 +43,6 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
-     * @return string
-     *
      * @throws JsonException
      */
     public function getJson(): string

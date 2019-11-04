@@ -1,23 +1,22 @@
 includes:
-    - vendor/phpstan/phpstan-doctrine/extension.neon
-    - vendor/phpstan/phpstan-symfony/extension.neon
-    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
+	- vendor/korbeil/phpstan-generic-rules/extension.neon
+	- vendor/phpstan/phpstan-doctrine/extension.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
+	- vendor/phpstan/phpstan-webmozart-assert/extension.neon
+	- vendor/thecodingmachine/phpstan-safe-rule/phpstan-safe-rule.neon
 
 parameters:
-    reportUnmatchedIgnoredErrors: false
+	reportUnmatchedIgnoredErrors: true
 
-    symfony:
-        container_xml_path: tests/Application/var/cache/test/ApplicationTests_Setono_SyliusFacebookTrackingPlugin_Application_KernelTestDebugContainer.xml
+	excludes_analyse:
+		# Makes PHPStan crash
+		- 'src/DependencyInjection/Configuration.php'
 
-    excludes_analyse:
-        # Makes PHPStan crash
-        - 'src/DependencyInjection/Configuration.php'
-
-        # Test dependencies
-        - 'tests/Application/app/**.php'
-        - 'tests/Application/src/**.php'
-
-    ignoreErrors:
-        - '/Parameter #1 $configuration of method Symfony\Component\DependencyInjection\Extension\Extension::processConfiguration() expects Symfony\Component\Config\Definition\ConfigurationInterface, Symfony\Component\Config\Definition\ConfigurationInterface|null given./'
-        - '/Method Symfony\\Contracts\\EventDispatcher\\EventDispatcherInterface\:\:dispatch\(\) invoked with 2 parameters, 1 required\./'
-        - '/Parameter \#1 \$event of method Symfony\\Contracts\\EventDispatcher\\EventDispatcherInterface\:\:dispatch\(\) expects object, string given\./'
+	ignoreErrors:
+		- '/Parameter #1 $configuration of method Symfony\Component\DependencyInjection\Extension\Extension::processConfiguration() expects Symfony\Component\Config\Definition\ConfigurationInterface, Symfony\Component\Config\Definition\ConfigurationInterface|null given./'
+		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\BuilderInterface\:\:create\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\BuilderInterface\:\:createFromJson\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\Builder\:\:create\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\Builder\:\:createFromJson\(\) has no return typehint specified\./'
+		- '/\:\:addContent\(\) has parameter \$content with no typehint specified/'
+		- '/\:\:addContentId\(\) has parameter \$contentId with no typehint specified/'

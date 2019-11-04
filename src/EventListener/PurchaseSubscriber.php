@@ -29,7 +29,7 @@ final class PurchaseSubscriber extends TagSubscriber
     {
         $order = $event->getSubject();
 
-        if (!$order instanceof OrderInterface) {
+        if (!$order instanceof OrderInterface || !$this->isShopContext()) {
             return;
         }
 
@@ -56,12 +56,12 @@ final class PurchaseSubscriber extends TagSubscriber
                 ->setQuantity($orderItem->getQuantity())
             ;
 
-            $this->dispatch(ContentBuilder::EVENT_NAME, new BuilderEvent($contentBuilder, $orderItem));
+            $this->eventDispatcher->dispatch(new BuilderEvent($contentBuilder, $orderItem));
 
             $builder->addContent($contentBuilder);
         }
 
-        $this->dispatch(PurchaseBuilder::EVENT_NAME, new BuilderEvent($builder, $order));
+        $this->eventDispatcher->dispatch(new BuilderEvent($builder, $order));
 
         $this->tagBag->add(new FbqTag(
             Tags::TAG_PURCHASE,

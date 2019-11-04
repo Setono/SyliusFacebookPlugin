@@ -8,9 +8,7 @@ use Webmozart\Assert\Assert;
 
 trait ContentTypeAwareBuilderTrait
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $data = [];
 
     public function setContentType(string $contentType): self

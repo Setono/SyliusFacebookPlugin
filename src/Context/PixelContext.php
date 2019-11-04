@@ -9,14 +9,10 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 final class PixelContext implements PixelContextInterface
 {
-    /**
-     * @var ChannelContextInterface
-     */
+    /** @var ChannelContextInterface */
     private $channelContext;
 
-    /**
-     * @var PixelRepositoryInterface
-     */
+    /** @var PixelRepositoryInterface */
     private $propertyRepository;
 
     public function __construct(ChannelContextInterface $channelContext, PixelRepositoryInterface $propertyRepository)

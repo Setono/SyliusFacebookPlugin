@@ -14,19 +14,13 @@ class Pixel implements PixelInterface
 {
     use ToggleableTrait;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $pixelId;
 
-    /**
-     * @var Collection|ChannelInterface[]
-     */
+    /** @var Collection|ChannelInterface[] */
     protected $channels;
 
     public function __construct()

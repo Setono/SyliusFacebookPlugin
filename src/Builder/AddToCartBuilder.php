@@ -11,6 +11,4 @@ final class AddToCartBuilder extends Builder
         ContentTypeAwareBuilderTrait,
         ValueAwareBuilderTrait
     ;
-
-    public const EVENT_NAME = 'setono_sylius_facebook_tracking.builder.add_to_cart';
 }

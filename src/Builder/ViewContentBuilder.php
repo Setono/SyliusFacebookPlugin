@@ -12,6 +12,4 @@ final class ViewContentBuilder extends Builder
         ContentTypeAwareBuilderTrait,
         ValueAwareBuilderTrait
     ;
-
-    public const EVENT_NAME = 'setono_sylius_facebook_tracking.builder.view_content';
 }
