@@ -35,7 +35,6 @@ trait ContentsAwareBuilderTrait
         }
 
         $this->data['contents'][] = $content;
-        
 
         return $this;
     }
