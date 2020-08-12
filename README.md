@@ -3,7 +3,7 @@
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-github-actions]][link-github-actions]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
 Track user behavior in Facebook.
@@ -90,9 +90,9 @@ Thank you!
 [ico-version]: https://poser.pugx.org/setono/sylius-facebook-tracking-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-facebook-tracking-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-facebook-tracking-plugin/license
-[ico-travis]: https://travis-ci.com/Setono/SyliusFacebookTrackingPlugin.svg?branch=master
+[ico-github-actions]: https://github.com/Setono/SyliusFacebookTrackingPlugin/workflows/build/badge.svg
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusFacebookTrackingPlugin.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-facebook-tracking-plugin
-[link-travis]: https://travis-ci.com/Setono/SyliusFacebookTrackingPlugin
+[link-github-actions]: https://github.com/Setono/SyliusFacebookTrackingPlugin/actions
 [link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusFacebookTrackingPlugin
