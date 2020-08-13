@@ -11,7 +11,8 @@ use Setono\SyliusFacebookTrackingPlugin\Event\BuilderEvent;
 use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTag;
 use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTagInterface;
 use Setono\SyliusFacebookTrackingPlugin\Tag\Tags;
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\Tag\TagInterface;
+use Setono\TagBag\TagBagInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
@@ -84,10 +85,10 @@ final class AddToCartSubscriber extends TagSubscriber
 
         $this->eventDispatcher->dispatch(new BuilderEvent($builder, $order));
 
-        $this->tagBag->add(new FbqTag(
-            Tags::TAG_ADD_TO_CART,
-            FbqTagInterface::EVENT_ADD_TO_CART,
-            $builder
-        ), TagBagInterface::SECTION_BODY_END);
+        $this->tagBag->addTag(
+            (new FbqTag(FbqTagInterface::EVENT_ADD_TO_CART, $builder))
+                ->setSection(TagInterface::SECTION_BODY_END)
+                ->setName(Tags::TAG_ADD_TO_CART)
+        );
     }
 }

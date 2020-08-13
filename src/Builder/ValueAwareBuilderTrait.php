@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
+use function assert;
+
+/**
+ * @mixin Builder
+ */
 trait ValueAwareBuilderTrait
 {
-    /** @var array */
-    protected $data = [];
-
     public function setCurrency(string $currency): self
     {
+        assert($this instanceof Builder);
+
         $this->data['currency'] = $currency;
 
         return $this;
@@ -18,6 +22,8 @@ trait ValueAwareBuilderTrait
 
     public function setValue(float $value): self
     {
+        assert($this instanceof Builder);
+
         $this->data['value'] = $value;
 
         return $this;

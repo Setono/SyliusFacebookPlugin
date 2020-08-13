@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Tag;
 
-use Setono\TagBagBundle\Tag\TwigTagInterface;
+use Setono\TagBag\Tag\TwigTagInterface;
 
 interface FbqTagInterface extends TwigTagInterface
 {

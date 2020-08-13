@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
+use function assert;
 use InvalidArgumentException;
-use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
 
+/**
+ * @mixin Builder
+ */
 trait ContentsAwareBuilderTrait
 {
-    /** @var array */
-    protected $data = [];
-
     /**
-     * @param mixed $content
-     *
-     * @throws StringsException
+     * @param array|BuilderInterface $content
      */
     public function addContent($content): self
     {
+        assert($this instanceof Builder);
+
         if ($content instanceof BuilderInterface) {
             $content = $content->getData();
         }
@@ -28,10 +28,6 @@ trait ContentsAwareBuilderTrait
             throw new InvalidArgumentException(sprintf(
                 'The $content parameter needs to be an array or instance of %s', BuilderInterface::class
             ));
-        }
-
-        if (!isset($this->data['contents'])) {
-            $this->data['contents'] = [];
         }
 
         $this->data['contents'][] = $content;
