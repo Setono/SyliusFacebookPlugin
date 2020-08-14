@@ -24,6 +24,6 @@ final class SetonoSyliusFacebookTrackingExtension extends AbstractResourceExtens
 
         $loader->load('services.xml');
 
-        $this->registerResources('setono_sylius_facebook_tracking', $config['driver'], $config['resources'], $container);
+        $this->registerResources('setono_sylius_facebook', $config['driver'], $config['resources'], $container);
     }
 }

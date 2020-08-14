@@ -16,10 +16,10 @@ final class PixelType extends AbstractResourceType
     {
         $builder
             ->add('pixelId', IntegerType::class, [
-                'label' => 'setono_sylius_facebook_tracking.form.pixel.pixel_id',
+                'label' => 'setono_sylius_facebook.form.pixel.pixel_id',
                 'attr' => [
                     'min' => 1,
-                    'placeholder' => 'setono_sylius_facebook_tracking.form.pixel.pixel_id_placeholder',
+                    'placeholder' => 'setono_sylius_facebook.form.pixel.pixel_id_placeholder',
                 ],
             ])
             ->add('enabled', CheckboxType::class, [
@@ -36,6 +36,6 @@ final class PixelType extends AbstractResourceType
 
     public function getBlockPrefix(): string
     {
-        return 'setono_sylius_facebook_tracking_pixel';
+        return 'setono_sylius_facebook_pixel';
     }
 }

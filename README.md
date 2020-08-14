@@ -58,7 +58,7 @@ imports:
 ### Step 4: Import routing
 
 ```yaml
-# config/routes/setono_sylius_facebook_tracking.yaml
+# config/routes/setono_sylius_facebook.yaml
 setono_facebook_tracking:
     resource: "@SetonoSyliusFacebookPlugin/Resources/config/routing.yaml"
 ```

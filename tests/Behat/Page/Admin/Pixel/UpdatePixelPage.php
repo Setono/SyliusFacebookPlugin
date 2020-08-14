@@ -24,7 +24,7 @@ class UpdatePixelPage extends UpdatePage
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'pixel_id' => '#setono_sylius_facebook_tracking_pixel_pixelId',
+            'pixel_id' => '#setono_sylius_facebook_pixel_pixelId',
         ]);
     }
 }

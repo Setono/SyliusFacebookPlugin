@@ -3,20 +3,20 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_facebook_tracking.event_listener.add_library"
+        <service id="setono_sylius_facebook.event_listener.add_library"
                  class="Setono\SyliusFacebookPlugin\EventListener\AddLibrarySubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
-            <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
+            <argument type="service" id="setono_sylius_facebook.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="request_stack"/>
             <argument type="service" id="security.firewall.map"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.event_listener.add_to_cart"
+        <service id="setono_sylius_facebook.event_listener.add_to_cart"
                  class="Setono\SyliusFacebookPlugin\EventListener\AddToCartSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
-            <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
+            <argument type="service" id="setono_sylius_facebook.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="sylius.context.cart.composite"/>
             <argument type="service" id="request_stack"/>
@@ -24,20 +24,20 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.event_listener.purchase"
+        <service id="setono_sylius_facebook.event_listener.purchase"
                  class="Setono\SyliusFacebookPlugin\EventListener\PurchaseSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
-            <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
+            <argument type="service" id="setono_sylius_facebook.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="request_stack"/>
             <argument type="service" id="security.firewall.map"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.event_listener.view_content"
+        <service id="setono_sylius_facebook.event_listener.view_content"
                  class="Setono\SyliusFacebookPlugin\EventListener\ViewContentSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
-            <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
+            <argument type="service" id="setono_sylius_facebook.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="request_stack"/>
             <argument type="service" id="security.firewall.map"/>

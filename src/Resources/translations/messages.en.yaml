@@ -1,4 +1,4 @@
-setono_sylius_facebook_tracking:
+setono_sylius_facebook:
     form:
         pixel:
             pixel_id: Pixel id

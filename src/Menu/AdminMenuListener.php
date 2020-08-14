@@ -26,9 +26,9 @@ final class AdminMenuListener
     {
         $item
             ->addChild('facebook_tracking', [
-                'route' => 'setono_sylius_facebook_tracking_admin_pixel_index',
+                'route' => 'setono_sylius_facebook_admin_pixel_index',
             ])
-            ->setLabel('setono_sylius_facebook_tracking.ui.facebook')
+            ->setLabel('setono_sylius_facebook.ui.facebook')
             ->setLabelAttribute('icon', 'facebook');
     }
 }

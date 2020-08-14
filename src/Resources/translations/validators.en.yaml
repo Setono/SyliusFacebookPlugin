@@ -1,4 +1,4 @@
-setono_sylius_facebook_tracking:
+setono_sylius_facebook:
     pixel:
         pixel_id:
             unique: You already have one pixel with this id.

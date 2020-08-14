@@ -5,34 +5,34 @@
         <defaults public="true" />
 
         <!-- Pages -->
-        <service id="setono_sylius_facebook_tracking.behat.page.admin.index_pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\IndexPixelPage" parent="sylius.behat.page.admin.crud.index" public="false">
-            <argument type="string">setono_sylius_facebook_tracking_admin_pixel_index</argument>
+        <service id="setono_sylius_facebook.behat.page.admin.index_pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\IndexPixelPage" parent="sylius.behat.page.admin.crud.index" public="false">
+            <argument type="string">setono_sylius_facebook_admin_pixel_index</argument>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.behat.page.admin.create_pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\CreatePixelPage" parent="sylius.behat.page.admin.crud.create" public="false">
-            <argument type="string">setono_sylius_facebook_tracking_admin_pixel_create</argument>
+        <service id="setono_sylius_facebook.behat.page.admin.create_pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\CreatePixelPage" parent="sylius.behat.page.admin.crud.create" public="false">
+            <argument type="string">setono_sylius_facebook_admin_pixel_create</argument>
         </service>
 
-        <service id="setono_sylius_facebook_tracking.behat.page.admin.update_pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\UpdatePixelPage" parent="sylius.behat.page.admin.crud.update" public="false">
-            <argument type="string">setono_sylius_facebook_tracking_admin_pixel_update</argument>
+        <service id="setono_sylius_facebook.behat.page.admin.update_pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\UpdatePixelPage" parent="sylius.behat.page.admin.crud.update" public="false">
+            <argument type="string">setono_sylius_facebook_admin_pixel_update</argument>
         </service>
 
         <!-- Context: Setup -->
-        <service id="setono_sylius_facebook_tracking.behat.context.setup.pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Context\Setup\PixelContext">
-            <argument type="service" id="setono_sylius_facebook_tracking.repository.pixel" />
-            <argument type="service" id="setono_sylius_facebook_tracking.factory.pixel" />
+        <service id="setono_sylius_facebook.behat.context.setup.pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Context\Setup\PixelContext">
+            <argument type="service" id="setono_sylius_facebook.repository.pixel" />
+            <argument type="service" id="setono_sylius_facebook.factory.pixel" />
         </service>
 
         <!-- Context: Transform -->
-        <service id="setono_sylius_facebook_tracking.behat.context.transform.pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Context\Transform\PixelContext">
-            <argument type="service" id="setono_sylius_facebook_tracking.repository.pixel" />
+        <service id="setono_sylius_facebook.behat.context.transform.pixel" class="Tests\Setono\SyliusFacebookPlugin\Behat\Context\Transform\PixelContext">
+            <argument type="service" id="setono_sylius_facebook.repository.pixel" />
         </service>
 
         <!-- Context: UI -->
-        <service id="setono_sylius_facebook_tracking.behat.context.ui.admin.managing_pixels" class="Tests\Setono\SyliusFacebookPlugin\Behat\Context\Ui\Admin\ManagingPixelsContext">
-            <argument type="service" id="setono_sylius_facebook_tracking.behat.page.admin.index_pixel" />
-            <argument type="service" id="setono_sylius_facebook_tracking.behat.page.admin.create_pixel" />
-            <argument type="service" id="setono_sylius_facebook_tracking.behat.page.admin.update_pixel" />
+        <service id="setono_sylius_facebook.behat.context.ui.admin.managing_pixels" class="Tests\Setono\SyliusFacebookPlugin\Behat\Context\Ui\Admin\ManagingPixelsContext">
+            <argument type="service" id="setono_sylius_facebook.behat.page.admin.index_pixel" />
+            <argument type="service" id="setono_sylius_facebook.behat.page.admin.create_pixel" />
+            <argument type="service" id="setono_sylius_facebook.behat.page.admin.update_pixel" />
         </service>
 
     </services>

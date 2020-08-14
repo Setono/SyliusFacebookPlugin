@@ -1,14 +1,14 @@
 sylius_grid:
     grids:
-        setono_sylius_facebook_tracking_admin_pixel:
+        setono_sylius_facebook_admin_pixel:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%setono_sylius_facebook_tracking.model.pixel.class%"
+                    class: "%setono_sylius_facebook.model.pixel.class%"
             fields:
                 pixelId:
                     type: string
-                    label: setono_sylius_facebook_tracking.ui.pixel_id
+                    label: setono_sylius_facebook.ui.pixel_id
                 channels:
                     type: twig
                     label: sylius.ui.channels

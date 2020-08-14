@@ -9,30 +9,30 @@
             <option name="fields">
                 <value>pixelId</value>
             </option>
-            <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.unique</option>
+            <option name="message">setono_sylius_facebook.pixel.pixel_id.unique</option>
             <option name="groups">
-                <value>setono_sylius_facebook_tracking</value>
+                <value>setono_sylius_facebook</value>
             </option>
         </constraint>
         <property name="pixelId">
             <constraint name="NotBlank">
-                <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.not_blank</option>
+                <option name="message">setono_sylius_facebook.pixel.pixel_id.not_blank</option>
                 <option name="groups">
-                    <value>setono_sylius_facebook_tracking</value>
+                    <value>setono_sylius_facebook</value>
                 </option>
             </constraint>
             <constraint name="Type">
                 <option name="type">numeric</option>
-                <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.not_integer</option>
+                <option name="message">setono_sylius_facebook.pixel.pixel_id.not_integer</option>
                 <option name="groups">
-                    <value>setono_sylius_facebook_tracking</value>
+                    <value>setono_sylius_facebook</value>
                 </option>
             </constraint>
             <constraint name="GreaterThan">
                 <option name="value">0</option>
-                <option name="message">setono_sylius_facebook_tracking.pixel.pixel_id.not_greater_than_zero</option>
+                <option name="message">setono_sylius_facebook.pixel.pixel_id.not_greater_than_zero</option>
                 <option name="groups">
-                    <value>setono_sylius_facebook_tracking</value>
+                    <value>setono_sylius_facebook</value>
                 </option>
             </constraint>
         </property>
