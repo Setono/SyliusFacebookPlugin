@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Tag;
+namespace Setono\SyliusFacebookPlugin\Tag;
 
-use Setono\SyliusFacebookTrackingPlugin\Builder\BuilderInterface;
+use Setono\SyliusFacebookPlugin\Builder\BuilderInterface;
 use Setono\TagBag\Tag\TwigTag;
 
 class FbqTag extends TwigTag implements FbqTagInterface
@@ -17,7 +17,7 @@ class FbqTag extends TwigTag implements FbqTagInterface
 
     public function __construct(string $event, BuilderInterface $builder = null)
     {
-        parent::__construct('@SetonoSyliusFacebookTrackingPlugin/Tag/event.html.twig');
+        parent::__construct('@SetonoSyliusFacebookPlugin/Tag/event.html.twig');
 
         $this->event = $event;
         $this->parameters = $builder;

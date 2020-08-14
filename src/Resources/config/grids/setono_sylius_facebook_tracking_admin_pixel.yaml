@@ -13,7 +13,7 @@ sylius_grid:
                     type: twig
                     label: sylius.ui.channels
                     options:
-                        template: "@SetonoSyliusFacebookTrackingPlugin/Admin/Grid/Field/channels.html.twig"
+                        template: "@SetonoSyliusFacebookPlugin/Admin/Grid/Field/channels.html.twig"
             actions:
                 main:
                     create:

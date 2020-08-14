@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Tag;
+namespace Setono\SyliusFacebookPlugin\Tag;
 
 final class Tags
 {

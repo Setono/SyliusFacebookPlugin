@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\EventListener;
+namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Setono\SyliusFacebookTrackingPlugin\Builder\AddToCartBuilder;
-use Setono\SyliusFacebookTrackingPlugin\Builder\ContentBuilder;
-use Setono\SyliusFacebookTrackingPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookTrackingPlugin\Event\BuilderEvent;
-use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTag;
-use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTagInterface;
-use Setono\SyliusFacebookTrackingPlugin\Tag\Tags;
+use Setono\SyliusFacebookPlugin\Builder\AddToCartBuilder;
+use Setono\SyliusFacebookPlugin\Builder\ContentBuilder;
+use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
+use Setono\SyliusFacebookPlugin\Event\BuilderEvent;
+use Setono\SyliusFacebookPlugin\Tag\FbqTag;
+use Setono\SyliusFacebookPlugin\Tag\FbqTagInterface;
+use Setono\SyliusFacebookPlugin\Tag\Tags;
 use Setono\TagBag\Tag\TagInterface;
 use Setono\TagBag\TagBagInterface;
 use Sylius\Component\Core\Model\OrderInterface;

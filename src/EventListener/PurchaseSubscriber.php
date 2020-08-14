@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\EventListener;
+namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Setono\SyliusFacebookTrackingPlugin\Builder\ContentBuilder;
-use Setono\SyliusFacebookTrackingPlugin\Builder\PurchaseBuilder;
-use Setono\SyliusFacebookTrackingPlugin\Event\BuilderEvent;
-use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTag;
-use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTagInterface;
-use Setono\SyliusFacebookTrackingPlugin\Tag\Tags;
+use Setono\SyliusFacebookPlugin\Builder\ContentBuilder;
+use Setono\SyliusFacebookPlugin\Builder\PurchaseBuilder;
+use Setono\SyliusFacebookPlugin\Event\BuilderEvent;
+use Setono\SyliusFacebookPlugin\Tag\FbqTag;
+use Setono\SyliusFacebookPlugin\Tag\FbqTagInterface;
+use Setono\SyliusFacebookPlugin\Tag\Tags;
 use Setono\TagBag\Tag\TagInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Core\Model\OrderInterface;

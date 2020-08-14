@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Event;
+namespace Setono\SyliusFacebookPlugin\Event;
 
-use Setono\SyliusFacebookTrackingPlugin\Builder\BuilderInterface;
+use Setono\SyliusFacebookPlugin\Builder\BuilderInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 final class BuilderEvent extends Event

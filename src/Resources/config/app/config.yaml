@@ -1,2 +1,2 @@
 imports:
-    - "@SetonoSyliusFacebookTrackingPlugin/Resources/config/grids/setono_sylius_facebook_tracking_admin_pixel.yaml"
+    - "@SetonoSyliusFacebookPlugin/Resources/config/grids/setono_sylius_facebook_tracking_admin_pixel.yaml"

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Repository;
+namespace Setono\SyliusFacebookPlugin\Repository;
 
-use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 

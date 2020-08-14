@@ -7,7 +7,7 @@
         </parameter>
     </parameters>
     <services>
-        <service id="setono_sylius_facebook_tracking.form.type.pixel" class="Setono\SyliusFacebookTrackingPlugin\Form\Type\PixelType">
+        <service id="setono_sylius_facebook_tracking.form.type.pixel" class="Setono\SyliusFacebookPlugin\Form\Type\PixelType">
             <argument>%setono_sylius_facebook_tracking.model.pixel.class%</argument>
             <argument>%setono_sylius_facebook_tracking.form.type.pixel.validation_groups%</argument>
             <tag name="form.type"/>

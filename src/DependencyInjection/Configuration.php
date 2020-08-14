@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\DependencyInjection;
+namespace Setono\SyliusFacebookPlugin\DependencyInjection;
 
-use Setono\SyliusFacebookTrackingPlugin\Doctrine\ORM\PixelRepository;
-use Setono\SyliusFacebookTrackingPlugin\Form\Type\PixelType;
-use Setono\SyliusFacebookTrackingPlugin\Model\Pixel;
-use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
+use Setono\SyliusFacebookPlugin\Doctrine\ORM\PixelRepository;
+use Setono\SyliusFacebookPlugin\Form\Type\PixelType;
+use Setono\SyliusFacebookPlugin\Model\Pixel;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;

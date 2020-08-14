@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="setono_sylius_facebook_tracking.event_listener.add_library"
-                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddLibrarySubscriber">
+                 class="Setono\SyliusFacebookPlugin\EventListener\AddLibrarySubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
@@ -14,7 +14,7 @@
         </service>
 
         <service id="setono_sylius_facebook_tracking.event_listener.add_to_cart"
-                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\AddToCartSubscriber">
+                 class="Setono\SyliusFacebookPlugin\EventListener\AddToCartSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
@@ -25,7 +25,7 @@
         </service>
 
         <service id="setono_sylius_facebook_tracking.event_listener.purchase"
-                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\PurchaseSubscriber">
+                 class="Setono\SyliusFacebookPlugin\EventListener\PurchaseSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>
@@ -35,7 +35,7 @@
         </service>
 
         <service id="setono_sylius_facebook_tracking.event_listener.view_content"
-                 class="Setono\SyliusFacebookTrackingPlugin\EventListener\ViewContentSubscriber">
+                 class="Setono\SyliusFacebookPlugin\EventListener\ViewContentSubscriber">
             <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="setono_sylius_facebook_tracking.context.pixel"/>
             <argument type="service" id="event_dispatcher"/>

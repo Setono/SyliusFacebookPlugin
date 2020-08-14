@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Builder;
+namespace Setono\SyliusFacebookPlugin\Builder;
 
 final class ViewContentBuilder extends Builder
 {
