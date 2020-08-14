@@ -1,5 +1,5 @@
 {
-    "name": "setono/sylius-facebook-tracking-plugin",
+    "name": "setono/sylius-facebook-plugin",
     "type": "symfony-bundle",
     "description": "Sylius plugin that tracks visitors and sends the data to Facebook",
     "keywords": [
@@ -39,12 +39,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Setono\\SyliusFacebookTrackingPlugin\\": "src/"
+            "Setono\\SyliusFacebookPlugin\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Setono\\SyliusFacebookTrackingPlugin\\": "tests/"
+            "Tests\\Setono\\SyliusFacebookPlugin\\": "tests/"
         },
         "classmap": [
             "tests/Application/Kernel.php"

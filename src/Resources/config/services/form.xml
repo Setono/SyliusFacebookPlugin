@@ -2,14 +2,14 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="setono_sylius_facebook_tracking.form.type.pixel.validation_groups" type="collection">
-            <parameter>setono_sylius_facebook_tracking</parameter>
+        <parameter key="setono_sylius_facebook.form.type.pixel.validation_groups" type="collection">
+            <parameter>setono_sylius_facebook</parameter>
         </parameter>
     </parameters>
     <services>
-        <service id="setono_sylius_facebook_tracking.form.type.pixel" class="Setono\SyliusFacebookTrackingPlugin\Form\Type\PixelType">
-            <argument>%setono_sylius_facebook_tracking.model.pixel.class%</argument>
-            <argument>%setono_sylius_facebook_tracking.form.type.pixel.validation_groups%</argument>
+        <service id="setono_sylius_facebook.form.type.pixel" class="Setono\SyliusFacebookPlugin\Form\Type\PixelType">
+            <argument>%setono_sylius_facebook.model.pixel.class%</argument>
+            <argument>%setono_sylius_facebook.form.type.pixel.validation_groups%</argument>
             <tag name="form.type"/>
         </service>
     </services>

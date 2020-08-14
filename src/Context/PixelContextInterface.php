@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Context;
+namespace Setono\SyliusFacebookPlugin\Context;
 
-use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 
 interface PixelContextInterface
 {

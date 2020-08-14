@@ -10,9 +10,9 @@ parameters:
 
 	ignoreErrors:
 		- '/Parameter \#1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension\:\:processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
-		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\BuilderInterface\:\:create\(\) has no return typehint specified\./'
-		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\BuilderInterface\:\:createFromJson\(\) has no return typehint specified\./'
-		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\Builder\:\:create\(\) has no return typehint specified\./'
-		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\Builder\:\:createFromJson\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookPlugin\\Builder\\BuilderInterface\:\:create\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookPlugin\\Builder\\BuilderInterface\:\:createFromJson\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookPlugin\\Builder\\Builder\:\:create\(\) has no return typehint specified\./'
+		- '/Method Setono\\SyliusFacebookPlugin\\Builder\\Builder\:\:createFromJson\(\) has no return typehint specified\./'
 		- '/Unsafe usage of new static\(\)\./'
 		- '/Call to function assert\(\) with bool will always evaluate to true\./'

@@ -2,21 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\DependencyInjection;
+namespace Setono\SyliusFacebookPlugin\DependencyInjection;
 
-use Exception;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class SetonoSyliusFacebookTrackingExtension extends AbstractResourceExtension
+final class SetonoSyliusFacebookExtension extends AbstractResourceExtension
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @throws Exception
-     */
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
@@ -24,6 +18,6 @@ final class SetonoSyliusFacebookTrackingExtension extends AbstractResourceExtens
 
         $loader->load('services.xml');
 
-        $this->registerResources('setono_sylius_facebook_tracking', $config['driver'], $config['resources'], $container);
+        $this->registerResources('setono_sylius_facebook', $config['driver'], $config['resources'], $container);
     }
 }

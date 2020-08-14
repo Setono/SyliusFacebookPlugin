@@ -1,6 +1,6 @@
 <?php
 
-use Tests\Setono\SyliusFacebookTrackingPlugin\Application\Kernel;
+use Tests\Setono\SyliusFacebookPlugin\Application\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 

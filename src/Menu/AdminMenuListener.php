@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Menu;
+namespace Setono\SyliusFacebookPlugin\Menu;
 
 use Knp\Menu\ItemInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
@@ -26,9 +26,9 @@ final class AdminMenuListener
     {
         $item
             ->addChild('facebook_tracking', [
-                'route' => 'setono_sylius_facebook_tracking_admin_pixel_index',
+                'route' => 'setono_sylius_facebook_admin_pixel_index',
             ])
-            ->setLabel('setono_sylius_facebook_tracking.ui.facebook')
+            ->setLabel('setono_sylius_facebook.ui.facebook')
             ->setLabelAttribute('icon', 'facebook');
     }
 }

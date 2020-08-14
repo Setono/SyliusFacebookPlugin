@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: Setono\SyliusFacebookTrackingPlugin
-        psr4_prefix: Setono\SyliusFacebookTrackingPlugin
+        namespace: Setono\SyliusFacebookPlugin
+        psr4_prefix: Setono\SyliusFacebookPlugin

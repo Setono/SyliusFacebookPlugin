@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Formatter;
+namespace Setono\SyliusFacebookPlugin\Formatter;
 
 final class MoneyFormatter
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\DependencyInjection;
+namespace Setono\SyliusFacebookPlugin\DependencyInjection;
 
-use Setono\SyliusFacebookTrackingPlugin\Doctrine\ORM\PixelRepository;
-use Setono\SyliusFacebookTrackingPlugin\Form\Type\PixelType;
-use Setono\SyliusFacebookTrackingPlugin\Model\Pixel;
-use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
+use Setono\SyliusFacebookPlugin\Doctrine\ORM\PixelRepository;
+use Setono\SyliusFacebookPlugin\Form\Type\PixelType;
+use Setono\SyliusFacebookPlugin\Model\Pixel;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
@@ -20,12 +20,12 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         if (method_exists(TreeBuilder::class, 'getRootNode')) {
-            $treeBuilder = new TreeBuilder('setono_sylius_facebook_tracking');
+            $treeBuilder = new TreeBuilder('setono_sylius_facebook');
             $rootNode = $treeBuilder->getRootNode();
         } else {
             // BC layer for symfony/config 4.1 and older
             $treeBuilder = new TreeBuilder();
-            $rootNode = $treeBuilder->root('setono_sylius_facebook_tracking');
+            $rootNode = $treeBuilder->root('setono_sylius_facebook');
         }
 
         $rootNode

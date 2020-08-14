@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Context;
+namespace Setono\SyliusFacebookPlugin\Context;
 
-use Setono\SyliusFacebookTrackingPlugin\Repository\PixelRepositoryInterface;
+use Setono\SyliusFacebookPlugin\Repository\PixelRepositoryInterface;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 final class PixelContext implements PixelContextInterface

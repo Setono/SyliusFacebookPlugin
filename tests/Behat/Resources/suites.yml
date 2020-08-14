@@ -7,8 +7,8 @@ default:
                 - sylius.behat.context.setup.admin_security
                 - sylius.behat.context.ui.admin.notification
 
-                - setono_sylius_facebook_tracking.behat.context.transform.pixel
-                - setono_sylius_facebook_tracking.behat.context.setup.pixel
-                - setono_sylius_facebook_tracking.behat.context.ui.admin.managing_pixels
+                - setono_sylius_facebook.behat.context.transform.pixel
+                - setono_sylius_facebook.behat.context.setup.pixel
+                - setono_sylius_facebook.behat.context.ui.admin.managing_pixels
             filters:
                 tags: "@managing_pixels && @ui"

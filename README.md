@@ -1,4 +1,4 @@
-# Sylius Facebook Tracking Plugin
+# Sylius Facebook Plugin
 
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
@@ -17,7 +17,7 @@ This plugin uses the [TagBagBundle](https://github.com/Setono/TagBagBundle) to i
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
 ```bash
-$ composer require setono/sylius-facebook-tracking-plugin
+$ composer require setono/sylius-facebook-plugin
 
 # Omit this line if you want to override layout.html.twig as described at https://github.com/Setono/TagBagBundle#usage
 $ composer require setono/sylius-tag-bag-plugin
@@ -40,7 +40,7 @@ $bundles = [
     // Omit this line if you didn't install the SyliusTagBagPlugin in step 1
     Setono\SyliusTagBagPlugin\SetonoSyliusTagBagPlugin::class => ['all' => true],
     
-    Setono\SyliusFacebookTrackingPlugin\SetonoSyliusFacebookTrackingPlugin::class => ['all' => true],
+    Setono\SyliusFacebookPlugin\SetonoSyliusFacebookPlugin::class => ['all' => true],
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
 ];
 ```
@@ -51,16 +51,16 @@ $bundles = [
 # config/packages/_sylius.yaml
 imports:
     # ...
-    - { resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/config.yaml" }
     # ...
 ```
 
 ### Step 4: Import routing
 
 ```yaml
-# config/routes/setono_sylius_facebook_tracking.yaml
+# config/routes/setono_sylius_facebook.yaml
 setono_facebook_tracking:
-    resource: "@SetonoSyliusFacebookTrackingPlugin/Resources/config/routing.yaml"
+    resource: "@SetonoSyliusFacebookPlugin/Resources/config/routing.yaml"
 ```
 
 ### Step 5: Update your database schema
@@ -87,12 +87,12 @@ Ways you can contribute:
 
 Thank you!
 
-[ico-version]: https://poser.pugx.org/setono/sylius-facebook-tracking-plugin/v/stable
-[ico-unstable-version]: https://poser.pugx.org/setono/sylius-facebook-tracking-plugin/v/unstable
-[ico-license]: https://poser.pugx.org/setono/sylius-facebook-tracking-plugin/license
-[ico-github-actions]: https://github.com/Setono/SyliusFacebookTrackingPlugin/workflows/build/badge.svg
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusFacebookTrackingPlugin.svg?style=flat-square
+[ico-version]: https://poser.pugx.org/setono/sylius-facebook-plugin/v/stable
+[ico-unstable-version]: https://poser.pugx.org/setono/sylius-facebook-plugin/v/unstable
+[ico-license]: https://poser.pugx.org/setono/sylius-facebook-plugin/license
+[ico-github-actions]: https://github.com/Setono/SyliusFacebookPlugin/workflows/build/badge.svg
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusFacebookPlugin.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/setono/sylius-facebook-tracking-plugin
-[link-github-actions]: https://github.com/Setono/SyliusFacebookTrackingPlugin/actions
-[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusFacebookTrackingPlugin
+[link-packagist]: https://packagist.org/packages/setono/sylius-facebook-plugin
+[link-github-actions]: https://github.com/Setono/SyliusFacebookPlugin/actions
+[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusFacebookPlugin

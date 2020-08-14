@@ -1,13 +1,13 @@
-setono_sylius_facebook_tracking_admin_pixel:
+setono_sylius_facebook_admin_pixel:
     resource: |
         section: admin
-        alias: setono_sylius_facebook_tracking.pixel
+        alias: setono_sylius_facebook.pixel
         templates: SyliusAdminBundle:Crud
         redirect: update
-        grid: setono_sylius_facebook_tracking_admin_pixel
+        grid: setono_sylius_facebook_admin_pixel
         vars:
             all:
-                subheader: setono_sylius_facebook_tracking.ui.manage_pixels
+                subheader: setono_sylius_facebook.ui.manage_pixels
             index:
                 icon: 'facebook'
     type: sylius.resource

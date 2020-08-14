@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Context\Transform;
+namespace Tests\Setono\SyliusFacebookPlugin\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use Setono\SyliusFacebookTrackingPlugin\Repository\PixelRepositoryInterface;
+use Setono\SyliusFacebookPlugin\Repository\PixelRepositoryInterface;
 
 final class PixelContext implements Context
 {

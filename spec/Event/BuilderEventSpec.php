@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\Setono\SyliusFacebookTrackingPlugin\Event;
+namespace spec\Setono\SyliusFacebookPlugin\Event;
 
 use PhpSpec\ObjectBehavior;
-use Setono\SyliusFacebookTrackingPlugin\Builder\BuilderInterface;
-use Setono\SyliusFacebookTrackingPlugin\Event\BuilderEvent;
+use Setono\SyliusFacebookPlugin\Builder\BuilderInterface;
+use Setono\SyliusFacebookPlugin\Event\BuilderEvent;
 
 class BuilderEventSpec extends ObjectBehavior
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Context\Ui\Admin;
+namespace Tests\Setono\SyliusFacebookPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Setono\SyliusFacebookTrackingPlugin\Model\PixelInterface;
-use Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\Pixel\CreatePixelPage;
-use Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\Pixel\IndexPixelPage;
-use Tests\Setono\SyliusFacebookTrackingPlugin\Behat\Page\Admin\Pixel\UpdatePixelPage;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
+use Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\CreatePixelPage;
+use Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\IndexPixelPage;
+use Tests\Setono\SyliusFacebookPlugin\Behat\Page\Admin\Pixel\UpdatePixelPage;
 use Webmozart\Assert\Assert;
 
 final class ManagingPixelsContext implements Context

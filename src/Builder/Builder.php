@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusFacebookTrackingPlugin\Builder;
+namespace Setono\SyliusFacebookPlugin\Builder;
 
 use function Safe\json_decode;
 use function Safe\json_encode;

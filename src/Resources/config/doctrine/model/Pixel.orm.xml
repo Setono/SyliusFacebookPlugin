@@ -5,12 +5,12 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Setono\SyliusFacebookTrackingPlugin\Model\Pixel" table="setono_sylius_facebook_tracking__pixel">
+    <entity name="Setono\SyliusFacebookPlugin\Model\Pixel" table="setono_sylius_facebook__pixel">
 
         <indexes>
             <index columns="enabled"/>
         </indexes>
-        
+
         <id name="id" type="integer">
             <generator strategy="AUTO"/>
         </id>
@@ -19,7 +19,7 @@
         <field name="enabled" column="enabled" type="boolean"/>
 
         <many-to-many field="channels" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
-            <join-table name="setono_sylius_facebook_tracking__pixel_channels">
+            <join-table name="setono_sylius_facebook__pixel_channels">
                 <join-columns>
                     <join-column name="pixel_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
                 </join-columns>
@@ -28,7 +28,7 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
-        
+
     </entity>
 
 </doctrine-mapping>
