@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "phpspec/phpspec": "^6.0",
-        "phpunit/phpunit": "^8.0",
+        "phpunit/phpunit": "^9.2",
         "roave/security-advisories": "dev-master",
         "setono/code-quality-pack": "^1.4.1",
         "setono/sylius-behat-pack": "^0.1",
