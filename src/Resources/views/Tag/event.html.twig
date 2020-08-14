@@ -1,5 +1,7 @@
+<script>
 {%- if parameters is defined -%}
     fbq('track', '{{ event }}', {{ parameters|raw }});
 {%- else -%}
     fbq('track', '{{ event }}');
 {%- endif -%}
+</script>

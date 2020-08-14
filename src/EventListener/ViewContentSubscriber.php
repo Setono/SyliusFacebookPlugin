@@ -10,7 +10,7 @@ use Setono\SyliusFacebookTrackingPlugin\Event\BuilderEvent;
 use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTag;
 use Setono\SyliusFacebookTrackingPlugin\Tag\FbqTagInterface;
 use Setono\SyliusFacebookTrackingPlugin\Tag\Tags;
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\Tag\TagInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Product\Model\ProductInterface;
 
@@ -53,10 +53,10 @@ final class ViewContentSubscriber extends TagSubscriber
 
         $this->eventDispatcher->dispatch(new BuilderEvent($builder, $product));
 
-        $this->tagBag->add(new FbqTag(
-            Tags::TAG_VIEW_CONTENT,
-            FbqTagInterface::EVENT_VIEW_CONTENT,
-            $builder
-        ), TagBagInterface::SECTION_BODY_END);
+        $this->tagBag->addTag(
+            (new FbqTag(FbqTagInterface::EVENT_VIEW_CONTENT, $builder))
+                ->setSection(TagInterface::SECTION_BODY_END)
+                ->setName(Tags::TAG_VIEW_CONTENT)
+        );
     }
 }

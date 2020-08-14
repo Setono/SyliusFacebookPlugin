@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookTrackingPlugin\EventListener;
 
 use Setono\SyliusFacebookTrackingPlugin\Tag\Tags;
-use Setono\TagBagBundle\Tag\TagInterface;
-use Setono\TagBagBundle\Tag\TwigTag;
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\Tag\TagInterface;
+use Setono\TagBag\Tag\TwigTag;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -39,13 +38,12 @@ final class AddLibrarySubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag(
-            '@SetonoSyliusFacebookTrackingPlugin/Tag/library.html.twig',
-            TagInterface::TYPE_HTML,
-            Tags::TAG_LIBRARY,
-            [
+        $this->tagBag->addTag(
+            (new TwigTag('@SetonoSyliusFacebookTrackingPlugin/Tag/library.html.twig', [
                 'pixels' => $this->getPixels(),
-            ]
-        ), TagBagInterface::SECTION_HEAD);
+            ]))
+                ->setSection(TagInterface::SECTION_HEAD)
+                ->setName(Tags::TAG_LIBRARY)
+        );
     }
 }

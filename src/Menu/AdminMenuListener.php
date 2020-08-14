@@ -13,7 +13,7 @@ final class AdminMenuListener
     {
         $menu = $event->getMenu();
 
-        $configuration = $menu->getChild('configuration');
+        $configuration = $menu->getChild('marketing');
 
         if (null !== $configuration) {
             $this->addChild($configuration);
@@ -28,7 +28,7 @@ final class AdminMenuListener
             ->addChild('facebook_tracking', [
                 'route' => 'setono_sylius_facebook_tracking_admin_pixel_index',
             ])
-            ->setLabel('setono_sylius_facebook_tracking.ui.facebook_tracking')
+            ->setLabel('setono_sylius_facebook_tracking.ui.facebook')
             ->setLabelAttribute('icon', 'facebook');
     }
 }

@@ -6,16 +6,18 @@ namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * @mixin Builder
+ */
 trait ContentIdsAwareBuilderTrait
 {
-    /** @var array */
-    protected $data = [];
-
     /**
      * @param mixed $contentId
      */
     public function addContentId($contentId): self
     {
+        \assert($this instanceof Builder);
+
         if (!isset($this->data['content_ids'])) {
             $this->data['content_ids'] = [];
         }

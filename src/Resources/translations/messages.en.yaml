@@ -5,7 +5,7 @@ setono_sylius_facebook_tracking:
             pixel_id_placeholder: Insert your pixel id...
     ui:
         edit_pixel: Edit facebook pixel
-        facebook_tracking: Facebook tracking
+        facebook: Facebook
         manage_pixels: Manage facebook pixels
         new_pixel: New facebook pixel
         pixel_id: Pixel id

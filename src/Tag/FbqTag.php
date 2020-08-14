@@ -5,41 +5,30 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookTrackingPlugin\Tag;
 
 use Setono\SyliusFacebookTrackingPlugin\Builder\BuilderInterface;
+use Setono\TagBag\Tag\TwigTag;
 
-final class FbqTag implements FbqTagInterface
+class FbqTag extends TwigTag implements FbqTagInterface
 {
     /** @var string */
     private $event;
 
-    /** @var string */
-    private $key;
-
     /** @var BuilderInterface|null */
     private $parameters;
 
-    public function __construct(string $key, string $event, BuilderInterface $builder = null)
+    public function __construct(string $event, BuilderInterface $builder = null)
     {
-        $this->key = $key;
+        parent::__construct('@SetonoSyliusFacebookTrackingPlugin/Tag/event.html.twig');
+
         $this->event = $event;
         $this->parameters = $builder;
     }
 
-    public function getKey(): string
+    public function getContext(): array
     {
-        return $this->key;
+        return $this->getParameters();
     }
 
-    public function getType(): string
-    {
-        return self::TYPE_SCRIPT;
-    }
-
-    public function getTemplate(): string
-    {
-        return '@SetonoSyliusFacebookTrackingPlugin/Tag/event.js.twig';
-    }
-
-    public function getParameters(): array
+    protected function getParameters(): array
     {
         $ret = ['event' => $this->event];
 

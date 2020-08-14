@@ -6,14 +6,16 @@ namespace Setono\SyliusFacebookTrackingPlugin\Builder;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * @mixin Builder
+ */
 trait ContentTypeAwareBuilderTrait
 {
-    /** @var array */
-    protected $data = [];
-
     public function setContentType(string $contentType): self
     {
-        Assert::oneOf($contentType, ['product', 'product_group']);
+        \assert($this instanceof Builder);
+
+        Assert::oneOf($contentType, [self::CONTENT_TYPE_PRODUCT, self::CONTENT_TYPE_PRODUCT_GROUP]);
 
         $this->data['content_type'] = $contentType;
 

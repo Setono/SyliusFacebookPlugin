@@ -2,6 +2,7 @@ parameters:
 	reportUnmatchedIgnoredErrors: true
 	checkMissingIterableValueType: false
 	checkGenericClassInNonGenericObjectType: false
+	treatPhpDocTypesAsCertain: false
 
 	excludes_analyse:
 		# Makes PHPStan crash
@@ -14,3 +15,4 @@ parameters:
 		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\Builder\:\:create\(\) has no return typehint specified\./'
 		- '/Method Setono\\SyliusFacebookTrackingPlugin\\Builder\\Builder\:\:createFromJson\(\) has no return typehint specified\./'
 		- '/Unsafe usage of new static\(\)\./'
+		- '/Call to function assert\(\) with bool will always evaluate to true\./'
