@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/config.yaml" }
