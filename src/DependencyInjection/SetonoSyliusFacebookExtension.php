@@ -10,13 +10,8 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class SetonoSyliusFacebookTrackingExtension extends AbstractResourceExtension
+final class SetonoSyliusFacebookExtension extends AbstractResourceExtension
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @throws Exception
-     */
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
