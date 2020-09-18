@@ -1,0 +1,7 @@
+setono_sylius_facebook:
+    pixel:
+        pixel_id:
+            unique: You already have one pixel with this id.
+            not_blank: Pixel id cannot be blank.
+            not_greater_than_zero: The pixel id has to be positive.
+            not_integer: Pixel id needs to be an integer.
