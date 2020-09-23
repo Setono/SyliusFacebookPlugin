@@ -2,11 +2,11 @@ setono_sylius_facebook:
     form:
         pixel:
             pixel_id: Pixel id
-            pixel_id_placeholder: Insert your pixel id...
+            pixel_id_placeholder: Indsæt dit pixel id...
     ui:
-        edit_pixel: Edit facebook pixel
+        edit_pixel: Rediger facebook pixel
         facebook: Facebook
-        manage_pixels: Manage facebook pixels
-        new_pixel: New facebook pixel
+        manage_pixels: Administrer facebook pixels
+        new_pixel: Ny facebook pixel
         pixel_id: Pixel id
         pixels: Facebook pixels
