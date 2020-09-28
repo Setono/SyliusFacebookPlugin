@@ -1,0 +1,7 @@
+setono_sylius_facebook:
+    pixel:
+        pixel_id:
+            unique: Der eksiterer allerede et pixel med dette id.
+            not_blank: Pixel id kan ikke efterlades blank.
+            not_greater_than_zero: The pixel id skal være af positiv karakter.
+            not_integer: Pixel id skal være heltal.
