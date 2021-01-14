@@ -10,15 +10,19 @@ use Setono\TagBag\Tag\TwigTag;
 class FbqTag extends TwigTag implements FbqTagInterface
 {
     /** @var string */
+    private $method;
+
+    /** @var string */
     private $event;
 
     /** @var BuilderInterface|null */
     private $parameters;
 
-    public function __construct(string $event, BuilderInterface $builder = null)
+    public function __construct(string $event, BuilderInterface $builder = null, string $method = 'track')
     {
         parent::__construct('@SetonoSyliusFacebookPlugin/Tag/event.html.twig');
 
+        $this->method = $method;
         $this->event = $event;
         $this->parameters = $builder;
     }
@@ -30,7 +34,7 @@ class FbqTag extends TwigTag implements FbqTagInterface
 
     protected function getParameters(): array
     {
-        $ret = ['event' => $this->event];
+        $ret = ['method' => $this->method, 'event' => $this->event];
 
         if (null !== $this->parameters) {
             $ret['parameters'] = $this->parameters->getJson();

@@ -14,6 +14,8 @@ final class Tags
 
     public const TAG_VIEW_CONTENT = 'setono_sylius_facebook_view_content';
 
+    public const TAG_VIEW_CATEGORY = 'setono_sylius_facebook_view_category';
+
     private function __construct()
     {
     }
