@@ -16,26 +16,17 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class TagSubscriber implements EventSubscriberInterface
 {
-    /** @var array|null */
-    private $pixels;
+    protected TagBagInterface $tagBag;
 
-    /** @var TagBagInterface */
-    protected $tagBag;
+    private PixelContextInterface $pixelContext;
 
-    /** @var PixelContextInterface */
-    private $pixelContext;
+    protected EventDispatcherInterface $eventDispatcher;
 
-    /** @var EventDispatcherInterface */
-    protected $eventDispatcher;
+    protected MoneyFormatter $moneyFormatter;
 
-    /** @var MoneyFormatter */
-    protected $moneyFormatter;
+    private RequestStack $requestStack;
 
-    /** @var RequestStack */
-    private $requestStack;
-
-    /** @var FirewallMap */
-    private $firewallMap;
+    private FirewallMap $firewallMap;
 
     public function __construct(
         TagBagInterface $tagBag,
@@ -59,11 +50,7 @@ abstract class TagSubscriber implements EventSubscriberInterface
 
     protected function getPixels(): array
     {
-        if (null === $this->pixels) {
-            $this->pixels = $this->pixelContext->getPixels();
-        }
-
-        return $this->pixels;
+        return $this->pixelContext->getPixels();
     }
 
     protected function isShopContext(Request $request = null): bool

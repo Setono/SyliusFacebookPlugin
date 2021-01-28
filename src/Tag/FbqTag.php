@@ -9,14 +9,11 @@ use Setono\TagBag\Tag\TwigTag;
 
 class FbqTag extends TwigTag implements FbqTagInterface
 {
-    /** @var string */
-    private $method;
+    private string $method;
 
-    /** @var string */
-    private $event;
+    private string $event;
 
-    /** @var BuilderInterface|null */
-    private $parameters;
+    private ?BuilderInterface $parameters = null;
 
     public function __construct(string $event, BuilderInterface $builder = null, string $method = 'track')
     {

@@ -9,11 +9,14 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 final class PixelContext implements PixelContextInterface
 {
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    /**
+     * Caches pixels
+     */
+    private ?array $pixels = null;
 
-    /** @var PixelRepositoryInterface */
-    private $propertyRepository;
+    private ChannelContextInterface $channelContext;
+
+    private PixelRepositoryInterface $propertyRepository;
 
     public function __construct(ChannelContextInterface $channelContext, PixelRepositoryInterface $propertyRepository)
     {
@@ -23,6 +26,10 @@ final class PixelContext implements PixelContextInterface
 
     public function getPixels(): array
     {
-        return $this->propertyRepository->findEnabledByChannel($this->channelContext->getChannel());
+        if (null === $this->pixels) {
+            $this->pixels = $this->propertyRepository->findEnabledByChannel($this->channelContext->getChannel());
+        }
+
+        return $this->pixels;
     }
 }

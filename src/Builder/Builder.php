@@ -9,8 +9,7 @@ use function Safe\json_encode;
 
 abstract class Builder implements BuilderInterface
 {
-    /** @var array */
-    protected $data = [];
+    protected array $data = [];
 
     public static function create()
     {

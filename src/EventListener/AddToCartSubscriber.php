@@ -21,8 +21,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class AddToCartSubscriber extends TagSubscriber
 {
-    /** @var CartContextInterface */
-    private $cartContext;
+    private CartContextInterface $cartContext;
 
     public function __construct(
         TagBagInterface $tagBag,
