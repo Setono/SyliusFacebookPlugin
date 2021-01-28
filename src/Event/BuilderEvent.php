@@ -9,8 +9,7 @@ use Symfony\Component\EventDispatcher\Event;
 
 final class BuilderEvent extends Event
 {
-    /** @var BuilderInterface */
-    private $builder;
+    private BuilderInterface $builder;
 
     /** @var mixed|null */
     private $subject;

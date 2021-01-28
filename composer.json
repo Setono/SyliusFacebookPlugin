@@ -10,22 +10,24 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "psr/event-dispatcher": "^1.0",
         "setono/tag-bag-bundle": "^2.0",
         "setono/tag-bag-twig": "^1.0",
+        "sylius/resource-bundle": "^1.6",
+        "symfony/config": "^4.4 || ^5.0",
         "thecodingmachine/safe": "^1.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^6.2",
-        "phpunit/phpunit": "^9.2",
+        "phpspec/phpspec": "^6.3",
+        "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-master",
-        "setono/code-quality-pack": "^1.4.1",
+        "setono/code-quality-pack": "^1.5.1",
         "setono/sylius-behat-pack": "^0.1",
         "setono/sylius-tag-bag-plugin": "^1.1",
         "sylius/sylius": "~1.7.0",
         "symfony/debug-bundle": "^5.1",
-        "symfony/dotenv": "^5.1",
+        "symfony/dotenv": "^5.2",
         "symfony/intl": "^4.4 || ^5.0",
         "symfony/web-profiler-bundle": "^5.0"
     },
@@ -52,10 +54,10 @@
     },
     "prefer-stable": true,
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src",
-        "check-style": "vendor/bin/ecs check --ansi spec src",
-        "fix-style": "vendor/bin/ecs check --ansi spec src --fix",
-        "phpspec": "vendor/bin/phpspec run --ansi",
-        "phpunit": "vendor/bin/phpunit"
+        "analyse": "phpstan analyse -c phpstan.neon -l max src",
+        "check-style": "ecs check --ansi spec src",
+        "fix-style": "ecs check --ansi spec src --fix",
+        "phpspec": "phpspec run --ansi",
+        "phpunit": "phpunit"
     }
 }

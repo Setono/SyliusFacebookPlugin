@@ -7,21 +7,18 @@ namespace Setono\SyliusFacebookPlugin\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Channel\Model\ChannelInterface as BaseChannelInterface;
-use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 
 class Pixel implements PixelInterface
 {
     use ToggleableTrait;
 
-    /** @var int */
-    protected $id;
+    protected ?int $id = null;
 
-    /** @var string */
-    protected $pixelId;
+    protected ?string $pixelId = null;
 
-    /** @var Collection|ChannelInterface[] */
-    protected $channels;
+    /** @var Collection|BaseChannelInterface[] */
+    protected Collection $channels;
 
     public function __construct()
     {

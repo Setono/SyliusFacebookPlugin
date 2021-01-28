@@ -7,7 +7,6 @@ namespace Setono\SyliusFacebookPlugin\DependencyInjection;
 use Setono\SyliusFacebookPlugin\Doctrine\ORM\PixelRepository;
 use Setono\SyliusFacebookPlugin\Form\Type\PixelType;
 use Setono\SyliusFacebookPlugin\Model\Pixel;
-use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
@@ -19,14 +18,10 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        if (method_exists(TreeBuilder::class, 'getRootNode')) {
-            $treeBuilder = new TreeBuilder('setono_sylius_facebook');
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // BC layer for symfony/config 4.1 and older
-            $treeBuilder = new TreeBuilder();
-            $rootNode = $treeBuilder->root('setono_sylius_facebook');
-        }
+        $treeBuilder = new TreeBuilder('setono_sylius_facebook');
+
+        /** @var ArrayNodeDefinition $rootNode */
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -55,7 +50,6 @@ final class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode('model')->defaultValue(Pixel::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('interface')->defaultValue(PixelInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->defaultValue(PixelRepository::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()

@@ -28,11 +28,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 final class ViewCategorySubscriber extends TagSubscriber
 {
-    /** @var TaxonRepositoryInterface */
-    private $taxonRepository;
+    private TaxonRepositoryInterface $taxonRepository;
 
-    /** @var LocaleContextInterface */
-    private $localeContext;
+    private LocaleContextInterface $localeContext;
 
     public function __construct(
         TagBagInterface $tagBag,
