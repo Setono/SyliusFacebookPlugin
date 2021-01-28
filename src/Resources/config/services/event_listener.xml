@@ -31,6 +31,7 @@
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="request_stack"/>
             <argument type="service" id="security.firewall.map"/>
+            <argument type="service" id="sylius.repository.order"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
