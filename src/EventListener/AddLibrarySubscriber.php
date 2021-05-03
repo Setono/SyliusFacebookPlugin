@@ -7,7 +7,7 @@ namespace Setono\SyliusFacebookPlugin\EventListener;
 use Setono\SyliusFacebookPlugin\Tag\Tags;
 use Setono\TagBag\Tag\TagInterface;
 use Setono\TagBag\Tag\TwigTag;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 final class AddLibrarySubscriber extends TagSubscriber
@@ -21,7 +21,7 @@ final class AddLibrarySubscriber extends TagSubscriber
         ];
     }
 
-    public function add(GetResponseEvent $event): void
+    public function add(RequestEvent $event): void
     {
         $request = $event->getRequest();
 
