@@ -21,7 +21,7 @@ jobs:
             -   name: Run mysql server
                 run: sudo /etc/init.d/mysql start
             -   name: Setup PHP, with composer and extensions
-                uses: shivammathur/setup-php@v2
+                uses: shivammathur/setup-php@2.11.0
                 with:
                     php-version: ${{ matrix.php-versions }}
                     extensions: intl
