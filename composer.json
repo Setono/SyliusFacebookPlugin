@@ -10,7 +10,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": ">=7.4",
         "psr/event-dispatcher": "^1.0",
         "setono/tag-bag-bundle": "^2.0",
         "setono/tag-bag-twig": "^1.0",
@@ -21,7 +21,7 @@
     "require-dev": {
         "phpspec/phpspec": "^6.3",
         "phpunit/phpunit": "^9.5",
-        "roave/security-advisories": "dev-master",
+        "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^1.5.1",
         "setono/sylius-behat-pack": "^0.1",
         "setono/sylius-tag-bag-plugin": "^1.1",
