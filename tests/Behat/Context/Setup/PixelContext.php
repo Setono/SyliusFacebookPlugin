@@ -11,14 +11,10 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class PixelContext implements Context
 {
-    /**
-     * @var PixelRepositoryInterface
-     */
+    /** @var PixelRepositoryInterface */
     private $pixelRepository;
 
-    /**
-     * @var FactoryInterface
-     */
+    /** @var FactoryInterface */
     private $pixelFactory;
 
     public function __construct(PixelRepositoryInterface $pixelRepository, FactoryInterface $pixelFactory)

@@ -13,19 +13,13 @@ use Webmozart\Assert\Assert;
 
 final class ManagingPixelsContext implements Context
 {
-    /**
-     * @var IndexPixelPage
-     */
+    /** @var IndexPixelPage */
     private $indexPixelPage;
 
-    /**
-     * @var CreatePixelPage
-     */
+    /** @var CreatePixelPage */
     private $createPixelPage;
 
-    /**
-     * @var UpdatePixelPage
-     */
+    /** @var UpdatePixelPage */
     private $updatePixelPage;
 
     public function __construct(IndexPixelPage $indexPixelPage, CreatePixelPage $createPixelPage, UpdatePixelPage $updatePixelPage)

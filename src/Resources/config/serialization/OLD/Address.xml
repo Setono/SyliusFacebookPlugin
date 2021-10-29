@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<serializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Setono\SyliusFacebookPlugin\DTO\Properties\Address">
+        <attribute name="firstName" serialized-name="FirstName">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="lastName" serialized-name="LastName">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="company" serialized-name="Company">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="address1" serialized-name="Address1">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="address2" serialized-name="Address2">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="zip" serialized-name="Zip">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="city" serialized-name="City">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="region" serialized-name="Region">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="regionCode" serialized-name="RegionCode">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="country" serialized-name="Country">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="countryCode" serialized-name="CountryCode">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="phone" serialized-name="Phone">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+    </class>
+</serializer>

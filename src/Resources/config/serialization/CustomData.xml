@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<serializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Setono\SyliusFacebookPlugin\DTO\Properties\CustomData">
+        <attribute name="currency" serialized-name="currency">
+            <group>setono:sylius-facebook:event</group>
+        </attribute>
+
+        <attribute name="value" serialized-name="value">
+            <group>setono:sylius-facebook:event</group>
+        </attribute>
+
+        <attribute name="contents" serialized-name="contents">
+            <group>setono:sylius-facebook:event</group>
+        </attribute>
+
+        <attribute name="contentIds" serialized-name="content_ids">
+            <group>setono:sylius-facebook:event</group>
+        </attribute>
+
+        <attribute name="contentType" serialized-name="content_type">
+            <group>setono:sylius-facebook:event</group>
+        </attribute>
+
+        <attribute name="contentName" serialized-name="content_name">
+            <group>setono:sylius-facebook:event</group>
+        </attribute>
+    </class>
+</serializer>

@@ -17,6 +17,7 @@ final class PixelType extends AbstractResourceType
         $builder
             ->add('pixelId', IntegerType::class, [
                 'label' => 'setono_sylius_facebook.form.pixel.pixel_id',
+                'help' => 'Get it from https://www.facebook.com/events_manager2',
                 'attr' => [
                     'min' => 1,
                     'placeholder' => 'setono_sylius_facebook.form.pixel.pixel_id_placeholder',

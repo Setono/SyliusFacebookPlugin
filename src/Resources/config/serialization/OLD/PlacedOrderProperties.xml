@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<serializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Setono\SyliusFacebookPlugin\DTO\Properties\PlacedOrderProperties">
+        <attribute name="orderId" serialized-name="OrderId">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="categories" serialized-name="Categories">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="itemNames" serialized-name="ItemNames">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="brands" serialized-name="Brands">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="discountCode" serialized-name="DiscountCode">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="discountValue" serialized-name="DiscountValue">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="items" serialized-name="Items">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="billingAddress" serialized-name="BillingAddress">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="shippingAddress" serialized-name="ShippingAddress">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+    </class>
+</serializer>

@@ -9,9 +9,7 @@ use Setono\SyliusFacebookPlugin\Repository\PixelRepositoryInterface;
 
 final class PixelContext implements Context
 {
-    /**
-     * @var PixelRepositoryInterface
-     */
+    /** @var PixelRepositoryInterface */
     private $pixelRepository;
 
     public function __construct(PixelRepositoryInterface $pixelRepository)
@@ -25,7 +23,7 @@ final class PixelContext implements Context
     public function getPixelByPixelId($pixel)
     {
         return $this->pixelRepository->findOneBy([
-            'pixelId' => $pixel
+            'pixelId' => $pixel,
         ]);
     }
 }

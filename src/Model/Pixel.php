@@ -20,6 +20,11 @@ class Pixel implements PixelInterface
     /** @var Collection|BaseChannelInterface[] */
     protected Collection $channels;
 
+    public function __toString()
+    {
+        return $this->getPixelId() ?? '';
+    }
+
     public function __construct()
     {
         $this->channels = new ArrayCollection();

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="setono_sylius_facebook.data_mapper.composite"
+                 class="Setono\SyliusFacebookPlugin\DataMapper\CompositeDataMapper"/>
+
+        <service id="setono_sylius_facebook.data_mapper.order"
+                 class="Setono\SyliusFacebookPlugin\DataMapper\OrderDataMapper">
+            <argument type="service" id="setono_sylius_facebook.formatter.money" />
+
+            <tag name="setono_sylius_facebook.data_mapper" />
+        </service>
+
+        <service id="setono_sylius_facebook.data_mapper.orders_user_data"
+                 class="Setono\SyliusFacebookPlugin\DataMapper\OrdersUserDataDataMapper">
+
+            <tag name="setono_sylius_facebook.data_mapper" />
+        </service>
+
+        <service id="setono_sylius_facebook.data_mapper.user_data"
+                 class="Setono\SyliusFacebookPlugin\DataMapper\RequestDataMapper">
+
+            <tag name="setono_sylius_facebook.data_mapper" />
+        </service>
+
+    </services>
+</container>

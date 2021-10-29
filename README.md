@@ -12,20 +12,14 @@ Track user behavior in Facebook.
 
 ### Step 1: Download the plugin
 
-This plugin uses the [TagBagBundle](https://github.com/Setono/TagBagBundle) to inject scripts onto your page.
-
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
 ```bash
 $ composer require setono/sylius-facebook-plugin
 
-# Omit this line if you want to override layout.html.twig as described at https://github.com/Setono/TagBagBundle#usage
-$ composer require setono/sylius-tag-bag-plugin
-
 ```
 
 This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
-
 
 ### Step 2: Enable the plugin
 
@@ -35,11 +29,8 @@ in `config/bundles.php` file of your project before (!) `SyliusGridBundle`:
 ```php
 <?php
 $bundles = [
-    Setono\TagBagBundle\SetonoTagBagBundle::class => ['all' => true],
-    
-    // Omit this line if you didn't install the SyliusTagBagPlugin in step 1
-    Setono\SyliusTagBagPlugin\SetonoSyliusTagBagPlugin::class => ['all' => true],
-    
+    Setono\ClientIdBundle\SetonoClientIdBundle::class => ['all' => true],
+    Setono\ConsentBundle\SetonoConsentBundle::class => ['all' => true],
     Setono\SyliusFacebookPlugin\SetonoSyliusFacebookPlugin::class => ['all' => true],
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
 ];
@@ -48,18 +39,26 @@ $bundles = [
 ### Step 3: Configure plugin
 
 ```yaml
-# config/packages/_sylius.yaml
+# config/packages/setono_sylius_facebook.yaml
 imports:
-    # ...
     - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/config.yaml" }
-    # ...
+
+setono_sylius_facebook:
+    access_token: '%env(FACEBOOK_ACCESS_TOKEN)%'
+```
+
+```dotenv
+# .env
+###> setono/sylius-facebook-plugin ###
+FACEBOOK_ACCESS_TOKEN=<YOUR TOKEN>
+###< setono/sylius-facebook-plugin ###
 ```
 
 ### Step 4: Import routing
 
 ```yaml
 # config/routes/setono_sylius_facebook.yaml
-setono_facebook_tracking:
+setono_sylius_facebook:
     resource: "@SetonoSyliusFacebookPlugin/Resources/config/routing.yaml"
 ```
 
@@ -76,8 +75,22 @@ When you create a pixel in Facebook you receive a pixel id.
 Now create a new pixel in your Sylius shop by navigating to `/admin/pixels/new`.
 Remember to enable the pixel and enable the channels you want to track. 
 
-### Step 7: You're ready!
+### Step 7. Configure cron
+
+Add `bin/console setono:sylius-facebook:send-pixel-events` command to your crontab.
+
+Schedule must be hourly or more frequently. 
+See [notes](https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api#batch-requests).
+
+### Step 8: You're ready!
 The events that are tracked are located in the [EventListener folder](src/EventListener).
+
+## Related links
+- https://developers.facebook.com/docs/marketing-api/audiences/guides/dynamic-product-audiences/#setuppixel
+- https://developers.facebook.com/docs/marketing-api/conversions-api
+- https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api
+- https://developers.facebook.com/docs/marketing-api/conversions-api/guides/business-sdk-features
+- https://github.com/facebook/facebook-php-business-sdk
 
 ## Contribute
 Ways you can contribute:

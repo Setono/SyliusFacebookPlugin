@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<serializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Setono\SyliusFacebookPlugin\DTO\Properties\CustomerProperties">
+        <attribute name="id" serialized-name="$id">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="email" serialized-name="$email">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="firstName" serialized-name="$first_name">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="lastName" serialized-name="$last_name">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="phoneNumber" serialized-name="$phone_number">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="zip" serialized-name="$zip">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="city" serialized-name="$city">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="region" serialized-name="$region">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="country" serialized-name="$country">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="image" serialized-name="$image">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="consent" serialized-name="$consent">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+    </class>
+</serializer>

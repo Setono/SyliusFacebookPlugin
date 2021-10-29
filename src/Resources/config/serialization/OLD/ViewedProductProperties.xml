@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<serializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Setono\SyliusFacebookPlugin\DTO\Properties\ViewedProductProperties">
+        <attribute name="productName" serialized-name="ProductName">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="productId" serialized-name="ProductID">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="sku" serialized-name="SKU">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="categories" serialized-name="Categories">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="imageUrl" serialized-name="ImageURL">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="url" serialized-name="URL">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="brand" serialized-name="Brand">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="price" serialized-name="Price">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="compareAtPrice" serialized-name="CompareAtPrice">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+    </class>
+</serializer>

@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<serializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="Setono\SyliusFacebookPlugin\DTO\Properties\AddedToCartProperties">
+        <attribute name="addedItemProductName" serialized-name="AddedItemProductName">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemProductId" serialized-name="AddedItemProductID">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemSku" serialized-name="AddedItemSKU">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemCategories" serialized-name="AddedItemCategories">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemImageUrl" serialized-name="AddedItemImageURL">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemUrl" serialized-name="AddedItemURL">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemPrice" serialized-name="AddedItemPrice">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="addedItemQuantity" serialized-name="AddedItemQuantity">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="itemNames" serialized-name="ItemNames">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="checkoutUrl" serialized-name="CheckoutURL">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
+        <attribute name="items" serialized-name="Items">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+    </class>
+</serializer>
