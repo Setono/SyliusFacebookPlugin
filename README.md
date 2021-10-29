@@ -42,6 +42,9 @@ $bundles = [
 # config/packages/setono_sylius_facebook.yaml
 imports:
     - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/config.yaml" }
+    
+    # Uncomment next line if you want to load some example pixels via fixtures
+    # - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/fixtures.yaml" }
 
 setono_sylius_facebook:
     access_token: '%env(FACEBOOK_ACCESS_TOKEN)%'
