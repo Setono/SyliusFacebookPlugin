@@ -10,3 +10,4 @@ setono_sylius_facebook:
         new_pixel: New facebook pixel
         pixel_id: Pixel id
         pixels: Facebook pixels
+        no_channels: No channels
