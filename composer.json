@@ -44,6 +44,7 @@
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
+        "doctrine/doctrine-bundle": "^1.12.9",
         "matthiasnoback/symfony-config-test": "^4.3",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpspec/phpspec": "^6.3",
