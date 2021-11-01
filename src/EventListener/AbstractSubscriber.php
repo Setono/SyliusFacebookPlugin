@@ -48,9 +48,9 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
         $this->entityManager = $entityManager;
     }
 
-    protected function getRequest(): Request
+    protected function getMasterRequest(): ?Request
     {
-        return $this->requestStack->getCurrentRequest();
+        return $this->requestStack->getMasterRequest();
     }
 
     protected function isShopContext(Request $request = null): bool
@@ -74,7 +74,7 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
     {
         $serverSideEvent = $this->serverSideFactory->create($eventName);
         $this->dataMapper->map($source, $serverSideEvent, [
-            'request' => $request ?? $this->getRequest(),
+            'request' => $request ?? $this->getMasterRequest(),
         ]);
 
         $pixels = $this->pixelContext->getPixels();
