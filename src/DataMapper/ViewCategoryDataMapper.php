@@ -85,8 +85,8 @@ use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 
     protected function getContentIds(ResourceGridView $gridView, int $max = 10): array
     {
-        return array_slice(array_map(function (ProductInterface $product) {
+        return array_slice(array_filter(array_map(function (ProductInterface $product) {
             return $product->getCode();
-        }, $gridView->getData()), 0, $max);
+        }, iterator_to_array($gridView->getData()))), 0, $max);
     }
 }
