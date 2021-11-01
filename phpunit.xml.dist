@@ -15,5 +15,8 @@
         <server name="IS_DOCTRINE_ORM_SUPPORTED" value="true" />
         <env name="APP_ENV" value="test"/>
         <env name="SHELL_VERBOSITY" value="-1" />
+        <env name="FACEBOOK_LIVE" value="0"/> <!-- Set to true and insert a token below to test live requests to Facebook API -->
+        <env name="PIXEL_ID" value="PIXEL_ID"/> <!-- Insert your Facebook PIXEL_ID -->
+        <env name="FACEBOOK_ACCESS_TOKEN" value=""/> <!-- Insert your Facebook ACCESS_TOKEN -->
     </php>
 </phpunit>
