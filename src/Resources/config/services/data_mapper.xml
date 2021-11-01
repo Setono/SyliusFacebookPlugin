@@ -19,8 +19,22 @@
             <tag name="setono_sylius_facebook.data_mapper" />
         </service>
 
-        <service id="setono_sylius_facebook.data_mapper.user_data"
+        <service id="setono_sylius_facebook.data_mapper.product"
+                 class="Setono\SyliusFacebookPlugin\DataMapper\ProductDataMapper">
+
+            <tag name="setono_sylius_facebook.data_mapper" />
+        </service>
+
+        <service id="setono_sylius_facebook.data_mapper.request"
                  class="Setono\SyliusFacebookPlugin\DataMapper\RequestDataMapper">
+
+            <tag name="setono_sylius_facebook.data_mapper" />
+        </service>
+
+        <service id="setono_sylius_facebook.data_mapper.view_category"
+                 class="Setono\SyliusFacebookPlugin\DataMapper\ViewCategoryDataMapper">
+            <argument type="service" id="sylius.context.locale"/>
+            <argument type="service" id="sylius.repository.taxon"/>
 
             <tag name="setono_sylius_facebook.data_mapper" />
         </service>
