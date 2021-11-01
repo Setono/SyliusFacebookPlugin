@@ -23,12 +23,10 @@ final class PixelEventFactory implements PixelEventFactoryInterface
 
     public function __construct(
         FactoryInterface $decorated,
-        SerializerInterface $serializer,
         ClientIdProviderInterface $clientIdProvider,
         ConsentContextInterface $consentContext
     ) {
         $this->decorated = $decorated;
-        $this->serializer = $serializer;
         $this->clientIdProvider = $clientIdProvider;
         $this->consentContext = $consentContext;
     }
