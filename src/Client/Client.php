@@ -44,7 +44,7 @@ final class Client implements ClientInterface
                 ],
                 'body' => [
                     'access_token' => $this->accessToken,
-                    'data' => $pixelEvent->getData(),
+                    'data' => json_encode($pixelEvent->getData()),
                 ],
             ]
         );
