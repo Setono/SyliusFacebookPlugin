@@ -17,17 +17,21 @@ class Pixel implements PixelInterface
 
     protected ?string $pixelId = null;
 
-    /** @var Collection|BaseChannelInterface[] */
+    /**
+     * @var Collection|BaseChannelInterface[]
+     *
+     * @psalm-var Collection<array-key, BaseChannelInterface>
+     */
     protected Collection $channels;
-
-    public function __toString()
-    {
-        return $this->getPixelId() ?? '';
-    }
 
     public function __construct()
     {
         $this->channels = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getPixelId();
     }
 
     public function getId(): ?int

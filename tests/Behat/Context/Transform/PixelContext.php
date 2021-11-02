@@ -9,8 +9,7 @@ use Setono\SyliusFacebookPlugin\Repository\PixelRepositoryInterface;
 
 final class PixelContext implements Context
 {
-    /** @var PixelRepositoryInterface */
-    private $pixelRepository;
+    private PixelRepositoryInterface $pixelRepository;
 
     public function __construct(PixelRepositoryInterface $pixelRepository)
     {

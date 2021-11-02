@@ -13,7 +13,7 @@ final class PixelContext implements PixelContextInterface
     /**
      * Caches pixels
      *
-     * @var array|PixelInterface[]
+     * @var array<array-key, PixelInterface>|null
      */
     private ?array $pixels = null;
 

@@ -6,11 +6,15 @@ namespace Setono\SyliusFacebookPlugin\DataMapper;
 
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Webmozart\Assert\Assert;
 
 /* not final */ class RequestDataMapper implements DataMapperInterface
 {
     /**
      * @psalm-assert-if-true Request $context['request']
+     *
+     * @param object $source
+     * @param array<string, mixed> $context
      */
     public function supports($source, ServerSideEventInterface $target, array $context = []): bool
     {
@@ -19,10 +23,13 @@ use Symfony\Component\HttpFoundation\Request;
     }
 
     /**
-     * @param array{request: Request} $context
+     * @param object $source
+     * @param array<string, mixed> $context
      */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
+        Assert::true($this->supports($source, $target, $context));
+
         /** @var Request $request */
         $request = $context['request'];
 
@@ -31,9 +38,11 @@ use Symfony\Component\HttpFoundation\Request;
         ;
 
         $userData = $target->getUserData();
-        $userData
-            ->setClientIpAddress($request->getClientIp())
-            ->setClientUserAgent($request->headers->get('User-Agent'))
-        ;
+
+        /** @psalm-suppress PossiblyNullArgument */
+        $userData->setClientIpAddress($request->getClientIp());
+
+        /** @psalm-suppress PossiblyNullArgument */
+        $userData->setClientUserAgent($request->headers->get('User-Agent'));
     }
 }

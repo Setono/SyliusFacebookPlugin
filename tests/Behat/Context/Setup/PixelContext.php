@@ -11,11 +11,9 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class PixelContext implements Context
 {
-    /** @var PixelRepositoryInterface */
-    private $pixelRepository;
+    private PixelRepositoryInterface $pixelRepository;
 
-    /** @var FactoryInterface */
-    private $pixelFactory;
+    private FactoryInterface $pixelFactory;
 
     public function __construct(PixelRepositoryInterface $pixelRepository, FactoryInterface $pixelFactory)
     {
@@ -26,21 +24,21 @@ final class PixelContext implements Context
     /**
      * @Given the store has a pixel with pixel id :pixelId
      */
-    public function theStoreHasAPropertyWithTrackingId($pixelId): void
+    public function theStoreHasAPixelWithPixelId($pixelId): void
     {
-        $obj = $this->createProperty($pixelId);
+        $pixel = $this->createPixel($pixelId);
 
-        $this->save($obj);
+        $this->save($pixel);
     }
 
-    private function createProperty(string $pixelId): PixelInterface
+    private function createPixel(string $pixelId): PixelInterface
     {
-        /** @var PixelInterface $obj */
-        $obj = $this->pixelFactory->createNew();
+        /** @var PixelInterface $pixel */
+        $pixel = $this->pixelFactory->createNew();
 
-        $obj->setPixelId($pixelId);
+        $pixel->setPixelId($pixelId);
 
-        return $obj;
+        return $pixel;
     }
 
     private function save(PixelInterface $pixel): void

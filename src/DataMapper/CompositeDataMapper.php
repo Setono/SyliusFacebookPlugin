@@ -6,6 +6,7 @@ namespace Setono\SyliusFacebookPlugin\DataMapper;
 
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use SplPriorityQueue;
+use Webmozart\Assert\Assert;
 
 final class CompositeDataMapper implements DataMapperInterface
 {
@@ -42,12 +43,13 @@ final class CompositeDataMapper implements DataMapperInterface
     }
 
     /**
-     * @return iterable<array-key, DataMapperInterface>
-     * @psalm-suppress MixedReturnTypeCoercion
+     * @return array<array-key, DataMapperInterface>
      */
-    private function getDataMappers(): iterable
+    private function getDataMappers(): array
     {
-        // @todo use another implementation of a priority queue which does not dequeue on foreach
-        return clone $this->dataMappers;
+        $dataMappers = iterator_to_array($this->dataMappers);
+        Assert::allIsInstanceOf($dataMappers, DataMapperInterface::class);
+
+        return $dataMappers;
     }
 }

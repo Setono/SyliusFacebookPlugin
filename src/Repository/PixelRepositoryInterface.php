@@ -13,7 +13,7 @@ interface PixelRepositoryInterface extends RepositoryInterface
     /**
      * Returns the pixels that are enabled and enabled on the given channel
      *
-     * @return PixelInterface[]
+     * @return array<array-key, PixelInterface>
      */
     public function findEnabledByChannel(ChannelInterface $channel): array;
 }

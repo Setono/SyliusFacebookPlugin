@@ -70,7 +70,10 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
         return $firewallConfig->getName() === 'shop';
     }
 
-    protected function generatePixelEvents($source, string $eventName, Request $request = null)
+    /**
+     * @param object $source
+     */
+    protected function generatePixelEvents($source, string $eventName, Request $request = null): void
     {
         $serverSideEvent = $this->serverSideFactory->create($eventName);
         $this->dataMapper->map($source, $serverSideEvent, [

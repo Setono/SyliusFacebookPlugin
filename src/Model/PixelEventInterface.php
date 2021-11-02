@@ -38,9 +38,9 @@ interface PixelEventInterface extends ResourceInterface
 
     public function setState(string $state): void;
 
-    public function getCreatedAt(): DateTimeInterface;
+    public function getCreatedAt(): ?DateTimeInterface;
 
-    public function setCreatedAt(DateTimeInterface $createdAt): void;
+    public function setCreatedAt(?DateTimeInterface $createdAt): void;
 
     public function getUpdatedAt(): ?DateTimeInterface;
 

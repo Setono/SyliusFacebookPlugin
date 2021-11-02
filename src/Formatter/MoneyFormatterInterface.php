@@ -6,5 +6,5 @@ namespace Setono\SyliusFacebookPlugin\Formatter;
 
 interface MoneyFormatterInterface
 {
-    public function format(int $money): float;
+    public function format(?int $money): ?float;
 }

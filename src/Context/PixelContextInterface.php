@@ -11,7 +11,7 @@ interface PixelContextInterface
     /**
      * Returns the pixels enabled for the active channel
      *
-     * @return array|PixelInterface[]
+     * @return array<array-key, PixelInterface>
      */
     public function getPixels(): array;
 

@@ -51,7 +51,6 @@
     FACEBOOK_ACCESS_TOKEN=<YOUR TOKEN>
     ###< setono/sylius-facebook-plugin ###
     ```
-1. `src/EventListener/TagSubscriber.php -> src/EventListener/AbstractSubscriber.php`
 
 1. Add `bin/console setono:sylius-facebook:send-pixel-events`
    command call to your CRON

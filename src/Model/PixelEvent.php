@@ -24,7 +24,7 @@ class PixelEvent implements PixelEventInterface
 
     protected ?string $bulkIdentifier = null;
 
-    protected DateTimeInterface $createdAt;
+    protected ?DateTimeInterface $createdAt = null;
 
     protected ?DateTimeInterface $updatedAt = null;
 
@@ -88,12 +88,12 @@ class PixelEvent implements PixelEventInterface
         $this->state = $state;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTimeInterface $createdAt): void
+    public function setCreatedAt(?DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }

@@ -9,13 +9,11 @@ use Setono\Consent\Context\ConsentContextInterface;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use Symfony\Component\Serializer\SerializerInterface;
+use Webmozart\Assert\Assert;
 
 final class PixelEventFactory implements PixelEventFactoryInterface
 {
     private FactoryInterface $decorated;
-
-    private SerializerInterface $serializer;
 
     private ClientIdProviderInterface $clientIdProvider;
 
@@ -31,14 +29,17 @@ final class PixelEventFactory implements PixelEventFactoryInterface
         $this->consentContext = $consentContext;
     }
 
-    public function createNew()
+    public function createNew(): PixelEventInterface
     {
-        return $this->decorated->createNew();
+        $pixelEvent = $this->decorated->createNew();
+
+        Assert::isInstanceOf($pixelEvent, PixelEventInterface::class);
+
+        return $pixelEvent;
     }
 
     public function createFromServerSideEvent(ServerSideEventInterface $event): PixelEventInterface
     {
-        /** @var PixelEventInterface $pixelEvent */
         $pixelEvent = $this->createNew();
         $pixelEvent->setClientId(
             $this->clientIdProvider->getClientId()

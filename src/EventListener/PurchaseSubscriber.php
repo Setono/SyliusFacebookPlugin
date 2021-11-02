@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class PurchaseSubscriber extends AbstractSubscriber
 {
-    private OrderRepositoryInterface $orderRepository;
+    protected OrderRepositoryInterface $orderRepository;
 
     public function __construct(
         PixelContextInterface $pixelContext,

@@ -18,7 +18,7 @@ final class SetonoSyliusFacebookExtension extends AbstractResourceExtension impl
         /**
          * @psalm-suppress PossiblyNullArgument
          *
-         * @var array{api_version: string, access_token: string, send_delay: int} $config
+         * @var array{api_version: string, access_token: string, send_delay: int, driver: string, resources: array} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));

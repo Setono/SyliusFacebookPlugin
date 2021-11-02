@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookPlugin\ServerSide;
 
 use FacebookAds\Object\ServerSide\CustomData;
+use FacebookAds\Object\ServerSide\Event;
 use FacebookAds\Object\ServerSide\UserData;
 
+/**
+ * @mixin Event
+ */
 interface ServerSideEventInterface
 {
     public const CONTENT_TYPE_PRODUCT = 'product';

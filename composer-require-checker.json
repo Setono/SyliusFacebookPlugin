@@ -25,14 +25,18 @@
         "Sylius\\Component\\Channel\\Model\\ChannelInterface",
         "Sylius\\Component\\Channel\\Model\\ChannelsAwareInterface",
         "Sylius\\Component\\Channel\\Repository\\ChannelRepositoryInterface",
+        "Sylius\\Component\\Customer\\Model\\CustomerInterface",
         "Sylius\\Component\\Core\\Model\\CustomerInterface",
         "Sylius\\Component\\Core\\Model\\OrderInterface",
+        "Sylius\\Component\\Core\\Model\\OrderItemInterface",
         "Sylius\\Component\\Core\\Model\\ProductInterface",
         "Sylius\\Component\\Core\\Model\\TaxonInterface",
         "Sylius\\Component\\Locale\\Context\\LocaleContextInterface",
         "Sylius\\Component\\Order\\Context\\CartContextInterface",
+        "Sylius\\Component\\Order\\Model\\OrderInterface",
         "Sylius\\Component\\Order\\Repository\\OrderRepositoryInterface",
         "Sylius\\Component\\Product\\Model\\ProductInterface",
+        "Sylius\\Component\\Taxonomy\\Model\\TaxonInterface",
         "Sylius\\Component\\Taxonomy\\Repository\\TaxonRepositoryInterface"
     ]
 }

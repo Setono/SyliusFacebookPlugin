@@ -129,7 +129,7 @@ jobs:
                 run: "(cd tests/Application && bin/console cache:warmup)"
 
             -   name: "Static analysis"
-                run: "composer analyse"
+                run: "vendor/bin/psalm"
 
     unit-tests:
         name: "Unit tests"

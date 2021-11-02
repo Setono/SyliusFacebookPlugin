@@ -81,7 +81,7 @@ final class ManagingPixelsContext implements Context
      */
     public function iUpdateThePropertyWithTrackingId($pixelId): void
     {
-        $this->updatePixelPage->specifyTrackingId($pixelId);
+        $this->updatePixelPage->specifyPixelId($pixelId);
     }
 
     /**

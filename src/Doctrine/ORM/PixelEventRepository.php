@@ -6,6 +6,7 @@ namespace Setono\SyliusFacebookPlugin\Doctrine\ORM;
 
 use DateInterval;
 use DateTime;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\QueryBuilder;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelEventRepositoryInterface;
@@ -20,7 +21,7 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
             ->select('COUNT(o)')
             ->andWhere('o.consentGranted = true')
             ->andWhere('o.state = :state')
-            ->setParameter('state', PixelEventInterface::STATE_PENDING)
+            ->setParameter('state', PixelEventInterface::STATE_PENDING, Types::STRING)
         ;
 
         self::applyDelay($qb, $delay);
@@ -39,10 +40,10 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
         $qb = $this->createQueryBuilder('o')
             ->update()
             ->set('o.bulkIdentifier', ':bulkIdentifier')
-            ->setParameter('bulkIdentifier', $bulkIdentifier)
+            ->setParameter('bulkIdentifier', $bulkIdentifier, Types::STRING)
             ->andWhere('o.consentGranted = true')
             ->andWhere('o.state = :state')
-            ->setParameter('state', PixelEventInterface::STATE_PENDING)
+            ->setParameter('state', PixelEventInterface::STATE_PENDING, Types::STRING)
             ->setMaxResults($limit)
         ;
 
@@ -55,7 +56,7 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
     {
         $result = $this->createQueryBuilder('o')
             ->andWhere('o.bulkIdentifier = :bulkIdentifier')
-            ->setParameter('bulkIdentifier', $bulkIdentifier)
+            ->setParameter('bulkIdentifier', $bulkIdentifier, Types::STRING)
             ->getQuery()
             ->getResult()
         ;
@@ -73,7 +74,7 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
         if ($delay > 0) {
             $then = (new DateTime())->sub(new DateInterval("PT{$delay}S"));
             $qb->andWhere('o.createdAt < :then')
-                ->setParameter('then', $then)
+                ->setParameter('then', $then, Types::DATETIME_MUTABLE)
             ;
         }
     }

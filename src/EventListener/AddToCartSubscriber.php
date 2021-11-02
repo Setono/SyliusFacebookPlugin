@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class AddToCartSubscriber extends AbstractSubscriber
 {
-    private CartContextInterface $cartContext;
+    protected CartContextInterface $cartContext;
 
     public function __construct(
         PixelContextInterface $pixelContext,

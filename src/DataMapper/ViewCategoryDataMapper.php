@@ -6,10 +6,11 @@ namespace Setono\SyliusFacebookPlugin\DataMapper;
 
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView;
-use Sylius\Component\Core\Model\ProductInterface;
-use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Product\Model\ProductInterface;
+use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
+use Webmozart\Assert\Assert;
 
 /* not final */ class ViewCategoryDataMapper implements DataMapperInterface
 {
@@ -34,10 +35,13 @@ use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
     }
 
     /**
-     * @param ResourceGridView $source
+     * @param ResourceGridView|object $source
+     * @psalm-suppress PossiblyNullArgument, MixedArgumentTypeCoercion
      */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
+        Assert::isInstanceOf($source, ResourceGridView::class);
+
         $request = $source->getRequestConfiguration()->getRequest();
 
         $customData = $target->getCustomData();
@@ -58,10 +62,9 @@ use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
             return;
         }
 
-        $customData
-            ->setContentName($taxon->getName())
-            ->setContentCategory($this->getContentCategory($taxon))
-        ;
+        /** @psalm-suppress PossiblyNullArgument */
+        $customData->setContentName($taxon->getName());
+        $customData->setContentCategory($this->getContentCategory($taxon));
     }
 
     protected function getBreadcrumbs(TaxonInterface $taxon): array
@@ -85,8 +88,11 @@ use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 
     protected function getContentIds(ResourceGridView $gridView, int $max = 10): array
     {
-        return array_slice(array_filter(array_map(function (ProductInterface $product) {
-            return $product->getCode();
-        }, iterator_to_array($gridView->getData()))), 0, $max);
+        $data = $gridView->getData();
+        Assert::isInstanceOf($data, \Traversable::class);
+
+        return array_slice(array_filter(array_map(function (ProductInterface $product): string {
+            return $product->getCode() ?? '';
+        }, iterator_to_array($data))), 0, $max);
     }
 }

@@ -6,7 +6,8 @@ namespace Setono\SyliusFacebookPlugin\DataMapper;
 
 use FacebookAds\Object\ServerSide\Content;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
-use Sylius\Component\Core\Model\ProductInterface;
+use Sylius\Component\Product\Model\ProductInterface;
+use Webmozart\Assert\Assert;
 
 /* not final */ class ProductDataMapper implements DataMapperInterface
 {
@@ -19,35 +20,51 @@ use Sylius\Component\Core\Model\ProductInterface;
     }
 
     /**
-     * @param ProductInterface $source
+     * @param ProductInterface|object $source
      */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
-        $customData = $target->getCustomData();
-        $customData
-            ->setContentName($source->getName())
-            ->setContentType(ServerSideEventInterface::CONTENT_TYPE_PRODUCT)
-            ->setContentIds($this->getContentIds($source))
-            ->setContents($this->getContents($source))
-        ;
-    }
+        Assert::isInstanceOf($source, ProductInterface::class);
 
-    protected function getContentIds(ProductInterface $product): array
-    {
-        return [
-            $product->getCode(),
-        ];
+        $customData = $target->getCustomData();
+
+        /** @psalm-suppress PossiblyNullArgument */
+        $customData->setContentName($source->getName());
+
+        $customData->setContentType(ServerSideEventInterface::CONTENT_TYPE_PRODUCT);
+        $customData->setContentIds($this->getContentIds($source));
+        $customData->setContents($this->getContents($source));
     }
 
     /**
-     * @return array|Content[]
+     * @return array<array-key, string>
+     */
+    protected function getContentIds(ProductInterface $product): array
+    {
+        /** @var array<array-key, string> $contentIds */
+        $contentIds = array_filter([
+            $product->getCode(),
+        ]);
+
+        return $contentIds;
+    }
+
+    /**
+     * @return array<array-key, Content>
      */
     protected function getContents(ProductInterface $product): array
     {
-        return [
-            (new Content())
-                ->setProductId($product->getCode())
-                ->setQuantity(1),
-        ];
+        /** @var array<array-key, string> $contentIds */
+        $contentIds = array_filter([
+            $product->getCode(),
+        ]);
+
+        return array_map(function (string $contentId) {
+            $content = new Content();
+            $content->setProductId($contentId);
+            $content->setQuantity(1);
+
+            return $content;
+        }, $contentIds);
     }
 }
