@@ -3,6 +3,14 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+
+        <service id="setono_sylius_facebook.command.cleanup"
+                 class="Setono\SyliusFacebookPlugin\Command\CleanupEventsCommand">
+            <argument type="service" id="setono_sylius_facebook.repository.pixel_event"/>
+
+            <tag name="console.command"/>
+        </service>
+
         <service id="setono_sylius_facebook.command.send_events"
                  class="Setono\SyliusFacebookPlugin\Command\SendEventsCommand">
             <argument type="service" id="setono_sylius_facebook.repository.pixel_event"/>

@@ -59,4 +59,7 @@
     ```
 
 1. Add `bin/console setono:sylius-facebook:send-pixel-events`
-   command call to your CRON
+   command call to your CRON (hourly or more frequently)
+
+1. Add `bin/console setono:sylius-facebook:cleanup`
+   command call to your CRON (daily or less frequent)

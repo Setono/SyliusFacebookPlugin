@@ -6,6 +6,7 @@ namespace Setono\SyliusFacebookPlugin\Model;
 
 use DateTimeInterface;
 use Setono\ClientId\ClientId;
+use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Symfony\Component\Uid\Uuid;
 
 class PixelEvent implements PixelEventInterface

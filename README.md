@@ -90,10 +90,14 @@ Remember to enable the pixel and enable the channels you want to track.
 
 ### Step 7. Configure cron
 
-Add `bin/console setono:sylius-facebook:send-pixel-events` command to your crontab.
+- Add `bin/console setono:sylius-facebook:send-pixel-events` command to your crontab.
 
-Schedule must be hourly or more frequently. 
-See [notes](https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api#batch-requests).
+    Schedule must be hourly or more frequently. 
+    See [notes](https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api#batch-requests).
+
+- Add `bin/console setono:sylius-facebook:cleanup` command to your crontab.
+
+    Schedule must be daily or less frequently.
 
 ### Step 8: You're ready!
 The events that are tracked are located in the [EventListener folder](src/EventListener).

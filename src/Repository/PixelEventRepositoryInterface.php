@@ -28,4 +28,6 @@ interface PixelEventRepositoryInterface extends RepositoryInterface
      * @return array<array-key, PixelEventInterface>
      */
     public function findByBulkIdentifier(string $bulkIdentifier): array;
+
+    public function removeSent(): int;
 }
