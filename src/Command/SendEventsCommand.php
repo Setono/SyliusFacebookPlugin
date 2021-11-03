@@ -84,8 +84,7 @@ final class SendEventsCommand extends Command
                         $output->writeln(sprintf(
                             '%s event #%s was sent.',
                             $pixelEvent->getEventName(),
-                            $pixelEvent->getId(),
-                            $pixelEvent->getState()
+                            $pixelEvent->getId()
                         ), OutputInterface::VERBOSITY_VERY_VERBOSE);
                     } else {
                         $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_FAIL);
