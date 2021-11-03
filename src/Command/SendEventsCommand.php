@@ -58,17 +58,35 @@ final class SendEventsCommand extends Command
             $this->pixelEventRepository->assignBulkIdentifierToPendingConsented($bulkIdentifier, $this->delay);
 
             $pixelEvents = $this->pixelEventRepository->findByBulkIdentifier($bulkIdentifier);
+            $output->writeln(sprintf(
+                'Found %s events to send.',
+                count($pixelEvents)
+            ), OutputInterface::VERBOSITY_VERBOSE);
+
             foreach ($pixelEvents as $pixelEvent) {
                 $workflow = $this->getWorkflow($pixelEvent);
 
                 try {
                     if (!$workflow->can($pixelEvent, SendPixelEventWorkflow::TRANSITION_SEND)) {
+                        $output->writeln(sprintf(
+                            'Unable to send %s event #%s with state %s.',
+                            $pixelEvent->getEventName(),
+                            $pixelEvent->getId(),
+                            $pixelEvent->getState()
+                        ));
+
                         continue;
                     }
 
                     $sentEvents = $this->client->sendPixelEvent($pixelEvent);
                     if ($sentEvents) {
                         $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_SEND);
+                        $output->writeln(sprintf(
+                            '%s event #%s was sent.',
+                            $pixelEvent->getEventName(),
+                            $pixelEvent->getId(),
+                            $pixelEvent->getState()
+                        ), OutputInterface::VERBOSITY_VERY_VERBOSE);
                     } else {
                         $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_FAIL);
                     }
