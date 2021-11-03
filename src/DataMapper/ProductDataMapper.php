@@ -19,12 +19,9 @@ use Webmozart\Assert\Assert;
         return $source instanceof ProductInterface;
     }
 
-    /**
-     * @param ProductInterface|object $source
-     */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
-        Assert::isInstanceOf($source, ProductInterface::class);
+        Assert::true($this->supports($source, $target, $context));
 
         $customData = $target->getCustomData();
 

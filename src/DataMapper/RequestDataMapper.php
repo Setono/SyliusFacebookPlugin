@@ -12,9 +12,6 @@ use Webmozart\Assert\Assert;
 {
     /**
      * @psalm-assert-if-true Request $context['request']
-     *
-     * @param object $source
-     * @param array<string, mixed> $context
      */
     public function supports($source, ServerSideEventInterface $target, array $context = []): bool
     {
@@ -22,10 +19,6 @@ use Webmozart\Assert\Assert;
             && $context['request'] instanceof Request;
     }
 
-    /**
-     * @param object $source
-     * @param array<string, mixed> $context
-     */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
         Assert::true($this->supports($source, $target, $context));

@@ -23,13 +23,9 @@ use Webmozart\Assert\Assert;
         return $source instanceof OrderInterface;
     }
 
-    /**
-     * @param OrderInterface|object $source
-     * @psalm-suppress PossiblyNullArgument
-     */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
-        Assert::isInstanceOf($source, OrderInterface::class);
+        Assert::true($this->supports($source, $target, $context));
 
         if (!$source instanceof CoreOrderInterface) {
             return;
@@ -47,6 +43,7 @@ use Webmozart\Assert\Assert;
             ->setPhones($this->getPhones($customer))
         ;
 
+        /** @psalm-suppress PossiblyNullArgument */
         $userData
             ->setFirstName($customer->getFirstName())
             ->setLastName($customer->getLastName())

@@ -12,7 +12,6 @@ interface DataMapperInterface
      * Returns true if this data mapper supports the given $source and $target
      *
      * @param object $source
-     * @param array<string, mixed> $context
      */
     public function supports($source, ServerSideEventInterface $target, array $context = []): bool;
 
@@ -21,7 +20,6 @@ interface DataMapperInterface
      * are updated, but properties on $source remain untouched
      *
      * @param object $source
-     * @param array<string, mixed> $context
      */
     public function map($source, ServerSideEventInterface $target, array $context = []): void;
 }

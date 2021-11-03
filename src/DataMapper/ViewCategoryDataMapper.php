@@ -34,13 +34,9 @@ use Webmozart\Assert\Assert;
         return $source instanceof ResourceGridView;
     }
 
-    /**
-     * @param ResourceGridView|object $source
-     * @psalm-suppress PossiblyNullArgument, MixedArgumentTypeCoercion
-     */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
-        Assert::isInstanceOf($source, ResourceGridView::class);
+        Assert::true($this->supports($source, $target, $context));
 
         $request = $source->getRequestConfiguration()->getRequest();
 
@@ -86,6 +82,9 @@ use Webmozart\Assert\Assert;
         }, $this->getBreadcrumbs($taxon)));
     }
 
+    /**
+     * @psalm-return array<array-key, string>
+     */
     protected function getContentIds(ResourceGridView $gridView, int $max = 10): array
     {
         $data = $gridView->getData();

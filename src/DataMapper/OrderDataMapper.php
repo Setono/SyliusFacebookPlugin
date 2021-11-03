@@ -13,9 +13,9 @@ use Sylius\Component\Order\Model\OrderInterface;
 use Sylius\Component\Order\Model\OrderItemInterface;
 use Webmozart\Assert\Assert;
 
-final class OrderDataMapper implements DataMapperInterface
+/** not final */ class OrderDataMapper implements DataMapperInterface
 {
-    private MoneyFormatterInterface $moneyFormatter;
+    protected MoneyFormatterInterface $moneyFormatter;
 
     public function __construct(MoneyFormatterInterface $moneyFormatter)
     {
@@ -30,24 +30,21 @@ final class OrderDataMapper implements DataMapperInterface
         return $source instanceof OrderInterface;
     }
 
-    /**
-     * @param OrderInterface|object $source
-     * @psalm-suppress PossiblyNullArgument
-     */
     public function map($source, ServerSideEventInterface $target, array $context = []): void
     {
-        Assert::isInstanceOf($source, OrderInterface::class);
+        Assert::true($this->supports($source, $target, $context));
 
         if (!$source instanceof CoreOrderInterface) {
             return;
         }
 
         $customData = $target->getCustomData();
+        /** @psalm-suppress PossiblyNullArgument */
         $customData->setValue(
             $this->moneyFormatter->format($source->getTotal())
         );
 
-        /** @psalm-suppress MixedArgument */
+        /** @psalm-suppress PossiblyNullArgument */
         $customData->setCurrency($source->getCurrencyCode());
 
         $customData->setContentIds($this->getContentIds($source));
@@ -58,7 +55,7 @@ final class OrderDataMapper implements DataMapperInterface
     /**
      * @psalm-return array<array-key, string>
      */
-    private function getContentIds(OrderInterface $order): array
+    protected function getContentIds(OrderInterface $order): array
     {
         return array_filter($order->getItems()->map(function (OrderItemInterface $orderItem): ?string {
             if (!$orderItem instanceof CoreOrderItemInterface) {
@@ -77,7 +74,7 @@ final class OrderDataMapper implements DataMapperInterface
     /**
      * @return array<array-key, Content>
      */
-    private function getContents(OrderInterface $order): array
+    protected function getContents(OrderInterface $order): array
     {
         /** @var array<array-key, Content> $contents */
         $contents = array_filter($order->getItems()->map(function (OrderItemInterface $orderItem): ?Content {
