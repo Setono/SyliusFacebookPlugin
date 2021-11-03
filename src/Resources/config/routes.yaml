@@ -1,3 +1,3 @@
 setono_sylius_facebook_admin:
-    resource: routing/admin.yaml
+    resource: routes/admin.yaml
     prefix: /admin/facebook

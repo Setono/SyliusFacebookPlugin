@@ -72,7 +72,7 @@ setono_consent:
 ```yaml
 # config/routes/setono_sylius_facebook.yaml
 setono_sylius_facebook:
-    resource: "@SetonoSyliusFacebookPlugin/Resources/config/routing.yaml"
+    resource: "@SetonoSyliusFacebookPlugin/Resources/config/routes.yaml"
 ```
 
 ### Step 5: Update your database schema
