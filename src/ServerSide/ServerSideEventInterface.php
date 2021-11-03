@@ -10,6 +10,8 @@ use FacebookAds\Object\ServerSide\UserData;
 
 /**
  * @mixin Event
+ *
+ * @see https://developers.facebook.com/docs/facebook-pixel/reference/
  */
 interface ServerSideEventInterface
 {

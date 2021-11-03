@@ -23,6 +23,14 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="setono_sylius_facebook.event_listener.initiate_checkout"
+                 class="Setono\SyliusFacebookPlugin\EventListener\InitiateCheckoutSubscriber"
+                 parent="setono_sylius_facebook.event_listener.abstract">
+            <argument type="service" id="sylius.context.cart"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="setono_sylius_facebook.event_listener.purchase"
                  class="Setono\SyliusFacebookPlugin\EventListener\PurchaseSubscriber"
                  parent="setono_sylius_facebook.event_listener.abstract">

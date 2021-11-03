@@ -78,6 +78,7 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
         $serverSideEvent = $this->serverSideFactory->create($eventName);
         $this->dataMapper->map($source, $serverSideEvent, [
             'request' => $request ?? $this->getMasterRequest(),
+            'event' => $eventName,
         ]);
 
         $pixels = $this->pixelContext->getPixels();
