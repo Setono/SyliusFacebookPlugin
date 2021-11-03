@@ -18,7 +18,7 @@ class PixelEvent implements PixelEventInterface
 
     protected bool $consentGranted = false;
 
-    protected ?string $eventName = null;
+    protected string $eventName = ServerSideEventInterface::EVENT_VIEW_CONTENT;
 
     protected array $data = [];
 
@@ -70,12 +70,12 @@ class PixelEvent implements PixelEventInterface
         $this->consentGranted = $consentGranted;
     }
 
-    public function getEventName(): ?string
+    public function getEventName(): string
     {
         return $this->eventName;
     }
 
-    public function setEventName(?string $eventName): void
+    public function setEventName(string $eventName): void
     {
         $this->eventName = $eventName;
     }

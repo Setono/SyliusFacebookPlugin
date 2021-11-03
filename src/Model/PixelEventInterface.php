@@ -30,9 +30,9 @@ interface PixelEventInterface extends ResourceInterface
 
     public function setConsentGranted(bool $consentGranted): void;
 
-    public function getEventName(): ?string;
+    public function getEventName(): string;
 
-    public function setEventName(?string $eventName): void;
+    public function setEventName(string $eventName): void;
 
     public function getData(): array;
 
