@@ -25,6 +25,11 @@ class ServerSideEvent extends Event implements ServerSideEventInterface
         ;
     }
 
+    public function getEventName(): string
+    {
+        return parent::getEventName();
+    }
+
     /**
      * @psalm-suppress InvalidReturnType
      */

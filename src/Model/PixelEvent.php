@@ -18,6 +18,8 @@ class PixelEvent implements PixelEventInterface
 
     protected bool $consentGranted = false;
 
+    protected ?string $eventName = null;
+
     protected array $data = [];
 
     protected string $state = self::STATE_PENDING;
@@ -66,6 +68,16 @@ class PixelEvent implements PixelEventInterface
     public function setConsentGranted(bool $consentGranted): void
     {
         $this->consentGranted = $consentGranted;
+    }
+
+    public function getEventName(): ?string
+    {
+        return $this->eventName;
+    }
+
+    public function setEventName(?string $eventName): void
+    {
+        $this->eventName = $eventName;
     }
 
     public function getData(): array

@@ -55,6 +55,8 @@ interface ServerSideEventInterface
 
     public const CUSTOM_EVENT_VIEW_CATEGORY = 'ViewCategory';
 
+    public function getEventName(): string;
+
     public function getUserData(): UserData;
 
     public function getCustomData(): CustomData;

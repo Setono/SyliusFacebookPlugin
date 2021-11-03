@@ -41,6 +41,7 @@ final class PixelEventFactory implements PixelEventFactoryInterface
     public function createFromServerSideEvent(ServerSideEventInterface $event): PixelEventInterface
     {
         $pixelEvent = $this->createNew();
+        $pixelEvent->setEventName($event->getEventName());
         $pixelEvent->setClientId(
             $this->clientIdProvider->getClientId()
         );
