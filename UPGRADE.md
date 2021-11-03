@@ -36,7 +36,7 @@
      -  ...
      -  }
     ```
-1. Configure Access token
+1. Configure plugin
 
     ```yaml
     # config/packages/setono_sylius_facebook.yaml
@@ -50,6 +50,12 @@
     ###> setono/sylius-facebook-plugin ###
     FACEBOOK_ACCESS_TOKEN=<YOUR TOKEN>
     ###< setono/sylius-facebook-plugin ###
+    ```
+
+    ```yaml
+    # config/packages/setono_consent.yaml
+    setono_consent:
+        marketing_granted: true
     ```
 
 1. Add `bin/console setono:sylius-facebook:send-pixel-events`
