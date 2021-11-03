@@ -68,7 +68,7 @@ final class ClientTest extends TestCase
                     ],
                 ],
                 'content_ids' => [
-                    0 => 'Beige_strappy_summer_dress',
+                    'Beige_strappy_summer_dress',
                 ],
                 'content_name' => 'Beige strappy summer dress',
                 'content_type' => 'product',
@@ -79,11 +79,11 @@ final class ClientTest extends TestCase
 
         $response = new MockResponse('1');
         $httpClient = $this->getHttpClient($response);
-        $client = new Client($httpClient, 'v12.0', 'ACCESS_TOKEN');
-        $client->sendPixelEvent($pixelEvent);
+        $client = new Client($httpClient, 'v12.0', $this->accessToken);
+        $eventsReceived = $client->sendPixelEvent($pixelEvent);
 
         if ($this->live) {
-            // @todo
+            self::assertSame(1, $eventsReceived);
         } else {
             self::assertSame('POST', $response->getRequestMethod());
             self::assertSame(sprintf('https://graph.facebook.com/v12.0/%s/events', $this->pixelId), $response->getRequestUrl());

@@ -66,9 +66,12 @@ final class SendEventsCommand extends Command
                         continue;
                     }
 
-                    $this->client->sendPixelEvent($pixelEvent);
-
-                    $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_SEND);
+                    $sentEvents = $this->client->sendPixelEvent($pixelEvent);
+                    if ($sentEvents) {
+                        $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_SEND);
+                    } else {
+                        $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_FAIL);
+                    }
                 } catch (\Throwable $e) {
                     $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_FAIL);
                 }

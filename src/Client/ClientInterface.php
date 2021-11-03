@@ -8,5 +8,5 @@ use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 
 interface ClientInterface
 {
-    public function sendPixelEvent(PixelEventInterface $pixelEvent): void;
+    public function sendPixelEvent(PixelEventInterface $pixelEvent): int;
 }

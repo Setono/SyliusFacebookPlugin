@@ -26,7 +26,7 @@ final class Client implements ClientInterface
         $this->accessToken = $accessToken;
     }
 
-    public function sendPixelEvent(PixelEventInterface $pixelEvent): void
+    public function sendPixelEvent(PixelEventInterface $pixelEvent): int
     {
         $pixel = $pixelEvent->getPixel();
         Assert::notNull($pixel);
@@ -44,11 +44,18 @@ final class Client implements ClientInterface
                 ],
                 'body' => [
                     'access_token' => $this->accessToken,
-                    'data' => json_encode($pixelEvent->getData()),
+                    'data' => json_encode([
+                        $pixelEvent->getData(),
+                    ]),
                 ],
             ]
         );
 
         Assert::same($response->getStatusCode(), 200);
+        $content = $response->getContent();
+        $json = json_decode($content, true);
+        Assert::isArray($json);
+
+        return (int) $json['events_received'];
     }
 }
