@@ -45,7 +45,7 @@ final class PixelEventFactory implements PixelEventFactoryInterface
             $this->clientIdProvider->getClientId()
         );
         $pixelEvent->setConsentGranted(
-            $this->consentContext->getConsent()->isStatisticsConsentGranted()
+            $this->consentContext->getConsent()->isMarketingConsentGranted()
         );
         $pixelEvent->setData($event->normalize());
 

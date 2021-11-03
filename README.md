@@ -56,6 +56,17 @@ FACEBOOK_ACCESS_TOKEN=<YOUR TOKEN>
 ###< setono/sylius-facebook-plugin ###
 ```
 
+Warning! This plugin uses
+https://github.com/Setono/ConsentBundle
+and data will not be sent to Facebook by default.
+To workaround that - you have to configure ConsentBundle like this:
+
+```yaml
+# config/packages/setono_consent.yaml
+setono_consent:
+    marketing_granted: true
+```
+
 ### Step 4: Import routing
 
 ```yaml
