@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\Doctrine\ORM;
 
-use Doctrine\DBAL\Types\Types;
 use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelRepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -15,10 +14,11 @@ class PixelRepository extends EntityRepository implements PixelRepositoryInterfa
 {
     public function findEnabledByChannel(ChannelInterface $channel): array
     {
+        /** @psalm-suppress QueryBuilderSetParameter */
         $result = $this->createQueryBuilder('o')
             ->andWhere(':channel MEMBER OF o.channels')
             ->andWhere('o.enabled = true')
-            ->setParameter('channel', $channel, Types::OBJECT)
+            ->setParameter('channel', $channel)
             ->getQuery()
             ->getResult()
         ;
