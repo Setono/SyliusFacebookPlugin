@@ -59,13 +59,18 @@ FACEBOOK_ACCESS_TOKEN=<YOUR TOKEN>
 Warning! This plugin uses
 https://github.com/Setono/ConsentBundle
 and data will not be sent to Facebook by default.
-To workaround that - you have to configure ConsentBundle like this:
+
+To workaround that on dev environment - you have to configure ConsentBundle like this:
 
 ```yaml
-# config/packages/setono_consent.yaml
+# config/packages/dev/setono_consent.yaml
 setono_consent:
     marketing_granted: true
 ```
+
+This configuration will make the marketing consent true by default, 
+which means that if you don’t handle consents you will send all events 
+to Facebook by default (which could be against GDPR or other laws related to marketing)
 
 ### Step 4: Import routing
 

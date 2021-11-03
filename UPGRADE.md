@@ -52,8 +52,14 @@
     ###< setono/sylius-facebook-plugin ###
     ```
 
+    Warning! This plugin uses
+    https://github.com/Setono/ConsentBundle
+    and data will not be sent to Facebook by default.
+   
+    To workaround that on dev environment - you have to configure ConsentBundle like this:
+
     ```yaml
-    # config/packages/setono_consent.yaml
+    # config/packages/dev/setono_consent.yaml
     setono_consent:
         marketing_granted: true
     ```
