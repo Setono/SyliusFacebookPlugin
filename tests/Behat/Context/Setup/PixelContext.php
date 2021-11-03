@@ -24,7 +24,7 @@ final class PixelContext implements Context
     /**
      * @Given the store has a pixel with pixel id :pixelId
      */
-    public function theStoreHasAPixelWithPixelId($pixelId): void
+    public function theStoreHasAPixelWithPixelId(string $pixelId): void
     {
         $pixel = $this->createPixel($pixelId);
 
