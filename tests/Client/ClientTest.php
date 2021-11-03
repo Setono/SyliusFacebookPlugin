@@ -77,7 +77,7 @@ final class ClientTest extends TestCase
               'event_source_url' => 'https://localhost:8000/en_US/products/beige-strappy-summer-dress',
         ]);
 
-        $response = new MockResponse('1');
+        $response = new MockResponse('{"events_received": 1}');
         $httpClient = $this->getHttpClient($response);
         $client = new Client($httpClient, 'v12.0', $this->accessToken);
         $eventsReceived = $client->sendPixelEvent($pixelEvent);
@@ -98,7 +98,7 @@ final class ClientTest extends TestCase
             Assert::keyExists($requestOptions, 'body');
             Assert::string($requestOptions['body']);
             $requestBody = urldecode($requestOptions['body']);
-            self::assertSame(sprintf('access_token=%s&data={"user_data":{"client_ip_address":"::1","client_user_agent":"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/94.0.4606.61 Safari\/537.36"},"event_name":"ViewContent","event_time":1635769396,"custom_data":{"contents":[{"id":"Beige_strappy_summer_dress","quantity":1}],"content_ids":["Beige_strappy_summer_dress"],"content_name":"Beige strappy summer dress","content_type":"product"},"action_source":"website","event_source_url":"https:\/\/localhost:8000\/en_US\/products\/beige-strappy-summer-dress"}', $this->accessToken), $requestBody);
+            self::assertSame(sprintf('access_token=%s&data=[{"user_data":{"client_ip_address":"::1","client_user_agent":"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/94.0.4606.61 Safari\/537.36"},"event_name":"ViewContent","event_time":1635769396,"custom_data":{"contents":[{"id":"Beige_strappy_summer_dress","quantity":1}],"content_ids":["Beige_strappy_summer_dress"],"content_name":"Beige strappy summer dress","content_type":"product"},"action_source":"website","event_source_url":"https:\/\/localhost:8000\/en_US\/products\/beige-strappy-summer-dress"}]', $this->accessToken), $requestBody);
         }
     }
 
