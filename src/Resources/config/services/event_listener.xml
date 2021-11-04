@@ -42,6 +42,8 @@
         <service id="setono_sylius_facebook.event_listener.view_category"
                  class="Setono\SyliusFacebookPlugin\EventListener\ViewCategorySubscriber"
                  parent="setono_sylius_facebook.event_listener.abstract">
+            <argument type="service" id="sylius.context.locale"/>
+            <argument type="service" id="sylius.repository.taxon"/>
 
             <tag name="kernel.event_subscriber"/>
         </service>

@@ -33,8 +33,6 @@
 
         <service id="setono_sylius_facebook.data_mapper.view_category"
                  class="Setono\SyliusFacebookPlugin\DataMapper\ViewCategoryDataMapper">
-            <argument type="service" id="sylius.context.locale"/>
-            <argument type="service" id="sylius.repository.taxon"/>
 
             <tag name="setono_sylius_facebook.data_mapper" />
         </service>
