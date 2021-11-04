@@ -11,7 +11,7 @@
         <field name="clientId" type="client_id"/>
         <field name="consentGranted" column="consent_granted" type="boolean"/>
         <field name="eventName" column="event_name" length="32"/>
-        <field name="data" type="json_array"/>
+        <field name="data" type="json"/>
         <field name="state" column="state"/>
         <field name="bulkIdentifier" column="bulk_identifier" nullable="true"/>
         <field name="createdAt" column="created_at" type="datetime">
@@ -21,7 +21,7 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <many-to-one field="pixel" target-entity="Setono\SyliusFacebookPlugin\Model\Pixel">
+        <many-to-one field="pixel" target-entity="Setono\SyliusFacebookPlugin\Model\PixelInterface">
             <join-column name="pixel_id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
 

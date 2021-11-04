@@ -34,7 +34,6 @@ final class ViewCategorySubscriber extends AbstractSubscriber
             return;
         }
 
-        // @todo trackCustom???
         $this->generatePixelEvents(
             $gridView,
             ServerSideEventInterface::CUSTOM_EVENT_VIEW_CATEGORY
