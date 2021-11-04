@@ -42,6 +42,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-bundle": "^1.12.9",
+        "friendsofphp/proxy-manager-lts": "^1.0",
         "matthiasnoback/symfony-config-test": "^4.3",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "phpspec/phpspec": "^6.3",
