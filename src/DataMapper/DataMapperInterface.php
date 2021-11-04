@@ -10,16 +10,12 @@ interface DataMapperInterface
 {
     /**
      * Returns true if this data mapper supports the given $source and $target
-     *
-     * @param object $source
      */
-    public function supports($source, ServerSideEventInterface $target, array $context = []): bool;
+    public function supports(object $source, ServerSideEventInterface $target, array $context = []): bool;
 
     /**
      * Maps $source to $target. This means properties on $target
      * are updated, but properties on $source remain untouched
-     *
-     * @param object $source
      */
-    public function map($source, ServerSideEventInterface $target, array $context = []): void;
+    public function map(object $source, ServerSideEventInterface $target, array $context = []): void;
 }

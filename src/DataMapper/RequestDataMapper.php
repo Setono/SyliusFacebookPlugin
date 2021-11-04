@@ -13,13 +13,13 @@ use Webmozart\Assert\Assert;
     /**
      * @psalm-assert-if-true Request $context['request']
      */
-    public function supports($source, ServerSideEventInterface $target, array $context = []): bool
+    public function supports(object $source, ServerSideEventInterface $target, array $context = []): bool
     {
         return isset($context['request'])
             && $context['request'] instanceof Request;
     }
 
-    public function map($source, ServerSideEventInterface $target, array $context = []): void
+    public function map(object $source, ServerSideEventInterface $target, array $context = []): void
     {
         Assert::true($this->supports($source, $target, $context));
 

@@ -22,7 +22,7 @@ final class CompositeDataMapper implements DataMapperInterface
         $this->dataMappers->insert($dataMapper, $priority);
     }
 
-    public function supports($source, ServerSideEventInterface $target, array $context = []): bool
+    public function supports(object $source, ServerSideEventInterface $target, array $context = []): bool
     {
         foreach ($this->getDataMappers() as $dataMapper) {
             if ($dataMapper->supports($source, $target, $context)) {
@@ -33,7 +33,7 @@ final class CompositeDataMapper implements DataMapperInterface
         return false;
     }
 
-    public function map($source, ServerSideEventInterface $target, array $context = []): void
+    public function map(object $source, ServerSideEventInterface $target, array $context = []): void
     {
         foreach ($this->getDataMappers() as $dataMapper) {
             if ($dataMapper->supports($source, $target, $context)) {

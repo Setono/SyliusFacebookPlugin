@@ -29,12 +29,12 @@ use Webmozart\Assert\Assert;
     /**
      * @psalm-assert-if-true ResourceGridView $source
      */
-    public function supports($source, ServerSideEventInterface $target, array $context = []): bool
+    public function supports(object $source, ServerSideEventInterface $target, array $context = []): bool
     {
         return $source instanceof ResourceGridView;
     }
 
-    public function map($source, ServerSideEventInterface $target, array $context = []): void
+    public function map(object $source, ServerSideEventInterface $target, array $context = []): void
     {
         Assert::true($this->supports($source, $target, $context));
 
