@@ -64,6 +64,14 @@
         marketing_granted: true
     ```
 
+1. Update path to routes at `config/routes/setono_sylius_facebook.yaml`:
+
+    ```diff
+    setono_sylius_facebook:
+    - resource: "@SetonoSyliusFacebookPlugin/Resources/config/routing.yaml"
+    + resource: "@SetonoSyliusFacebookPlugin/Resources/config/routes.yaml"
+    ```
+   
 1. Add `bin/console setono:sylius-facebook:send-pixel-events`
    command call to your CRON (hourly or more frequently)
 
