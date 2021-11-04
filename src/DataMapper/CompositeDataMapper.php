@@ -47,7 +47,7 @@ final class CompositeDataMapper implements DataMapperInterface
      */
     private function getDataMappers(): array
     {
-        $dataMappers = iterator_to_array($this->dataMappers);
+        $dataMappers = iterator_to_array(clone $this->dataMappers);
         Assert::allIsInstanceOf($dataMappers, DataMapperInterface::class);
 
         return $dataMappers;
