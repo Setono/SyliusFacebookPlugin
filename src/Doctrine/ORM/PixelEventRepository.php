@@ -79,16 +79,17 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
         }
     }
 
-    public function removeSent(): int
+    public function removeSent(int $delay = 0): int
     {
-        $result = $this->_em->createQueryBuilder()
+        $qb = $this->_em->createQueryBuilder()
             ->delete($this->_entityName, 'o')
             ->andWhere('o.state = :sentState')
             ->setParameter('sentState', PixelEventInterface::STATE_SENT)
-            ->getQuery()
-            ->execute()
-        ;
+            ;
 
+        self::applyDelay($qb, $delay);
+
+        $result = $qb->getQuery()->execute();
         Assert::integerish($result);
 
         return (int) $result;

@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookPlugin\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectManager;
 use Setono\SyliusFacebookPlugin\Client\ClientInterface;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelEventRepositoryInterface;
 use Setono\SyliusFacebookPlugin\Workflow\SendPixelEventWorkflow;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Workflow\Registry;
 use Symfony\Component\Workflow\WorkflowInterface;
 use Webmozart\Assert\Assert;
 
-final class SendEventsCommand extends Command
+final class SendEventsCommand extends DelayAwareCommand
 {
     protected static $defaultName = 'setono:sylius-facebook:send-pixel-events';
 
@@ -29,33 +27,31 @@ final class SendEventsCommand extends Command
 
     private EntityManagerInterface $entityManager;
 
-    private int $delay;
-
     private ?WorkflowInterface $workflow = null;
-
-    private ?ObjectManager $manager = null;
 
     public function __construct(
         PixelEventRepositoryInterface $pixelEventRepository,
         ClientInterface $client,
         Registry $workflowRegistry,
         EntityManagerInterface $entityManager,
-        int $delay
+        int $defaultDelay
     ) {
-        parent::__construct();
-
         $this->pixelEventRepository = $pixelEventRepository;
         $this->client = $client;
         $this->workflowRegistry = $workflowRegistry;
         $this->entityManager = $entityManager;
-        $this->delay = $delay;
+
+        parent::__construct($defaultDelay);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        while ($this->pixelEventRepository->hasConsentedPending($this->delay)) {
+        $delay = $input->getOption('delay');
+        Assert::integerish($delay);
+
+        while ($this->pixelEventRepository->hasConsentedPending((int) $delay)) {
             $bulkIdentifier = uniqid('bulk-', true);
-            $this->pixelEventRepository->assignBulkIdentifierToPendingConsented($bulkIdentifier, $this->delay);
+            $this->pixelEventRepository->assignBulkIdentifierToPendingConsented($bulkIdentifier, (int) $delay);
 
             $pixelEvents = $this->pixelEventRepository->findByBulkIdentifier($bulkIdentifier);
             $output->writeln(sprintf(

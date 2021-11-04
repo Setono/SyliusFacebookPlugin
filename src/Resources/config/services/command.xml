@@ -7,6 +7,7 @@
         <service id="setono_sylius_facebook.command.cleanup"
                  class="Setono\SyliusFacebookPlugin\Command\CleanupEventsCommand">
             <argument type="service" id="setono_sylius_facebook.repository.pixel_event"/>
+            <argument>%setono_sylius_facebook.cleanup_delay%</argument>
 
             <tag name="console.command"/>
         </service>

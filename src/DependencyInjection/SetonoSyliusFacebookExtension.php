@@ -18,7 +18,7 @@ final class SetonoSyliusFacebookExtension extends AbstractResourceExtension impl
         /**
          * @psalm-suppress PossiblyNullArgument
          *
-         * @var array{api_version: string, access_token: string, send_delay: int, driver: string, resources: array} $config
+         * @var array{api_version: string, access_token: string, send_delay: int, cleanup_delay:int, driver: string, resources: array} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -26,6 +26,7 @@ final class SetonoSyliusFacebookExtension extends AbstractResourceExtension impl
         $container->setParameter('setono_sylius_facebook.api_version', $config['api_version']);
         $container->setParameter('setono_sylius_facebook.access_token', $config['access_token']);
         $container->setParameter('setono_sylius_facebook.send_delay', $config['send_delay']);
+        $container->setParameter('setono_sylius_facebook.cleanup_delay', $config['cleanup_delay']);
 
         $loader->load('services.xml');
 

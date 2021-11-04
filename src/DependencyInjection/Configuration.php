@@ -48,6 +48,10 @@ final class Configuration implements ConfigurationInterface
                     ->info('The number of seconds to wait until an event is sent to Facebook')
                     ->example(120) // 2 minutes
                 ->end()
+                ->integerNode('cleanup_delay')
+                    ->defaultValue(30 * 24 * 60 * 60) // 30 days
+                    ->info('The number of seconds to wait until remove sent event')
+                ->end()
             ->end()
         ;
 
