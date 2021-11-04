@@ -66,7 +66,7 @@ final class SendEventsCommand extends DelayAwareCommand
                     if (!$workflow->can($pixelEvent, SendPixelEventWorkflow::TRANSITION_SEND)) {
                         $output->writeln(sprintf(
                             'Unable to send %s event #%s with state %s.',
-                            $pixelEvent->getEventName(),
+                            (string) $pixelEvent->getEventName(),
                             $pixelEvent->getId(),
                             $pixelEvent->getState()
                         ));
@@ -79,7 +79,7 @@ final class SendEventsCommand extends DelayAwareCommand
                         $workflow->apply($pixelEvent, SendPixelEventWorkflow::TRANSITION_SEND);
                         $output->writeln(sprintf(
                             '%s event #%s was sent.',
-                            $pixelEvent->getEventName(),
+                            (string) $pixelEvent->getEventName(),
                             $pixelEvent->getId()
                         ), OutputInterface::VERBOSITY_VERY_VERBOSE);
                     } else {

@@ -6,7 +6,6 @@ namespace Setono\SyliusFacebookPlugin\Model;
 
 use DateTimeInterface;
 use Setono\ClientId\ClientId;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Symfony\Component\Uid\Uuid;
 
 class PixelEvent implements PixelEventInterface
@@ -19,7 +18,7 @@ class PixelEvent implements PixelEventInterface
 
     protected bool $consentGranted = false;
 
-    protected string $eventName = ServerSideEventInterface::EVENT_VIEW_CONTENT;
+    protected ?string $eventName = null;
 
     protected array $data = [];
 
@@ -71,12 +70,12 @@ class PixelEvent implements PixelEventInterface
         $this->consentGranted = $consentGranted;
     }
 
-    public function getEventName(): string
+    public function getEventName(): ?string
     {
         return $this->eventName;
     }
 
-    public function setEventName(string $eventName): void
+    public function setEventName(?string $eventName): void
     {
         $this->eventName = $eventName;
     }
