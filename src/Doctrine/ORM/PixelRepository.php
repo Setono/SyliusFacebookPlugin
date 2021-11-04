@@ -14,7 +14,6 @@ class PixelRepository extends EntityRepository implements PixelRepositoryInterfa
 {
     public function findEnabledByChannel(ChannelInterface $channel): array
     {
-        /** @psalm-suppress QueryBuilderSetParameter */
         $result = $this->createQueryBuilder('o')
             ->andWhere(':channel MEMBER OF o.channels')
             ->andWhere('o.enabled = true')

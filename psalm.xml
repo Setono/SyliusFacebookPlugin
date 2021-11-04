@@ -21,6 +21,7 @@
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
+        <PluginIssue name="QueryBuilderSetParameter" errorLevel="info" />
         <UnnecessaryVarAnnotation errorLevel="suppress"/> <!-- We only use 'unnecessary' var annotations when we want to help PhpStorm :) -->
         <DeprecatedMethod>
             <errorLevel type="suppress">
