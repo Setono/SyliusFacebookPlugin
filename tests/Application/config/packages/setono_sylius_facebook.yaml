@@ -4,5 +4,3 @@ imports:
 
 setono_sylius_facebook:
     access_token: '%env(FACEBOOK_ACCESS_TOKEN)%'
-    send_delay: 0
-    cleanup_delay: 0

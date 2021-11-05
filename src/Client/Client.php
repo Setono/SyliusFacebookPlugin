@@ -16,14 +16,18 @@ final class Client implements ClientInterface
 
     private string $accessToken;
 
+    private ?string $testEventCode;
+
     public function __construct(
         HttpClientInterface $httpClient,
         string $apiVersion,
-        string $accessToken
+        string $accessToken,
+        ?string $testEventCode = null
     ) {
         $this->httpClient = $httpClient;
         $this->apiVersion = $apiVersion;
         $this->accessToken = $accessToken;
+        $this->testEventCode = $testEventCode;
     }
 
     public function sendPixelEvent(PixelEventInterface $pixelEvent): int
@@ -34,21 +38,27 @@ final class Client implements ClientInterface
         $pixelId = $pixel->getPixelId();
         Assert::notNull($pixelId);
 
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'Accept' => 'application/json',
+            ],
+            'body' => [
+                'access_token' => $this->accessToken,
+                'data' => json_encode([
+                    $pixelEvent->getData(),
+                ]),
+            ],
+        ];
+
+        if (null !== $this->testEventCode && '' !== $this->testEventCode) {
+            $options['body']['test_event_code'] = $this->testEventCode;
+        }
+
         $response = $this->httpClient->request(
             'POST',
             sprintf('https://graph.facebook.com/%s/%s/events', $this->apiVersion, $pixelId),
-            [
-                'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Accept' => 'application/json',
-                ],
-                'body' => [
-                    'access_token' => $this->accessToken,
-                    'data' => json_encode([
-                        $pixelEvent->getData(),
-                    ]),
-                ],
-            ]
+            $options
         );
 
         Assert::same($response->getStatusCode(), 200);

@@ -43,6 +43,10 @@ final class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('test_event_code')
+                    ->info('Your test_event_code (required for debugging)')
+                    ->defaultNull()
+                ->end()
                 ->integerNode('send_delay')
                     ->defaultValue(300) // 5 minutes
                     ->info('The number of seconds to wait until an event is sent to Facebook')

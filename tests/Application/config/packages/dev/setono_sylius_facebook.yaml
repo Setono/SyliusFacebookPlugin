@@ -1,0 +1,4 @@
+setono_sylius_facebook:
+    test_event_code: '%env(FACEBOOK_TEST_EVENT_CODE)%'
+    send_delay: 0
+    cleanup_delay: 0

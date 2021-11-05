@@ -10,6 +10,7 @@
             <argument type="service" id="http_client"/>
             <argument>%setono_sylius_facebook.api_version%</argument>
             <argument>%setono_sylius_facebook.access_token%</argument>
+            <argument>%setono_sylius_facebook.test_event_code%</argument>
         </service>
     </services>
 </container>
