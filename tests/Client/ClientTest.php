@@ -36,7 +36,7 @@ final class ClientTest extends TestCase
                 $this->accessToken = $accessToken;
             }
 
-            $pixelId = getenv('PIXEL_ID');
+            $pixelId = getenv('FACEBOOK_PIXEL_ID');
             if (false !== $pixelId) {
                 $this->pixelId = $pixelId;
             }
