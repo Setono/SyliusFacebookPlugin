@@ -17,7 +17,7 @@ final class ViewCategoryData
     /**
      * @param ProductInterface[] $products
      */
-    public function __construct(array $products, ?TaxonInterface $taxon = null)
+    public function __construct(array $products, TaxonInterface $taxon = null)
     {
         $this->products = $products;
         $this->taxon = $taxon;
