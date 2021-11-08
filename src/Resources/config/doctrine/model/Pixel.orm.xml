@@ -5,7 +5,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Setono\SyliusFacebookPlugin\Model\Pixel" table="setono_sylius_facebook__pixel">
+    <mapped-superclass name="Setono\SyliusFacebookPlugin\Model\Pixel"
+                       table="setono_sylius_facebook__pixel">
 
         <indexes>
             <index columns="enabled"/>
@@ -15,7 +16,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="pixelId" column="pixel_id" type="string" unique="true"/>
+        <field name="pixelId" column="pixel_id" unique="true"/>
         <field name="enabled" column="enabled" type="boolean"/>
 
         <many-to-many field="channels" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
@@ -29,6 +30,6 @@
             </join-table>
         </many-to-many>
 
-    </entity>
+    </mapped-superclass>
 
 </doctrine-mapping>

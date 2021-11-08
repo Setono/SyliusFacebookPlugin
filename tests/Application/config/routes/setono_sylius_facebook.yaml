@@ -1,0 +1,2 @@
+setono_sylius_facebook:
+    resource: "@SetonoSyliusFacebookPlugin/Resources/config/routes.yaml"

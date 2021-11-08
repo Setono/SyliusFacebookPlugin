@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Psr\EventDispatcher\EventDispatcherInterface;
-use Setono\SyliusFacebookPlugin\Builder\ContentBuilder;
-use Setono\SyliusFacebookPlugin\Builder\PurchaseBuilder;
+use Doctrine\ORM\EntityManagerInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\Event\BuilderEvent;
-use Setono\SyliusFacebookPlugin\Tag\FbqTag;
-use Setono\SyliusFacebookPlugin\Tag\FbqTagInterface;
-use Setono\SyliusFacebookPlugin\Tag\Tags;
-use Setono\TagBag\Tag\TagInterface;
-use Setono\TagBag\TagBagInterface;
+use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
+use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Repository\OrderRepositoryInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
@@ -21,19 +17,29 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final class PurchaseSubscriber extends TagSubscriber
+final class PurchaseSubscriber extends AbstractSubscriber
 {
-    private OrderRepositoryInterface $orderRepository;
+    protected OrderRepositoryInterface $orderRepository;
 
     public function __construct(
-        TagBagInterface $tagBag,
         PixelContextInterface $pixelContext,
-        EventDispatcherInterface $eventDispatcher,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
+        ServerSideEventFactoryInterface $serverSideFactory,
+        DataMapperInterface $dataMapper,
+        PixelEventFactoryInterface $pixelEventFactory,
+        EntityManagerInterface $entityManager,
         OrderRepositoryInterface $orderRepository
     ) {
-        parent::__construct($tagBag, $pixelContext, $eventDispatcher, $requestStack, $firewallMap);
+        parent::__construct(
+            $pixelContext,
+            $requestStack,
+            $firewallMap,
+            $serverSideFactory,
+            $dataMapper,
+            $pixelEventFactory,
+            $entityManager
+        );
 
         $this->orderRepository = $orderRepository;
     }
@@ -45,72 +51,58 @@ final class PurchaseSubscriber extends TagSubscriber
         ];
     }
 
-    public function track(RequestEvent $event): void
+    public function track(RequestEvent $requestEvent): void
     {
-        $request = $event->getRequest();
-
-        if (!$event->isMasterRequest() || !$this->isShopContext($request)) {
-            return;
-        }
-
-        if (!$request->attributes->has('_route')) {
-            return;
-        }
-
-        $route = $request->attributes->get('_route');
-        if ('sylius_shop_order_thank_you' !== $route) {
-            return;
-        }
-
-        $orderId = $request->getSession()->get('sylius_order_id');
-
-        if (null === $orderId) {
-            return;
-        }
-
-        $order = $this->orderRepository->find($orderId);
+        $order = $this->resolveOrder($requestEvent);
         if (null === $order) {
             return;
         }
 
-        if (!$order instanceof OrderInterface) {
+        if (!$this->pixelContext->hasPixels()) {
             return;
         }
 
-        if (!$this->hasPixels()) {
-            return;
-        }
-
-        $builder = PurchaseBuilder::create()
-            ->setValue($this->moneyFormatter->format($order->getTotal()))
-            ->setCurrency($order->getCurrencyCode())
-            ->setContentType(PurchaseBuilder::CONTENT_TYPE_PRODUCT)
-        ;
-
-        foreach ($order->getItems() as $orderItem) {
-            $variant = $orderItem->getVariant();
-            if (null === $variant) {
-                continue;
-            }
-
-            $builder->addContentId($variant->getCode());
-
-            $contentBuilder = ContentBuilder::create()
-                ->setId($variant->getCode())
-                ->setQuantity($orderItem->getQuantity())
-            ;
-
-            $this->eventDispatcher->dispatch(new BuilderEvent($contentBuilder, $orderItem));
-
-            $builder->addContent($contentBuilder);
-        }
-
-        $this->eventDispatcher->dispatch(new BuilderEvent($builder, $order));
-
-        $this->tagBag->addTag(
-            (new FbqTag(FbqTagInterface::EVENT_PURCHASE, $builder))
-                ->setSection(TagInterface::SECTION_BODY_END)
-                ->setName(Tags::TAG_PURCHASE)
+        $this->generatePixelEvents(
+            $order,
+            ServerSideEventInterface::EVENT_PURCHASE
         );
+    }
+
+    /**
+     * This method will return an OrderInterface if
+     * - We are on the 'thank you' page
+     * - A session exists with the order id
+     * - The order can be found in the order repository
+     */
+    private function resolveOrder(RequestEvent $requestEvent): ?OrderInterface
+    {
+        $request = $requestEvent->getRequest();
+
+        if (!$requestEvent->isMasterRequest()) {
+            return null;
+        }
+
+        if (!$request->attributes->has('_route')) {
+            return null;
+        }
+
+        $route = $request->attributes->get('_route');
+        if ('sylius_shop_order_thank_you' !== $route) {
+            return null;
+        }
+
+        /** @var mixed $orderId */
+        $orderId = $request->getSession()->get('sylius_order_id');
+
+        if (!is_scalar($orderId)) {
+            return null;
+        }
+
+        $order = $this->orderRepository->find($orderId);
+        if (!$order instanceof OrderInterface) {
+            return null;
+        }
+
+        return $order;
     }
 }

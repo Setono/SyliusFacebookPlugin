@@ -7,11 +7,11 @@
         </parameter>
     </parameters>
     <services>
-        <service id="setono_sylius_facebook.form.type.pixel" class="Setono\SyliusFacebookPlugin\Form\Type\PixelType">
+        <service id="setono_sylius_facebook.form.type.pixel"
+                 class="Setono\SyliusFacebookPlugin\Form\Type\PixelType">
             <argument>%setono_sylius_facebook.model.pixel.class%</argument>
             <argument>%setono_sylius_facebook.form.type.pixel.validation_groups%</argument>
             <tag name="form.type"/>
         </service>
     </services>
 </container>
-

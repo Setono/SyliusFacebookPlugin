@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface"
+            alias="setono_sylius_facebook.custom_factory.pixel_event" />
+
+        <service id="setono_sylius_facebook.custom_factory.pixel_event"
+                 class="Setono\SyliusFacebookPlugin\Factory\PixelEventFactory"
+                 decorates="setono_sylius_facebook.factory.pixel_event"
+                 decoration-priority="256">
+            <argument type="service" id="setono_sylius_facebook.custom_factory.pixel_event.inner" />
+            <argument type="service" id="setono_client_id.provider.default_client_id"/>
+            <argument type="service" id="setono_consent.context.default"/>
+        </service>
+
+    </services>
+</container>

@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Psr\EventDispatcher\EventDispatcherInterface;
-use Setono\SyliusFacebookPlugin\Builder\ViewCategoryBuilder;
-use Setono\SyliusFacebookPlugin\Builder\ViewContentBuilder;
+use Doctrine\ORM\EntityManagerInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\Event\BuilderEvent;
-use Setono\SyliusFacebookPlugin\Tag\FbqTag;
-use Setono\SyliusFacebookPlugin\Tag\Tags;
-use Setono\TagBag\Tag\TagInterface;
-use Setono\TagBag\TagBagInterface;
+use Setono\SyliusFacebookPlugin\Data\ViewCategoryData;
+use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
+use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -21,44 +19,55 @@ use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Webmozart\Assert\Assert;
 
 /**
  * See https://developers.facebook.com/docs/marketing-api/audiences/guides/dynamic-product-audiences/#setuppixel
  * for reference of the 'ViewCategory' custom event
  */
-final class ViewCategorySubscriber extends TagSubscriber
+final class ViewCategorySubscriber extends AbstractSubscriber
 {
-    private TaxonRepositoryInterface $taxonRepository;
+    protected LocaleContextInterface $localeContext;
 
-    private LocaleContextInterface $localeContext;
+    protected TaxonRepositoryInterface $taxonRepository;
 
     public function __construct(
-        TagBagInterface $tagBag,
         PixelContextInterface $pixelContext,
-        EventDispatcherInterface $eventDispatcher,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        TaxonRepositoryInterface $taxonRepository,
-        LocaleContextInterface $localeContext
+        ServerSideEventFactoryInterface $serverSideFactory,
+        DataMapperInterface $dataMapper,
+        PixelEventFactoryInterface $pixelEventFactory,
+        EntityManagerInterface $entityManager,
+        LocaleContextInterface $localeContext,
+        TaxonRepositoryInterface $taxonRepository
     ) {
-        parent::__construct($tagBag, $pixelContext, $eventDispatcher, $requestStack, $firewallMap);
+        parent::__construct(
+            $pixelContext,
+            $requestStack,
+            $firewallMap,
+            $serverSideFactory,
+            $dataMapper,
+            $pixelEventFactory,
+            $entityManager
+        );
 
-        $this->taxonRepository = $taxonRepository;
         $this->localeContext = $localeContext;
+        $this->taxonRepository = $taxonRepository;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
             'sylius.product.index' => [
-                'track',
+                'trackCustom',
             ],
         ];
     }
 
-    public function track(ResourceControllerEvent $event): void
+    public function trackCustom(ResourceControllerEvent $event): void
     {
-        if (!$this->isShopContext() || !$this->hasPixels()) {
+        if (!$this->isShopContext() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
@@ -67,61 +76,43 @@ final class ViewCategorySubscriber extends TagSubscriber
             return;
         }
 
-        $builder = ViewCategoryBuilder::create()
-            ->setContentType(ViewContentBuilder::CONTENT_TYPE_PRODUCT)
-        ;
+        $viewCategoryData = new ViewCategoryData(
+            $this->getProducts($gridView),
+            $this->getTaxon($gridView),
+        );
 
-        /** @var string|null $slug */
-        $slug = $gridView->getRequestConfiguration()->getRequest()->attributes->get('slug');
-        if (null !== $slug) {
-            $taxon = $this->taxonRepository->findOneBySlug($slug, $this->localeContext->getLocaleCode());
-
-            if (null !== $taxon) {
-                $builder->setContentName($taxon->getName());
-                $builder->setContentCategory($this->getContentCategory($taxon));
-            }
-        }
-
-        $contentIds = $this->getContentIds($gridView);
-        foreach ($contentIds as $contentId) {
-            $builder->addContentId($contentId);
-        }
-
-        $this->eventDispatcher->dispatch(new BuilderEvent($builder, $gridView));
-
-        $this->tagBag->addTag(
-            (new FbqTag('ViewCategory', $builder, 'trackCustom'))
-                ->setSection(TagInterface::SECTION_BODY_END)
-                ->setName(Tags::TAG_VIEW_CATEGORY)
+        $this->generatePixelEvents(
+            $viewCategoryData,
+            ServerSideEventInterface::CUSTOM_EVENT_VIEW_CATEGORY
         );
     }
 
-    private function getContentCategory(TaxonInterface $taxon): string
+    /**
+     * @return ProductInterface[]
+     */
+    protected function getProducts(ResourceGridView $gridView): array
     {
-        $contentCategory = '';
+        $data = $gridView->getData();
+        Assert::isInstanceOf($data, \Traversable::class);
 
-        $ancestors = array_reverse($taxon->getAncestors()->toArray());
+        $result = iterator_to_array($data);
+        Assert::allIsInstanceOf($result, ProductInterface::class);
 
-        foreach ($ancestors as $ancestor) {
-            $contentCategory .= $ancestor->getName() . ' > ';
-        }
-
-        return rtrim($contentCategory, ' >');
+        return $result;
     }
 
-    private function getContentIds(ResourceGridView $gridView, int $max = 10): array
+    protected function getTaxon(ResourceGridView $gridView): ?TaxonInterface
     {
-        $ids = [];
+        $request = $gridView->getRequestConfiguration()->getRequest();
 
-        /** @var ProductInterface $product */
-        foreach ($gridView->getData() as $idx => $product) {
-            if ($idx >= $max) {
-                break;
-            }
-
-            $ids[] = $product->getCode();
+        /** @var string|null $slug */
+        $slug = $request->attributes->get('slug');
+        if (null === $slug) {
+            return null;
         }
 
-        return $ids;
+        $locale = $this->localeContext->getLocaleCode();
+
+        return $this->taxonRepository->findOneBySlug($slug, $locale);
     }
 }

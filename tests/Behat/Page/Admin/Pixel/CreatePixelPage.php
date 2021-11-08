@@ -13,9 +13,6 @@ class CreatePixelPage extends BaseCreatePage
         $this->getElement('pixel_id')->setValue($id);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

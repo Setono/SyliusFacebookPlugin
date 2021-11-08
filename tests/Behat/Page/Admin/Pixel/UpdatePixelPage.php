@@ -18,9 +18,6 @@ class UpdatePixelPage extends UpdatePage
         return $this->getElement('pixel_id')->getValue();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

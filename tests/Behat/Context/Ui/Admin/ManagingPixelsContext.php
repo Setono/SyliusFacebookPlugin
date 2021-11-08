@@ -13,20 +13,11 @@ use Webmozart\Assert\Assert;
 
 final class ManagingPixelsContext implements Context
 {
-    /**
-     * @var IndexPixelPage
-     */
-    private $indexPixelPage;
+    private IndexPixelPage $indexPixelPage;
 
-    /**
-     * @var CreatePixelPage
-     */
-    private $createPixelPage;
+    private CreatePixelPage $createPixelPage;
 
-    /**
-     * @var UpdatePixelPage
-     */
-    private $updatePixelPage;
+    private UpdatePixelPage $updatePixelPage;
 
     public function __construct(IndexPixelPage $indexPixelPage, CreatePixelPage $createPixelPage, UpdatePixelPage $updatePixelPage)
     {
@@ -46,7 +37,7 @@ final class ManagingPixelsContext implements Context
     /**
      * @When I fill the pixel id with :id
      */
-    public function iFillThePixelId($id): void
+    public function iFillThePixelId(int $id): void
     {
         $this->createPixelPage->specifyPixelId($id);
     }
@@ -62,7 +53,7 @@ final class ManagingPixelsContext implements Context
     /**
      * @Then the pixel :pixelId should appear in the store
      */
-    public function thePropertyShouldAppearInTheStore($pixelId): void
+    public function thePropertyShouldAppearInTheStore(string $pixelId): void
     {
         $this->indexPixelPage->open();
 
@@ -85,9 +76,9 @@ final class ManagingPixelsContext implements Context
     /**
      * @When I update the pixel with pixel id :pixelId
      */
-    public function iUpdateThePropertyWithTrackingId($pixelId): void
+    public function iUpdateThePropertyWithTrackingId(string $pixelId): void
     {
-        $this->updatePixelPage->specifyTrackingId($pixelId);
+        $this->updatePixelPage->specifyPixelId($pixelId);
     }
 
     /**
@@ -101,7 +92,7 @@ final class ManagingPixelsContext implements Context
     /**
      * @Then this pixel's pixel id should be :pixelId
      */
-    public function thisPropertysTrackingIdShouldBe($pixelId): void
+    public function thisPropertysTrackingIdShouldBe(string $pixelId): void
     {
         Assert::eq($pixelId, $this->updatePixelPage->getPixelId());
     }

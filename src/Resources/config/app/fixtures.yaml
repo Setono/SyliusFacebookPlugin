@@ -1,0 +1,23 @@
+parameters:
+    env(FACEBOOK_PIXEL_DEFAULT): '1234567'
+
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+
+                setono_facebook_pixel:
+                    options:
+                        custom:
+                            fake_pixel_active:
+                                pixel_id: '%env(resolve:FACEBOOK_PIXEL_DEFAULT)%'
+                                enabled: true
+                                channels:
+                                    - 'FASHION_WEB'
+                            fake_pixel_disabled:
+                                pixel_id: '12345678'
+                                enabled: false
+                                channels:
+                                    - 'FASHION_WEB'
+                            fake_pixel_no_channels:
+                                pixel_id: 123456789

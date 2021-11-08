@@ -14,6 +14,20 @@ sylius_grid:
                     label: sylius.ui.channels
                     options:
                         template: "@SetonoSyliusFacebookPlugin/Admin/Grid/Field/channels.html.twig"
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [pixelId]
+                enabled:
+                    type: boolean
+                    label: sylius.ui.enabled
             actions:
                 main:
                     create:

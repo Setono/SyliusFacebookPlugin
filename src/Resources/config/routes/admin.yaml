@@ -1,0 +1,13 @@
+setono_sylius_facebook_admin_pixel:
+    resource: |
+        section: admin
+        alias: setono_sylius_facebook.pixel
+        templates: "@SyliusAdmin\\Crud"
+        redirect: index
+        grid: setono_sylius_facebook_admin_pixel
+        vars:
+            all:
+                subheader: setono_sylius_facebook.ui.manage_pixels
+            index:
+                icon: 'facebook'
+    type: sylius.resource

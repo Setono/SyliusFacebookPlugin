@@ -1,2 +1,6 @@
 imports:
     - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/fixtures.yaml" }
+
+setono_sylius_facebook:
+    access_token: '%env(FACEBOOK_ACCESS_TOKEN)%'
