@@ -8,6 +8,8 @@ setono_sylius_facebook_admin_pixel:
         vars:
             all:
                 subheader: setono_sylius_facebook.ui.manage_pixels
+                templates:
+                    form: "@SetonoSyliusFacebookPlugin/Admin/Pixel/_form.html.twig"
             index:
                 icon: 'facebook'
     type: sylius.resource
