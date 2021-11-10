@@ -8,6 +8,7 @@ use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 final class PixelType extends AbstractResourceType
@@ -21,6 +22,14 @@ final class PixelType extends AbstractResourceType
                 'attr' => [
                     'min' => 1,
                     'placeholder' => 'setono_sylius_facebook.form.pixel.pixel_id_placeholder',
+                ],
+            ])
+            ->add('customAccessToken', TextareaType::class, [
+                'label' => 'setono_sylius_facebook.form.pixel.custom_access_token',
+                'required' => false,
+                'attr' => [
+                    'rows' => 3,
+                    'placeholder' => 'setono_sylius_facebook.form.pixel.custom_access_token_placeholder',
                 ],
             ])
             ->add('enabled', CheckboxType::class, [

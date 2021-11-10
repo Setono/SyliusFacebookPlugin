@@ -3,6 +3,10 @@ setono_sylius_facebook:
         pixel:
             pixel_id: Pixel id
             pixel_id_placeholder: Insert your pixel id...
+            custom_access_token: Pixel's access token
+            custom_access_token_placeholder: |
+                Insert Facebook access token for this Pixel.
+                Leave it empty to use default one from plugin configuration.
     ui:
         reset_failed_events: Reset failed events
         edit_pixel: Edit facebook pixel
