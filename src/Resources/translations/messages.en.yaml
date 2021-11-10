@@ -14,6 +14,7 @@ setono_sylius_facebook:
         manage_pixels: Manage facebook pixels
         new_pixel: New facebook pixel
         pixel_id: Pixel id
+        custom_access_token_specified: Custom token
         pixels: Facebook pixels
         no_channels: No channels
         events_statistics: Statistics

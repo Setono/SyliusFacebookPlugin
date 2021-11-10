@@ -10,8 +10,11 @@ sylius_grid:
                     class: "%setono_sylius_facebook.model.pixel.class%"
             fields:
                 pixelId:
-                    type: string
+                    type: twig
                     label: setono_sylius_facebook.ui.pixel_id
+                    path: .
+                    options:
+                        template: "@SetonoSyliusFacebookPlugin/Admin/Grid/Field/pixel.html.twig"
                 events_statistics:
                     type: twig
                     label: setono_sylius_facebook.ui.events_statistics
