@@ -4,6 +4,7 @@ setono_sylius_facebook:
             pixel_id: Pixel id
             pixel_id_placeholder: Insert your pixel id...
     ui:
+        reset_failed_events: Reset failed events
         edit_pixel: Edit facebook pixel
         facebook: Facebook
         manage_pixels: Manage facebook pixels

@@ -32,5 +32,7 @@ interface PixelEventRepositoryInterface extends RepositoryInterface
      */
     public function findByBulkIdentifier(string $bulkIdentifier): array;
 
+    public function resetFailedByPixel(PixelInterface $pixel): void;
+
     public function removeSent(int $delay = 0): int;
 }

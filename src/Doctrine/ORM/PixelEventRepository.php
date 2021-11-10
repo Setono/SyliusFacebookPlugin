@@ -94,6 +94,21 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
         }
     }
 
+    public function resetFailedByPixel(PixelInterface $pixel): void
+    {
+        $this->createQueryBuilder('o')
+            ->update()
+            ->set('o.state', ':initialState')
+            ->setParameter('initialState', PixelEventInterface::STATE_PENDING, Types::STRING)
+            ->andWhere('o.pixel = :pixel')
+            ->setParameter('pixel', $pixel)
+            ->andWhere('o.state = :state')
+            ->setParameter('state', PixelEventInterface::STATE_FAILED, Types::STRING)
+            ->getQuery()
+            ->execute()
+        ;
+    }
+
     public function removeSent(int $delay = 0): int
     {
         $qb = $this->_em->createQueryBuilder()
