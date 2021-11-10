@@ -15,4 +15,8 @@ interface PixelInterface extends ResourceInterface, ToggleableInterface, Channel
     public function getPixelId(): ?string;
 
     public function setPixelId(string $pixelId): void;
+
+    public function getCustomAccessToken(): ?string;
+
+    public function setCustomAccessToken(?string $customAccessToken): void;
 }
