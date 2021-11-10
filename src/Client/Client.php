@@ -6,6 +6,7 @@ namespace Setono\SyliusFacebookPlugin\Client;
 
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
 
 final class Client implements ClientInterface
@@ -38,13 +39,15 @@ final class Client implements ClientInterface
         $pixelId = $pixel->getPixelId();
         Assert::notNull($pixelId);
 
+        $accessToken = $pixel->getCustomAccessToken() ?? $this->accessToken;
+
         $options = [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded',
                 'Accept' => 'application/json',
             ],
             'body' => [
-                'access_token' => $this->accessToken,
+                'access_token' => $accessToken,
                 'data' => json_encode([
                     $pixelEvent->getData(),
                 ]),
