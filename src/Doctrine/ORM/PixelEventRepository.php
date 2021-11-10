@@ -9,12 +9,27 @@ use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\QueryBuilder;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelEventRepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Webmozart\Assert\Assert;
 
 class PixelEventRepository extends EntityRepository implements PixelEventRepositoryInterface
 {
+    public function getCountByPixelAndState(PixelInterface $pixel, string $state): int
+    {
+        return (int) $this->getEntityManager()->createQueryBuilder()
+            ->select('count(o)')
+            ->from($this->_entityName, 'o')
+            ->andWhere('o.pixel = :pixel')
+            ->setParameter('pixel', $pixel)
+            ->andWhere('o.state = :state')
+            ->setParameter('state', $state)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
     public function hasConsentedPending(int $delay = 0): bool
     {
         $qb = $this->createQueryBuilder('o')

@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookPlugin\Repository;
 
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface PixelEventRepositoryInterface extends RepositoryInterface
 {
+    public function getCountByPixelAndState(PixelInterface $pixel, string $state): int;
+
     /**
      * Returns true if there are pending consented hits created before $delay seconds ago
      *

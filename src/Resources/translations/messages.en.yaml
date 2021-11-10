@@ -11,3 +11,9 @@ setono_sylius_facebook:
         pixel_id: Pixel id
         pixels: Facebook pixels
         no_channels: No channels
+        events_statistics: Statistics
+        no_events: No events
+        events_in_state:
+            pending: Pending
+            sent: Sent
+            failed: Failed

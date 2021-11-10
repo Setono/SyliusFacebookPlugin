@@ -9,6 +9,12 @@ sylius_grid:
                 pixelId:
                     type: string
                     label: setono_sylius_facebook.ui.pixel_id
+                events_statistics:
+                    type: twig
+                    label: setono_sylius_facebook.ui.events_statistics
+                    path: .
+                    options:
+                        template: "@SetonoSyliusFacebookPlugin/Admin/Grid/Field/statistics.html.twig"
                 channels:
                     type: twig
                     label: sylius.ui.channels
