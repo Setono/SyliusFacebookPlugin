@@ -9,6 +9,7 @@ use Setono\SyliusFacebookPlugin\Client\ClientInterface;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelEventRepositoryInterface;
 use Setono\SyliusFacebookPlugin\Workflow\SendPixelEventWorkflow;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Workflow\Registry;
@@ -17,6 +18,8 @@ use Webmozart\Assert\Assert;
 
 final class SendEventsCommand extends DelayAwareCommand
 {
+    use LockableTrait;
+
     protected static $defaultName = 'setono:sylius-facebook:send-pixel-events';
 
     private PixelEventRepositoryInterface $pixelEventRepository;
@@ -46,6 +49,12 @@ final class SendEventsCommand extends DelayAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        if (!$this->lock()) {
+            $output->writeln('The command is already running in another process.');
+
+            return 0;
+        }
+
         $delay = $input->getOption('delay');
         Assert::integerish($delay);
 
