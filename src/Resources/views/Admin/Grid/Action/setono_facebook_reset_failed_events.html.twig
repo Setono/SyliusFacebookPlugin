@@ -1,3 +1,5 @@
+{# @var \Setono\SyliusFacebookPlugin\Model\PixelInterface data #}
+
 {% import '@SetonoSyliusFacebookPlugin/Admin/Macro/buttons.html.twig' as buttons %}
 
 {% set path = options.link.url|default(path(
@@ -5,9 +7,12 @@
     options.link.parameters|default({'id': data.id})
 )) %}
 
-{{ buttons.resetFailedEvents(
-    path,
-    action.label|default('setono_sylius_facebook.ui.reset_failed_events'),
-    true,
-    data.id
-) }}
+{% set failedCount = setono_facebook_events_count_by_state(data, constant('Setono\\SyliusFacebookPlugin\\Model\\PixelEventInterface::STATE_FAILED')) %}
+{% if options.visible|default(failedCount > 0) %}
+    {{ buttons.resetFailedEvents(
+        path,
+        action.label|default('setono_sylius_facebook.ui.reset_failed_events'),
+        true,
+        data.id
+    ) }}
+{% endif %}

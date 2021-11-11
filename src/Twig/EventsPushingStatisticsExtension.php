@@ -23,6 +23,7 @@ final class EventsPushingStatisticsExtension extends AbstractExtension
     {
         return [
             new TwigFunction('setono_facebook_events_pushing_statistics', [$this, 'getEventsPushingStatistics']),
+            new TwigFunction('setono_facebook_events_count_by_state', [$this, 'getEventsCountByState']),
         ];
     }
 
@@ -42,5 +43,10 @@ final class EventsPushingStatisticsExtension extends AbstractExtension
         }
 
         return $result;
+    }
+
+    public function getEventsCountByState(PixelInterface $pixel, string $state): int
+    {
+        return $this->pixelEventRepository->getCountByPixelAndState($pixel, $state);
     }
 }
