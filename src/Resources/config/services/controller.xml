@@ -9,7 +9,6 @@
             <argument type="service" id="setono_sylius_facebook.repository.pixel" />
             <argument type="service" id="security.csrf.token_manager" />
             <argument type="service" id="setono_sylius_facebook.repository.pixel_event" />
-            <argument type="service" id="session" />
             <argument type="service" id="router"/>
         </service>
     </services>

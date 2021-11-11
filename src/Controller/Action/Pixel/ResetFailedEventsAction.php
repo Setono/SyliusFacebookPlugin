@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
@@ -26,28 +25,24 @@ final class ResetFailedEventsAction
 
     private PixelEventRepositoryInterface $pixelEventRepository;
 
-    private SessionInterface $session;
-
     private UrlGeneratorInterface $urlGeneratorInterface;
 
     public function __construct(
         PixelRepositoryInterface $pixelRepository,
         CsrfTokenManagerInterface $csrfTokenManager,
         PixelEventRepositoryInterface $pixelEventRepository,
-        SessionInterface $session,
         UrlGeneratorInterface $urlGeneratorInterface
     ) {
         $this->pixelRepository = $pixelRepository;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->pixelEventRepository = $pixelEventRepository;
-        $this->session = $session;
         $this->urlGeneratorInterface = $urlGeneratorInterface;
     }
 
     public function __invoke(Request $request, int $id): Response
     {
         /** @var FlashBagInterface $flashBag */
-        $flashBag = $this->session->getBag('flashes');
+        $flashBag = $request->getSession()->getBag('flashes');
 
         /** @var PixelInterface|null $pixel */
         $pixel = $this->pixelRepository->find($id);
