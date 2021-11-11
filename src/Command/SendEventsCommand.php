@@ -9,7 +9,9 @@ use Setono\SyliusFacebookPlugin\Client\ClientInterface;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelEventRepositoryInterface;
 use Setono\SyliusFacebookPlugin\Workflow\SendPixelEventWorkflow;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Workflow\Registry;
 use Symfony\Component\Workflow\WorkflowInterface;
@@ -17,6 +19,8 @@ use Webmozart\Assert\Assert;
 
 final class SendEventsCommand extends DelayAwareCommand
 {
+    use LockableTrait;
+
     protected static $defaultName = 'setono:sylius-facebook:send-pixel-events';
 
     private PixelEventRepositoryInterface $pixelEventRepository;
@@ -44,18 +48,54 @@ final class SendEventsCommand extends DelayAwareCommand
         parent::__construct($defaultDelay);
     }
 
+    protected function configure(): void
+    {
+        parent::configure();
+
+        $this
+            ->addOption(
+                'loops',
+                'l',
+                InputOption::VALUE_REQUIRED,
+                'Loops to handle before exit. Default (0) value will handle all records before exit',
+                0
+            )
+            ->addOption(
+                'chunk',
+                'c',
+                InputOption::VALUE_REQUIRED,
+                'Limit of records to handle in one loop',
+                1000
+            )
+        ;
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        if (!$this->lock()) {
+            $output->writeln('The command is already running in another process.');
+
+            return 0;
+        }
+
         $delay = $input->getOption('delay');
         Assert::integerish($delay);
 
-        while ($this->pixelEventRepository->hasConsentedPending((int) $delay)) {
+        $loops = $input->getOption('loops');
+        Assert::integerish($loops);
+
+        $chunk = $input->getOption('chunk');
+        Assert::integerish($chunk);
+
+        $loop = 1;
+        while ((0 === $loops || $loop <= $loops) && $this->pixelEventRepository->hasConsentedPending((int) $delay)) {
             $bulkIdentifier = uniqid('bulk-', true);
-            $this->pixelEventRepository->assignBulkIdentifierToPendingConsented($bulkIdentifier, (int) $delay);
+            $this->pixelEventRepository->assignBulkIdentifierToPendingConsented($bulkIdentifier, (int) $delay, (int) $chunk);
 
             $pixelEvents = $this->pixelEventRepository->findByBulkIdentifier($bulkIdentifier);
             $output->writeln(sprintf(
-                'Found %s events to send.',
+                '%s. Found %s events to send.',
+                $loop,
                 count($pixelEvents)
             ), OutputInterface::VERBOSITY_VERBOSE);
 
@@ -93,6 +133,7 @@ final class SendEventsCommand extends DelayAwareCommand
             }
 
             $this->entityManager->clear();
+            ++$loop;
         }
 
         return 0;

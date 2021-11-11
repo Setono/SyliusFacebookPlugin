@@ -25,7 +25,7 @@ abstract class DelayAwareCommand extends Command
                 'delay',
                 'd',
                 InputOption::VALUE_REQUIRED,
-                'Remove events older than given amount of seconds',
+                'Handle events older than given amount of seconds',
                 $this->defaultDelay
             )
         ;
