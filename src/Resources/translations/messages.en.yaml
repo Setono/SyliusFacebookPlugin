@@ -1,25 +1,25 @@
 setono_sylius_facebook:
     form:
         pixel:
-            pixel_id: Pixel id
-            pixel_id_placeholder: Insert your pixel id...
             custom_access_token: Pixel's access token
             custom_access_token_placeholder: |
-                Insert Facebook access token for this Pixel.
+                Insert Facebook access token for this pixel.
                 Leave it empty to use default one from plugin configuration.
+            pixel_id: Pixel id
+            pixel_id_placeholder: Insert your pixel id...
     ui:
-        reset_failed_events: Reset failed events
-        edit_pixel: Edit facebook pixel
-        facebook: Facebook
-        manage_pixels: Manage facebook pixels
-        new_pixel: New facebook pixel
-        pixel_id: Pixel id
         custom_access_token_specified: Custom token
-        pixels: Facebook pixels
-        no_channels: No channels
-        events_statistics: Statistics
-        no_events: No events
+        edit_pixel: Edit facebook pixel
         events_in_state:
             pending: Pending
             sent: Sent
             failed: Failed
+        events_statistics: Statistics
+        facebook: Facebook
+        manage_pixels: Manage facebook pixels
+        new_pixel: New facebook pixel
+        no_channels: No channels
+        no_events: No events
+        pixel_id: Pixel id
+        pixels: Facebook pixels
+        reset_failed_events: Reset failed events
