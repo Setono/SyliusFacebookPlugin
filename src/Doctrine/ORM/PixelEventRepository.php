@@ -18,9 +18,8 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
 {
     public function getCountByPixelAndState(PixelInterface $pixel, string $state): int
     {
-        return (int) $this->getEntityManager()->createQueryBuilder()
+        return (int) $this->createQueryBuilder('o')
             ->select('count(o)')
-            ->from($this->_entityName, 'o')
             ->andWhere('o.pixel = :pixel')
             ->setParameter('pixel', $pixel)
             ->andWhere('o.state = :state')
