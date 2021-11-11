@@ -1,0 +1,10 @@
+{# @var \Setono\SyliusFacebookPlugin\Model\PixelInterface data #}
+
+{{ data.pixelId }}
+
+{% if data.customAccessToken is not null %}
+    <div>
+        <i class="exclamation circle icon green"></i>
+        {{ 'setono_sylius_facebook.ui.custom_access_token_specified'|trans }}
+    </div>
+{% endif %}

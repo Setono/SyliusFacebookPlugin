@@ -1,0 +1,11 @@
+<div class="ui segment">
+    {{ form_errors(form) }}
+    <div class="two fields">
+        {{ form_row(form.pixelId) }}
+        {{ form_row(form.channels) }}
+    </div>
+    {{ form_row(form.enabled) }}
+</div>
+<div class="ui segment">
+    {{ form_row(form.customAccessToken) }}
+</div>

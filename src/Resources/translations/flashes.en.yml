@@ -1,0 +1,3 @@
+setono_sylius_facebook:
+    pixel:
+        failed_events_reset: 'Failed events reset'

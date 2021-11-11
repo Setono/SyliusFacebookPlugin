@@ -1,0 +1,10 @@
+{# @var \Setono\SyliusFacebookPlugin\Model\PixelInterface data #}
+
+{% for state, count in setono_facebook_events_pushing_statistics(data) %}
+    <div>
+        {{ ('setono_sylius_facebook.ui.events_in_state.' ~ state)|trans }}:
+        {{ count }}
+    </div>
+{% else %}
+    {{ 'setono_sylius_facebook.ui.no_events'|trans }}
+{% endfor %}

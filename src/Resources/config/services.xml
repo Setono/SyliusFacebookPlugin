@@ -5,6 +5,7 @@
         <import resource="services/client.xml"/>
         <import resource="services/command.xml"/>
         <import resource="services/context.xml"/>
+        <import resource="services/controller.xml"/>
         <import resource="services/data_mapper.xml"/>
         <import resource="services/event_listener.xml"/>
         <import resource="services/factory.xml"/>
@@ -13,5 +14,6 @@
         <import resource="services/formatter.xml"/>
         <import resource="services/menu.xml"/>
         <import resource="services/server_side_factory.xml"/>
+        <import resource="services/twig.xml"/>
     </imports>
 </container>

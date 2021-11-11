@@ -35,9 +35,11 @@
         "symfony/http-kernel": "^4.4 || ^5.1.5",
         "symfony/options-resolver": "^4.4 || ^5.0",
         "symfony/routing": "^4.4 || ^5.0",
+        "symfony/security": "^4.4 || ^5.0",
         "symfony/security-bundle": "^4.4 || ^5.0",
         "symfony/uid": "^4.4 || ^5.0",
         "symfony/workflow": "^4.4 || ^5.0",
+        "twig/twig": "^2.0 || ^3.0",
         "webmozart/assert": "^1.10"
     },
     "require-dev": {

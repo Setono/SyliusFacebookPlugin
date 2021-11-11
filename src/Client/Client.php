@@ -6,6 +6,7 @@ namespace Setono\SyliusFacebookPlugin\Client;
 
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
 
 final class Client implements ClientInterface
@@ -38,13 +39,15 @@ final class Client implements ClientInterface
         $pixelId = $pixel->getPixelId();
         Assert::notNull($pixelId);
 
+        $accessToken = $pixel->getCustomAccessToken() ?? $this->accessToken;
+
         $options = [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded',
                 'Accept' => 'application/json',
             ],
             'body' => [
-                'access_token' => $this->accessToken,
+                'access_token' => $accessToken,
                 'data' => json_encode([
                     $pixelEvent->getData(),
                 ]),
@@ -61,11 +64,38 @@ final class Client implements ClientInterface
             $options
         );
 
-        Assert::same($response->getStatusCode(), 200);
-        $content = $response->getContent();
+        Assert::same($response->getStatusCode(), 200, $this->getErrorMessage($response));
+        $content = $response->getContent(false);
         $json = json_decode($content, true);
         Assert::isArray($json);
 
         return (int) $json['events_received'];
+    }
+
+    private function getErrorMessage(ResponseInterface $response): string
+    {
+        $content = $response->getContent(false);
+        $json = json_decode($content, true);
+        Assert::isArray($json);
+
+        $error = sprintf(
+            'Wrong status code. Expected %s. Got: %s.',
+            200,
+            $response->getStatusCode()
+        );
+
+        if (array_key_exists('error', $json)) {
+            /** @psalm-var array{message: string, error_subcode: int, error_user_msg: string} $errorPayload */
+            $errorPayload = $json['error'];
+
+            $error .= sprintf(
+                ' Reason: %s [%s] %s',
+                $errorPayload['error_subcode'],
+                $errorPayload['message'],
+                $errorPayload['error_user_msg']
+            );
+        }
+
+        return $error;
     }
 }

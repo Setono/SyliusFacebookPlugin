@@ -9,12 +9,26 @@ use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\QueryBuilder;
 use Setono\SyliusFacebookPlugin\Model\PixelEventInterface;
+use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Setono\SyliusFacebookPlugin\Repository\PixelEventRepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Webmozart\Assert\Assert;
 
 class PixelEventRepository extends EntityRepository implements PixelEventRepositoryInterface
 {
+    public function getCountByPixelAndState(PixelInterface $pixel, string $state): int
+    {
+        return (int) $this->createQueryBuilder('o')
+            ->select('count(o)')
+            ->andWhere('o.pixel = :pixel')
+            ->setParameter('pixel', $pixel)
+            ->andWhere('o.state = :state')
+            ->setParameter('state', $state)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
     public function hasConsentedPending(int $delay = 0): bool
     {
         $qb = $this->createQueryBuilder('o')
@@ -77,6 +91,21 @@ class PixelEventRepository extends EntityRepository implements PixelEventReposit
                 ->setParameter('then', $then, Types::DATETIME_MUTABLE)
             ;
         }
+    }
+
+    public function resetFailedByPixel(PixelInterface $pixel): void
+    {
+        $this->createQueryBuilder('o')
+            ->update()
+            ->set('o.state', ':initialState')
+            ->setParameter('initialState', PixelEventInterface::STATE_PENDING, Types::STRING)
+            ->andWhere('o.pixel = :pixel')
+            ->setParameter('pixel', $pixel)
+            ->andWhere('o.state = :state')
+            ->setParameter('state', PixelEventInterface::STATE_FAILED, Types::STRING)
+            ->getQuery()
+            ->execute()
+        ;
     }
 
     public function removeSent(int $delay = 0): int

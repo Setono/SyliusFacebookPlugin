@@ -1,0 +1,11 @@
+{% extends '@SyliusUi/Macro/buttons.html.twig' %}
+
+{% macro resetFailedEvents(url, message, labeled = true, resourceId = null) %}
+    <form action="{{ url }}" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <button class="ui yellow {% if labeled %}labeled {% endif %}icon button" type="submit" data-requires-confirmation>
+            <i class="icon redo alternate"></i> {{ ((message is empty and labeled) ? 'setono_sylius_facebook.ui.reset_failed_events' : message)|trans }}
+        </button>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token(resourceId) }}" />
+    </form>
+{% endmacro %}

@@ -58,6 +58,8 @@ final class ClientTest extends TestCase
         $pixel = new Pixel();
         $pixel->setPixelId($this->pixelId);
 
+        $eventTime = time();
+
         $pixelEvent = new PixelEvent();
         $pixelEvent->setPixel($pixel);
         $pixelEvent->setData([
@@ -66,7 +68,7 @@ final class ClientTest extends TestCase
                 'client_user_agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36',
             ],
             'event_name' => 'ViewContent',
-            'event_time' => 1635769396,
+            'event_time' => $eventTime,
             'custom_data' => [
                 'contents' => [
                     [
@@ -106,7 +108,7 @@ final class ClientTest extends TestCase
             Assert::string($requestOptions['body']);
             $requestBody = urldecode($requestOptions['body']);
 
-            $expected = sprintf('access_token=%s&data=[{"user_data":{"client_ip_address":"::1","client_user_agent":"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/94.0.4606.61 Safari\/537.36"},"event_name":"ViewContent","event_time":1635769396,"custom_data":{"contents":[{"id":"Beige_strappy_summer_dress","quantity":1}],"content_ids":["Beige_strappy_summer_dress"],"content_name":"Beige strappy summer dress","content_type":"product"},"action_source":"website","event_source_url":"https:\/\/localhost:8000\/en_US\/products\/beige-strappy-summer-dress"}]', $this->accessToken);
+            $expected = sprintf('access_token=%s&data=[{"user_data":{"client_ip_address":"::1","client_user_agent":"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/94.0.4606.61 Safari\/537.36"},"event_name":"ViewContent","event_time":%s,"custom_data":{"contents":[{"id":"Beige_strappy_summer_dress","quantity":1}],"content_ids":["Beige_strappy_summer_dress"],"content_name":"Beige strappy summer dress","content_type":"product"},"action_source":"website","event_source_url":"https:\/\/localhost:8000\/en_US\/products\/beige-strappy-summer-dress"}]', $this->accessToken, $eventTime);
             if (null !== $this->testEventCode) {
                 $expected .= sprintf('&test_event_code=%s', $this->testEventCode);
             }
