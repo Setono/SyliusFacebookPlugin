@@ -18,7 +18,7 @@ final class PixelType extends AbstractResourceType
         $builder
             ->add('pixelId', IntegerType::class, [
                 'label' => 'setono_sylius_facebook.form.pixel.pixel_id',
-                'help' => 'Get it from https://www.facebook.com/events_manager2',
+                'help' => 'setono_sylius_facebook.form.pixel.pixel_id_help',
                 'attr' => [
                     'min' => 1,
                     'placeholder' => 'setono_sylius_facebook.form.pixel.pixel_id_placeholder',
@@ -26,6 +26,7 @@ final class PixelType extends AbstractResourceType
             ])
             ->add('customAccessToken', TextareaType::class, [
                 'label' => 'setono_sylius_facebook.form.pixel.custom_access_token',
+                'help' => 'setono_sylius_facebook.form.pixel.custom_access_token_help',
                 'required' => false,
                 'attr' => [
                     'rows' => 3,

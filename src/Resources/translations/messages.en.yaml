@@ -2,10 +2,10 @@ setono_sylius_facebook:
     form:
         pixel:
             custom_access_token: Pixel's access token
-            custom_access_token_placeholder: |
-                Insert Facebook access token for this pixel.
-                Leave it empty to use default one from plugin configuration.
+            custom_access_token_help: Leave it empty to use default one from plugin configuration
+            custom_access_token_placeholder: Insert Facebook access token for this pixel
             pixel_id: Pixel id
+            pixel_id_help: Get it from https://www.facebook.com/events_manager2
             pixel_id_placeholder: Insert your pixel id...
     ui:
         custom_access_token_specified: Custom token
