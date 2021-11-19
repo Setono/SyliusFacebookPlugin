@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
-use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Repository\OrderRepositoryInterface;
@@ -22,23 +20,19 @@ final class PurchaseSubscriber extends AbstractSubscriber
     protected OrderRepositoryInterface $orderRepository;
 
     public function __construct(
-        PixelContextInterface $pixelContext,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        ServerSideEventFactoryInterface $serverSideFactory,
-        DataMapperInterface $dataMapper,
-        PixelEventFactoryInterface $pixelEventFactory,
-        EntityManagerInterface $entityManager,
+        PixelContextInterface $pixelContext,
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector,
         OrderRepositoryInterface $orderRepository
     ) {
         parent::__construct(
-            $pixelContext,
             $requestStack,
             $firewallMap,
-            $serverSideFactory,
-            $dataMapper,
-            $pixelEventFactory,
-            $entityManager
+            $pixelContext,
+            $pixelEventsGenerator,
+            $botDetector
         );
 
         $this->orderRepository = $orderRepository;
@@ -53,41 +47,48 @@ final class PurchaseSubscriber extends AbstractSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        $order = $this->resolveOrder($requestEvent);
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
+            return;
+        }
+
+        $order = $this->resolveOrder();
         if (null === $order) {
             return;
         }
 
-        if (!$this->pixelContext->hasPixels()) {
-            return;
-        }
-
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $order,
             ServerSideEventInterface::EVENT_PURCHASE
         );
     }
 
     /**
-     * This method will return an OrderInterface if
+     * Request is eligible when:
      * - We are on the 'thank you' page
+     */
+    protected function isRequestEligible(): bool
+    {
+        if (!parent::isRequestEligible()) {
+            return false;
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request) {
+            return false;
+        }
+
+        return 'sylius_shop_order_thank_you' === $request->attributes->get('_route');
+    }
+
+    /**
+     * This method will return an OrderInterface if
      * - A session exists with the order id
      * - The order can be found in the order repository
      */
-    private function resolveOrder(RequestEvent $requestEvent): ?OrderInterface
+    private function resolveOrder(): ?OrderInterface
     {
-        $request = $requestEvent->getRequest();
-
-        if (!$requestEvent->isMasterRequest()) {
-            return null;
-        }
-
-        if (!$request->attributes->has('_route')) {
-            return null;
-        }
-
-        $route = $request->attributes->get('_route');
-        if ('sylius_shop_order_thank_you' !== $route) {
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request) {
             return null;
         }
 

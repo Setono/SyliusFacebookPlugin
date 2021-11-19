@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
-use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
@@ -20,23 +18,19 @@ final class AddToCartSubscriber extends AbstractSubscriber
     protected CartContextInterface $cartContext;
 
     public function __construct(
-        PixelContextInterface $pixelContext,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        ServerSideEventFactoryInterface $serverSideFactory,
-        DataMapperInterface $dataMapper,
-        PixelEventFactoryInterface $pixelEventFactory,
-        EntityManagerInterface $entityManager,
+        PixelContextInterface $pixelContext,
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector,
         CartContextInterface $cartContext
     ) {
         parent::__construct(
-            $pixelContext,
             $requestStack,
             $firewallMap,
-            $serverSideFactory,
-            $dataMapper,
-            $pixelEventFactory,
-            $entityManager
+            $pixelContext,
+            $pixelEventsGenerator,
+            $botDetector
         );
 
         $this->cartContext = $cartContext;
@@ -53,7 +47,7 @@ final class AddToCartSubscriber extends AbstractSubscriber
 
     public function track(): void
     {
-        if (!$this->isShopContext() || !$this->pixelContext->hasPixels()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
@@ -62,7 +56,7 @@ final class AddToCartSubscriber extends AbstractSubscriber
             return;
         }
 
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $order,
             ServerSideEventInterface::EVENT_ADD_TO_CART
         );

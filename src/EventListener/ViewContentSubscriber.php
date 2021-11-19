@@ -21,7 +21,7 @@ final class ViewContentSubscriber extends AbstractSubscriber
 
     public function track(ResourceControllerEvent $event): void
     {
-        if (!$this->isShopContext() || !$this->pixelContext->hasPixels()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
@@ -30,7 +30,7 @@ final class ViewContentSubscriber extends AbstractSubscriber
             return;
         }
 
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $product,
             ServerSideEventInterface::EVENT_VIEW_CONTENT
         );

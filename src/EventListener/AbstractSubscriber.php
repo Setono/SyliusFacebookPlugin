@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
-use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,41 +14,28 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class AbstractSubscriber implements EventSubscriberInterface
 {
-    protected PixelContextInterface $pixelContext;
-
     protected RequestStack $requestStack;
 
     protected FirewallMap $firewallMap;
 
-    protected ServerSideEventFactoryInterface $serverSideFactory;
+    protected PixelContextInterface $pixelContext;
 
-    protected DataMapperInterface $dataMapper;
+    protected PixelEventsGeneratorInterface $pixelEventsGenerator;
 
-    protected PixelEventFactoryInterface $pixelEventFactory;
-
-    protected EntityManagerInterface $entityManager;
+    protected BotDetectorInterface $botDetector;
 
     public function __construct(
-        PixelContextInterface $pixelContext,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        ServerSideEventFactoryInterface $serverSideFactory,
-        DataMapperInterface $dataMapper,
-        PixelEventFactoryInterface $pixelEventFactory,
-        EntityManagerInterface $entityManager
+        PixelContextInterface $pixelContext,
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector
     ) {
-        $this->pixelContext = $pixelContext;
         $this->requestStack = $requestStack;
         $this->firewallMap = $firewallMap;
-        $this->serverSideFactory = $serverSideFactory;
-        $this->dataMapper = $dataMapper;
-        $this->pixelEventFactory = $pixelEventFactory;
-        $this->entityManager = $entityManager;
-    }
-
-    protected function getMasterRequest(): ?Request
-    {
-        return $this->requestStack->getMasterRequest();
+        $this->pixelContext = $pixelContext;
+        $this->pixelEventsGenerator = $pixelEventsGenerator;
+        $this->botDetector = $botDetector;
     }
 
     protected function isShopContext(Request $request = null): bool
@@ -70,26 +55,24 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
         return $firewallConfig->getName() === 'shop';
     }
 
-    /**
-     * @param object $source
-     */
-    protected function generatePixelEvents($source, string $eventName, Request $request = null): void
+    protected function isRequestEligible(): bool
     {
-        $serverSideEvent = $this->serverSideFactory->create($eventName);
-        $this->dataMapper->map($source, $serverSideEvent, [
-            'request' => $request ?? $this->getMasterRequest(),
-            'event' => $eventName,
-        ]);
-
-        $pixels = $this->pixelContext->getPixels();
-        foreach ($pixels as $pixel) {
-            // @todo Maybe its better to just clone
-            $pixelEvent = $this->pixelEventFactory->createFromServerSideEvent($serverSideEvent);
-            $pixelEvent->setPixel($pixel);
-
-            $this->entityManager->persist($pixelEvent);
+        // As one main request can have multiple subrequests
+        // we don't want things to be tracked multiple times
+        // So, having in mind that `If current Request is the master request, it returns null`
+        // we expect getParentRequest to be null to proceed
+        if (null !== $this->requestStack->getParentRequest()) {
+            return false;
         }
 
-        $this->entityManager->flush();
+        if (!$this->isShopContext()) {
+            return false;
+        }
+
+        if ($this->botDetector->isBotRequest()) {
+            return false;
+        }
+
+        return true;
     }
 }

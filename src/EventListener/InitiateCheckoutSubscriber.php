@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
-use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
@@ -21,23 +19,19 @@ final class InitiateCheckoutSubscriber extends AbstractSubscriber
     protected CartContextInterface $cartContext;
 
     public function __construct(
-        PixelContextInterface $pixelContext,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        ServerSideEventFactoryInterface $serverSideFactory,
-        DataMapperInterface $dataMapper,
-        PixelEventFactoryInterface $pixelEventFactory,
-        EntityManagerInterface $entityManager,
+        PixelContextInterface $pixelContext,
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector,
         CartContextInterface $cartContext
     ) {
         parent::__construct(
-            $pixelContext,
             $requestStack,
             $firewallMap,
-            $serverSideFactory,
-            $dataMapper,
-            $pixelEventFactory,
-            $entityManager
+            $pixelContext,
+            $pixelEventsGenerator,
+            $botDetector
         );
 
         $this->cartContext = $cartContext;
@@ -52,18 +46,7 @@ final class InitiateCheckoutSubscriber extends AbstractSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        $request = $requestEvent->getRequest();
-
-        if (!$requestEvent->isMasterRequest()) {
-            return;
-        }
-
-        if (!$request->attributes->has('_route')) {
-            return;
-        }
-
-        $route = $request->attributes->get('_route');
-        if ('sylius_shop_checkout_start' !== $route) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
@@ -72,13 +55,27 @@ final class InitiateCheckoutSubscriber extends AbstractSubscriber
             return;
         }
 
-        if (!$this->pixelContext->hasPixels()) {
-            return;
-        }
-
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $cart,
             ServerSideEventInterface::EVENT_INITIATE_CHECKOUT
         );
+    }
+
+    /**
+     * Request is eligible when:
+     * - We are on the 'checkout start' page
+     */
+    protected function isRequestEligible(): bool
+    {
+        if (!parent::isRequestEligible()) {
+            return false;
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request) {
+            return false;
+        }
+
+        return 'sylius_shop_checkout_start' === $request->attributes->get('_route');
     }
 }

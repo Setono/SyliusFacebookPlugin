@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookPlugin\Data\ViewCategoryData;
-use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
-use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView;
@@ -32,24 +30,20 @@ final class ViewCategorySubscriber extends AbstractSubscriber
     protected TaxonRepositoryInterface $taxonRepository;
 
     public function __construct(
-        PixelContextInterface $pixelContext,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        ServerSideEventFactoryInterface $serverSideFactory,
-        DataMapperInterface $dataMapper,
-        PixelEventFactoryInterface $pixelEventFactory,
-        EntityManagerInterface $entityManager,
+        PixelContextInterface $pixelContext,
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector,
         LocaleContextInterface $localeContext,
         TaxonRepositoryInterface $taxonRepository
     ) {
         parent::__construct(
-            $pixelContext,
             $requestStack,
             $firewallMap,
-            $serverSideFactory,
-            $dataMapper,
-            $pixelEventFactory,
-            $entityManager
+            $pixelContext,
+            $pixelEventsGenerator,
+            $botDetector
         );
 
         $this->localeContext = $localeContext;
@@ -67,7 +61,7 @@ final class ViewCategorySubscriber extends AbstractSubscriber
 
     public function trackCustom(ResourceControllerEvent $event): void
     {
-        if (!$this->isShopContext() || !$this->pixelContext->hasPixels()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
@@ -81,7 +75,7 @@ final class ViewCategorySubscriber extends AbstractSubscriber
             $this->getTaxon($gridView),
         );
 
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $viewCategoryData,
             ServerSideEventInterface::CUSTOM_EVENT_VIEW_CATEGORY
         );

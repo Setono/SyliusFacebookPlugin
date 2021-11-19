@@ -30,6 +30,7 @@ in `config/bundles.php` file of your project before (!) `SyliusGridBundle`:
 $bundles = [
     Setono\ClientIdBundle\SetonoClientIdBundle::class => ['all' => true],
     Setono\ConsentBundle\SetonoConsentBundle::class => ['all' => true],
+    Setono\BotDetectionBundle\SetonoBotDetectionBundle::class => ['all' => true],
     Setono\SyliusFacebookPlugin\SetonoSyliusFacebookPlugin::class => ['all' => true],
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
 ];

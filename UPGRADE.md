@@ -3,7 +3,7 @@
 1. As we're moving to server side tracking - we no longer need `SetonoTagBagBundle` 
    and `SetonoSyliusTagBagPlugin`. 
    
-- Remove them from `config/bundles.php`:
+- Remove them from `config/bundles.php` and add ones we're using:
 
     ```diff
          $bundles = [
@@ -11,6 +11,7 @@
      -       Setono\SyliusTagBagPlugin\SetonoSyliusTagBagPlugin::class => ['all' => true],
      +       Setono\ClientIdBundle\SetonoClientIdBundle::class => ['all' => true],
      +       Setono\ConsentBundle\SetonoConsentBundle::class => ['all' => true],
+     +       Setono\BotDetectionBundle\SetonoBotDetectionBundle::class => ['all' => true],
 
              Setono\SyliusFacebookPlugin\SetonoSyliusFacebookPlugin::class => ['all' => true],
              Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
