@@ -30,7 +30,7 @@ final class ViewContentSubscriber extends AbstractSubscriber
             return;
         }
 
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $product,
             ServerSideEventInterface::EVENT_VIEW_CONTENT
         );

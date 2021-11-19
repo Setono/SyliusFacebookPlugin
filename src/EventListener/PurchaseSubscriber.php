@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
-use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
-use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
-use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventFactoryInterface;
+use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Repository\OrderRepositoryInterface;
@@ -22,24 +19,13 @@ final class PurchaseSubscriber extends AbstractSubscriber
     protected OrderRepositoryInterface $orderRepository;
 
     public function __construct(
-        PixelContextInterface $pixelContext,
         RequestStack $requestStack,
         FirewallMap $firewallMap,
-        ServerSideEventFactoryInterface $serverSideFactory,
-        DataMapperInterface $dataMapper,
-        PixelEventFactoryInterface $pixelEventFactory,
-        EntityManagerInterface $entityManager,
+        PixelContextInterface $pixelContext,
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
         OrderRepositoryInterface $orderRepository
     ) {
-        parent::__construct(
-            $pixelContext,
-            $requestStack,
-            $firewallMap,
-            $serverSideFactory,
-            $dataMapper,
-            $pixelEventFactory,
-            $entityManager
-        );
+        parent::__construct($requestStack, $firewallMap, $pixelContext, $pixelEventsGenerator);
 
         $this->orderRepository = $orderRepository;
     }
@@ -62,7 +48,7 @@ final class PurchaseSubscriber extends AbstractSubscriber
             return;
         }
 
-        $this->generatePixelEvents(
+        $this->pixelEventsGenerator->generatePixelEvents(
             $order,
             ServerSideEventInterface::EVENT_PURCHASE
         );

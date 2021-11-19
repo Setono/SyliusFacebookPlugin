@@ -6,13 +6,10 @@
         <service id="setono_sylius_facebook.event_listener.abstract"
                  class="Setono\SyliusFacebookPlugin\EventListener\AbstractSubscriber"
                  abstract="true">
-            <argument type="service" id="setono_sylius_facebook.context.pixel"/>
             <argument type="service" id="request_stack"/>
             <argument type="service" id="security.firewall.map"/>
-            <argument type="service" id="setono_sylius_facebook.factory.server_side_event"/>
-            <argument type="service" id="setono_sylius_facebook.data_mapper.composite"/>
-            <argument type="service" id="setono_sylius_facebook.custom_factory.pixel_event"/>
-            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="setono_sylius_facebook.context.pixel"/>
+            <argument type="service" id="setono_sylius_facebook.generator.pixel_events"/>
         </service>
 
         <service id="setono_sylius_facebook.event_listener.add_to_cart"
