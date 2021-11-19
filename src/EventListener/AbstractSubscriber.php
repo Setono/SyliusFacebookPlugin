@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
@@ -21,16 +22,20 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
 
     protected PixelEventsGeneratorInterface $pixelEventsGenerator;
 
+    protected BotDetectorInterface $botDetector;
+
     public function __construct(
         RequestStack $requestStack,
         FirewallMap $firewallMap,
         PixelContextInterface $pixelContext,
-        PixelEventsGeneratorInterface $pixelEventsGenerator
+        PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector
     ) {
         $this->requestStack = $requestStack;
         $this->firewallMap = $firewallMap;
         $this->pixelContext = $pixelContext;
         $this->pixelEventsGenerator = $pixelEventsGenerator;
+        $this->botDetector = $botDetector;
     }
 
     protected function isShopContext(Request $request = null): bool
@@ -60,6 +65,14 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
             return false;
         }
 
-        return $this->isShopContext();
+        if (!$this->isShopContext()) {
+            return false;
+        }
+
+        if ($this->botDetector->isBotRequest()) {
+            return false;
+        }
+
+        return true;
     }
 }

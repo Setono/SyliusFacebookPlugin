@@ -19,6 +19,7 @@
         "fzaninotto/faker": "^1.6",
         "knplabs/knp-menu": "^3.0",
         "psr/log": "^1.1",
+        "setono/bot-detection-bundle": "^1.1",
         "setono/client-id-bundle": "^0.2",
         "setono/client-id-contracts": "^0.2",
         "setono/consent-bundle": "^0.1",

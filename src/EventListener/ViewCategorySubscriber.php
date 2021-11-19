@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookPlugin\Data\ViewCategoryData;
 use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
@@ -33,10 +34,17 @@ final class ViewCategorySubscriber extends AbstractSubscriber
         FirewallMap $firewallMap,
         PixelContextInterface $pixelContext,
         PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector,
         LocaleContextInterface $localeContext,
         TaxonRepositoryInterface $taxonRepository
     ) {
-        parent::__construct($requestStack, $firewallMap, $pixelContext, $pixelEventsGenerator);
+        parent::__construct(
+            $requestStack,
+            $firewallMap,
+            $pixelContext,
+            $pixelEventsGenerator,
+            $botDetector
+        );
 
         $this->localeContext = $localeContext;
         $this->taxonRepository = $taxonRepository;

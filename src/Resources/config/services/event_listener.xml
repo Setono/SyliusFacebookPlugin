@@ -10,6 +10,7 @@
             <argument type="service" id="security.firewall.map"/>
             <argument type="service" id="setono_sylius_facebook.context.pixel"/>
             <argument type="service" id="setono_sylius_facebook.generator.pixel_events"/>
+            <argument type="service" id="setono_bot_detection.bot_detector.default"/>
         </service>
 
         <service id="setono_sylius_facebook.event_listener.add_to_cart"

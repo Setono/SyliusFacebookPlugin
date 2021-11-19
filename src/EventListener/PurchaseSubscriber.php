@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventListener;
 
+use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
@@ -23,9 +24,16 @@ final class PurchaseSubscriber extends AbstractSubscriber
         FirewallMap $firewallMap,
         PixelContextInterface $pixelContext,
         PixelEventsGeneratorInterface $pixelEventsGenerator,
+        BotDetectorInterface $botDetector,
         OrderRepositoryInterface $orderRepository
     ) {
-        parent::__construct($requestStack, $firewallMap, $pixelContext, $pixelEventsGenerator);
+        parent::__construct(
+            $requestStack,
+            $firewallMap,
+            $pixelContext,
+            $pixelEventsGenerator,
+            $botDetector
+        );
 
         $this->orderRepository = $orderRepository;
     }
