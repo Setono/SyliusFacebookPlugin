@@ -38,16 +38,12 @@ final class InitiateCheckoutSubscriber extends AbstractSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        if (!$this->isRequestEligible()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
         $cart = $this->cartContext->getCart();
         if ($cart->isEmpty()) {
-            return;
-        }
-
-        if (!$this->pixelContext->hasPixels()) {
             return;
         }
 

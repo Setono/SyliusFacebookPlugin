@@ -39,16 +39,12 @@ final class PurchaseSubscriber extends AbstractSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        if (!$this->isRequestEligible()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
         $order = $this->resolveOrder();
         if (null === $order) {
-            return;
-        }
-
-        if (!$this->pixelContext->hasPixels()) {
             return;
         }
 
