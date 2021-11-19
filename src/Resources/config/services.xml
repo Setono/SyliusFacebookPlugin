@@ -9,6 +9,7 @@
         <import resource="services/data_mapper.xml"/>
         <import resource="services/event_listener.xml"/>
         <import resource="services/factory.xml"/>
+        <import resource="services/manager.xml"/>
         <import resource="services/fixture.xml"/>
         <import resource="services/form.xml"/>
         <import resource="services/formatter.xml"/>

@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\DataMapper;
 
+use Setono\SyliusFacebookPlugin\Manager\FbcManagerInterface;
 use Setono\SyliusFacebookPlugin\ServerSide\ServerSideEventInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Webmozart\Assert\Assert;
 
 /* not final */ class RequestDataMapper implements DataMapperInterface
 {
+    protected FbcManagerInterface $fbcManager;
+
+    public function __construct(FbcManagerInterface $fbcManager)
+    {
+        $this->fbcManager = $fbcManager;
+    }
+
     /**
      * @psalm-assert-if-true Request $context['request']
      */
@@ -37,5 +45,10 @@ use Webmozart\Assert\Assert;
 
         /** @psalm-suppress PossiblyNullArgument */
         $userData->setClientUserAgent($request->headers->get('User-Agent'));
+
+        $fbc = $this->fbcManager->getFbcValue();
+        if (is_string($fbc)) {
+            $userData->setFbc($fbc);
+        }
     }
 }

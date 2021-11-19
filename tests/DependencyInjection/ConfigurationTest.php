@@ -58,6 +58,7 @@ final class ConfigurationTest extends TestCase
             'api_version' => 'v12.0',
             'send_delay' => 300,
             'cleanup_delay' => 2592000,
+            'fbc_ttl' => 2419200,
         ]);
     }
 }

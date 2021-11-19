@@ -13,6 +13,14 @@
             <argument type="service" id="setono_bot_detection.bot_detector.default"/>
         </service>
 
+        <service id="setono_sylius_facebook.event_listener.store_fbc"
+                 class="Setono\SyliusFacebookPlugin\EventListener\StoreFbcSubscriber"
+                 parent="setono_sylius_facebook.event_listener.abstract">
+            <argument type="service" id="setono_sylius_facebook.manager.fbc" />
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="setono_sylius_facebook.event_listener.add_to_cart"
                  class="Setono\SyliusFacebookPlugin\EventListener\AddToCartSubscriber"
                  parent="setono_sylius_facebook.event_listener.abstract">

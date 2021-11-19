@@ -18,7 +18,7 @@ final class SetonoSyliusFacebookExtension extends AbstractResourceExtension impl
         /**
          * @psalm-suppress PossiblyNullArgument
          *
-         * @var array{api_version: string, access_token: string, test_event_code: string|null, send_delay: int, cleanup_delay:int, driver: string, resources: array} $config
+         * @var array{api_version: string, access_token: string, test_event_code: string|null, send_delay: int, cleanup_delay:int, fbc_ttl: int, driver: string, resources: array} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -28,6 +28,7 @@ final class SetonoSyliusFacebookExtension extends AbstractResourceExtension impl
         $container->setParameter('setono_sylius_facebook.test_event_code', $config['test_event_code']);
         $container->setParameter('setono_sylius_facebook.send_delay', $config['send_delay']);
         $container->setParameter('setono_sylius_facebook.cleanup_delay', $config['cleanup_delay']);
+        $container->setParameter('setono_sylius_facebook.fbc_ttl', $config['fbc_ttl']);
 
         $loader->load('services.xml');
 

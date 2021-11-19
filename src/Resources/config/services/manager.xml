@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="setono_sylius_facebook.manager.fbc"
+                 class="Setono\SyliusFacebookPlugin\Manager\FbcManager">
+            <argument type="service" id="request_stack"/>
+            <argument>%setono_sylius_facebook.fbc_ttl%</argument>
+        </service>
+
+        <service id="Setono\SyliusFacebookPlugin\Manager\FbcManagerInterface"
+                 alias="setono_sylius_facebook.manager.fbc" />
+
+    </services>
+</container>
