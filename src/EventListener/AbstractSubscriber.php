@@ -33,11 +33,6 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
         $this->pixelEventsGenerator = $pixelEventsGenerator;
     }
 
-    protected function getMasterRequest(): ?Request
-    {
-        return $this->requestStack->getMasterRequest();
-    }
-
     protected function isShopContext(Request $request = null): bool
     {
         if (null === $request) {
