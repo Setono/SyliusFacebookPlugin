@@ -54,4 +54,17 @@ abstract class AbstractSubscriber implements EventSubscriberInterface
 
         return $firewallConfig->getName() === 'shop';
     }
+
+    protected function isRequestEligible(): bool
+    {
+        // As one main request can have multiple subrequests
+        // we don't want things to be tracked multiple times
+        // So, having in mind that `If current Request is the master request, it returns null`
+        // we expect getParentRequest to be null to proceed
+        if (null !== $this->requestStack->getParentRequest()) {
+            return false;
+        }
+
+        return $this->isShopContext();
+    }
 }

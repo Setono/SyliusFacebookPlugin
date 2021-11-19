@@ -39,7 +39,7 @@ final class AddToCartSubscriber extends AbstractSubscriber
 
     public function track(): void
     {
-        if (!$this->isShopContext() || !$this->pixelContext->hasPixels()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 

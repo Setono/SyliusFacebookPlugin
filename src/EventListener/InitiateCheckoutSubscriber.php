@@ -38,18 +38,7 @@ final class InitiateCheckoutSubscriber extends AbstractSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        $request = $requestEvent->getRequest();
-
-        if (!$requestEvent->isMasterRequest()) {
-            return;
-        }
-
-        if (!$request->attributes->has('_route')) {
-            return;
-        }
-
-        $route = $request->attributes->get('_route');
-        if ('sylius_shop_checkout_start' !== $route) {
+        if (!$this->isRequestEligible()) {
             return;
         }
 
@@ -66,5 +55,23 @@ final class InitiateCheckoutSubscriber extends AbstractSubscriber
             $cart,
             ServerSideEventInterface::EVENT_INITIATE_CHECKOUT
         );
+    }
+
+    /**
+     * Request is eligible when:
+     * - We are on the 'checkout start' page
+     */
+    protected function isRequestEligible(): bool
+    {
+        if (!parent::isRequestEligible()) {
+            return false;
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request) {
+            return false;
+        }
+
+        return 'sylius_shop_checkout_start' === $request->attributes->get('_route');
     }
 }

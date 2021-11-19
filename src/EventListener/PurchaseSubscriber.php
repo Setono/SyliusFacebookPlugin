@@ -39,7 +39,11 @@ final class PurchaseSubscriber extends AbstractSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        $order = $this->resolveOrder($requestEvent);
+        if (!$this->isRequestEligible()) {
+            return;
+        }
+
+        $order = $this->resolveOrder();
         if (null === $order) {
             return;
         }
@@ -55,25 +59,32 @@ final class PurchaseSubscriber extends AbstractSubscriber
     }
 
     /**
-     * This method will return an OrderInterface if
+     * Request is eligible when:
      * - We are on the 'thank you' page
+     */
+    protected function isRequestEligible(): bool
+    {
+        if (!parent::isRequestEligible()) {
+            return false;
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request) {
+            return false;
+        }
+
+        return 'sylius_shop_order_thank_you' === $request->attributes->get('_route');
+    }
+
+    /**
+     * This method will return an OrderInterface if
      * - A session exists with the order id
      * - The order can be found in the order repository
      */
-    private function resolveOrder(RequestEvent $requestEvent): ?OrderInterface
+    private function resolveOrder(): ?OrderInterface
     {
-        $request = $requestEvent->getRequest();
-
-        if (!$requestEvent->isMasterRequest()) {
-            return null;
-        }
-
-        if (!$request->attributes->has('_route')) {
-            return null;
-        }
-
-        $route = $request->attributes->get('_route');
-        if ('sylius_shop_order_thank_you' !== $route) {
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request) {
             return null;
         }
 

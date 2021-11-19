@@ -53,7 +53,7 @@ final class ViewCategorySubscriber extends AbstractSubscriber
 
     public function trackCustom(ResourceControllerEvent $event): void
     {
-        if (!$this->isShopContext() || !$this->pixelContext->hasPixels()) {
+        if (!$this->isRequestEligible() || !$this->pixelContext->hasPixels()) {
             return;
         }
 
