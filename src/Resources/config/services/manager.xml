@@ -12,5 +12,15 @@
         <service id="Setono\SyliusFacebookPlugin\Manager\FbcManagerInterface"
                  alias="setono_sylius_facebook.manager.fbc" />
 
+        <service id="setono_sylius_facebook.manager.fbp"
+                 class="Setono\SyliusFacebookPlugin\Manager\FbpManager">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="setono_client_id.provider.default_client_id"/>
+            <argument>%setono_sylius_facebook.fbp_ttl%</argument>
+        </service>
+
+        <service id="Setono\SyliusFacebookPlugin\Manager\FbpManagerInterface"
+                 alias="setono_sylius_facebook.manager.fbp" />
+
     </services>
 </container>

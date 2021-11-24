@@ -8,14 +8,17 @@ use Setono\BotDetectionBundle\BotDetector\BotDetectorInterface;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookPlugin\Generator\PixelEventsGeneratorInterface;
 use Setono\SyliusFacebookPlugin\Manager\FbcManagerInterface;
+use Setono\SyliusFacebookPlugin\Manager\FbpManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final class StoreFbcSubscriber extends AbstractSubscriber
+final class SetCookiesSubscriber extends AbstractSubscriber
 {
     private FbcManagerInterface $fbcManager;
+
+    private FbpManagerInterface $fbpManager;
 
     public function __construct(
         RequestStack $requestStack,
@@ -23,7 +26,8 @@ final class StoreFbcSubscriber extends AbstractSubscriber
         PixelContextInterface $pixelContext,
         PixelEventsGeneratorInterface $pixelEventsGenerator,
         BotDetectorInterface $botDetector,
-        FbcManagerInterface $fbcManager
+        FbcManagerInterface $fbcManager,
+        FbpManagerInterface $fbpManager
     ) {
         parent::__construct(
             $requestStack,
@@ -34,27 +38,36 @@ final class StoreFbcSubscriber extends AbstractSubscriber
         );
 
         $this->fbcManager = $fbcManager;
+        $this->fbpManager = $fbpManager;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::RESPONSE => 'setFbcCookie',
+            KernelEvents::RESPONSE => 'setCookies',
         ];
     }
 
-    public function setFbcCookie(ResponseEvent $event): void
+    public function setCookies(ResponseEvent $event): void
     {
         if (!$this->isRequestEligible()) {
             return;
         }
 
-        $fbcCookie = $this->fbcManager->getFbcCookie();
-        if (null === $fbcCookie) {
+        $request = $this->requestStack->getCurrentRequest();
+        if (null === $request || $request->isXmlHttpRequest()) {
             return;
         }
 
         $response = $event->getResponse();
-        $response->headers->setCookie($fbcCookie);
+        $fbcCookie = $this->fbcManager->getFbcCookie();
+        if (null !== $fbcCookie) {
+            $response->headers->setCookie($fbcCookie);
+        }
+
+        $fbpCookie = $this->fbpManager->getFbpCookie();
+        if (null !== $fbpCookie) {
+            $response->headers->setCookie($fbpCookie);
+        }
     }
 }

@@ -34,6 +34,7 @@
         <service id="setono_sylius_facebook.data_mapper.request"
                  class="Setono\SyliusFacebookPlugin\DataMapper\RequestDataMapper">
             <argument type="service" id="setono_sylius_facebook.manager.fbc" />
+            <argument type="service" id="setono_sylius_facebook.manager.fbp" />
 
             <tag name="setono_sylius_facebook.data_mapper" priority="100" />
         </service>

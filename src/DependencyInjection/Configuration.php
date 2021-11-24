@@ -60,6 +60,10 @@ final class Configuration implements ConfigurationInterface
                     ->defaultValue(28 * 24 * 60 * 60) // 28 days
                     ->info('Time to live for fbc cookie')
                 ->end()
+                ->integerNode('fbp_ttl')
+                    ->defaultValue(365 * 24 * 60 * 60) // 365 days
+                    ->info('Time to live for fbp cookie')
+                ->end()
             ->end()
         ;
 
