@@ -56,6 +56,14 @@ final class Configuration implements ConfigurationInterface
                     ->defaultValue(30 * 24 * 60 * 60) // 30 days
                     ->info('The number of seconds to wait until remove sent event')
                 ->end()
+                ->integerNode('fbc_ttl')
+                    ->defaultValue(28 * 24 * 60 * 60) // 28 days
+                    ->info('Time to live for fbc cookie')
+                ->end()
+                ->integerNode('fbp_ttl')
+                    ->defaultValue(365 * 24 * 60 * 60) // 365 days
+                    ->info('Time to live for fbp cookie')
+                ->end()
             ->end()
         ;
 
