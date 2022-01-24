@@ -37,7 +37,6 @@
         "symfony/lock": "^4.4 || ^5.0",
         "symfony/options-resolver": "^4.4 || ^5.0",
         "symfony/routing": "^4.4 || ^5.0",
-        "symfony/security": "^4.4 || ^5.0",
         "symfony/security-bundle": "^4.4 || ^5.0",
         "symfony/uid": "^4.4 || ^5.0",
         "symfony/workflow": "^4.4 || ^5.0",
