@@ -1,14 +1,14 @@
 {
     "name": "setono/sylius-facebook-plugin",
-    "type": "sylius-plugin",
     "description": "Sylius plugin that tracks visitors and sends the data to Facebook",
+    "license": "MIT",
+    "type": "sylius-plugin",
     "keywords": [
         "sylius",
         "sylius-plugin",
         "setono",
         "facebook"
     ],
-    "license": "MIT",
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
@@ -61,14 +61,7 @@
         "symfony/intl": "^4.4 || ^5.0",
         "symfony/web-profiler-bundle": "^5.0"
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Setono\\SyliusFacebookPlugin\\": "src/"
@@ -82,7 +75,14 @@
             "tests/Application/Kernel.php"
         ]
     },
-    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "scripts": {
         "analyse": [
             "@ensure-test-container-exists",
