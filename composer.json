@@ -1,6 +1,6 @@
 {
     "name": "setono/sylius-facebook-plugin",
-    "type": "symfony-bundle",
+    "type": "sylius-plugin",
     "description": "Sylius plugin that tracks visitors and sends the data to Facebook",
     "keywords": [
         "sylius",
@@ -30,7 +30,7 @@
         "symfony/dependency-injection": "^4.4 || ^5.0",
         "symfony/event-dispatcher": "^4.4 || ^5.0",
         "symfony/form": "^4.4 || ^5.0",
-        "symfony/http-client": "^4.4 || ^5.3",
+        "symfony/http-client": "^4.4 || ^5.0",
         "symfony/http-client-contracts": "^2.4",
         "symfony/http-foundation": "^4.4 || ^5.0.7",
         "symfony/http-kernel": "^4.4 || ^5.1.5",
