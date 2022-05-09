@@ -79,7 +79,7 @@
         "sort-packages": true,
         "allow-plugins": {
             "symfony/thanks": false,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": false,
             "ergebnis/composer-normalize": true
         }
     },
