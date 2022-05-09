@@ -55,7 +55,7 @@ final class ConfigurationTest extends TestCase
             ],
             'access_token' => 'ACCESS_TOKEN',
             'test_event_code' => null,
-            'api_version' => 'v12.0',
+            'api_version' => 'v13.0',
             'send_delay' => 300,
             'cleanup_delay' => 2592000,
             'fbc_ttl' => 2419200,
