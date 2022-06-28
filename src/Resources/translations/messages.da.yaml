@@ -1,12 +1,16 @@
 setono_sylius_facebook:
     form:
         pixel:
+            access_token: Access token
+            access_token_placeholder: Indsæt access token for denne pixel
             pixel_id: Pixel id
+            pixel_id_help: "Hent den her: https://www.facebook.com/events_manager2"
             pixel_id_placeholder: Indsæt dit pixel id...
     ui:
         edit_pixel: Rediger facebook pixel
         facebook: Facebook
         manage_pixels: Administrer facebook pixels
         new_pixel: Ny facebook pixel
+        no_channels: Ingen kanaler
         pixel_id: Pixel id
         pixels: Facebook pixels

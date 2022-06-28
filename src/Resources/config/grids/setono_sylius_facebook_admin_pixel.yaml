@@ -10,17 +10,8 @@ sylius_grid:
                     class: "%setono_sylius_facebook.model.pixel.class%"
             fields:
                 pixelId:
-                    type: twig
+                    type: string
                     label: setono_sylius_facebook.ui.pixel_id
-                    path: .
-                    options:
-                        template: "@SetonoSyliusFacebookPlugin/Admin/Grid/Field/pixel.html.twig"
-                events_statistics:
-                    type: twig
-                    label: setono_sylius_facebook.ui.events_statistics
-                    path: .
-                    options:
-                        template: "@SetonoSyliusFacebookPlugin/Admin/Grid/Field/statistics.html.twig"
                 channels:
                     type: twig
                     label: sylius.ui.channels
@@ -47,7 +38,5 @@ sylius_grid:
                 item:
                     update:
                         type: update
-                    setono_facebook_reset_failed_events:
-                        type: setono_facebook_reset_failed_events
                     delete:
                         type: delete

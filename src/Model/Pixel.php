@@ -17,7 +17,7 @@ class Pixel implements PixelInterface
 
     protected ?string $pixelId = null;
 
-    protected ?string $customAccessToken = null;
+    protected ?string $accessToken = null;
 
     /**
      * @var Collection|BaseChannelInterface[]
@@ -51,14 +51,14 @@ class Pixel implements PixelInterface
         $this->pixelId = $pixelId;
     }
 
-    public function getCustomAccessToken(): ?string
+    public function getAccessToken(): ?string
     {
-        return $this->customAccessToken;
+        return $this->accessToken;
     }
 
-    public function setCustomAccessToken(?string $customAccessToken): void
+    public function setAccessToken(?string $accessToken): void
     {
-        $this->customAccessToken = $customAccessToken;
+        $this->accessToken = $accessToken;
     }
 
     public function getChannels(): Collection

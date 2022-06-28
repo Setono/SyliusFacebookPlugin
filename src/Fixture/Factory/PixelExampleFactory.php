@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\Fixture\Factory;
 
+use Faker\Factory;
+use Faker\Generator;
 use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
@@ -19,11 +21,9 @@ class PixelExampleFactory extends AbstractExampleFactory
 
     private ChannelRepositoryInterface $channelRepository;
 
-    /** @var \Faker\Generator */
-    private $faker;
+    private Generator $faker;
 
-    /** @var OptionsResolver */
-    private $optionsResolver;
+    private OptionsResolver $optionsResolver;
 
     public function __construct(
         FactoryInterface $pixelFactory,
@@ -32,9 +32,9 @@ class PixelExampleFactory extends AbstractExampleFactory
         $this->pixelFactory = $pixelFactory;
         $this->channelRepository = $channelRepository;
 
-        $this->faker = \Faker\Factory::create();
-        $this->optionsResolver = new OptionsResolver();
+        $this->faker = Factory::create();
 
+        $this->optionsResolver = new OptionsResolver();
         $this->configureOptions($this->optionsResolver);
     }
 
@@ -46,6 +46,12 @@ class PixelExampleFactory extends AbstractExampleFactory
         $pixel = $this->pixelFactory->createNew();
         if (array_key_exists('pixel_id', $options)) {
             $pixel->setPixelId((string) $options['pixel_id']);
+        }
+
+        if (array_key_exists('access_token', $options)) {
+            $pixel->setAccessToken((string) $options['access_token']);
+        } else {
+            $pixel->setAccessToken($this->faker->randomAscii);
         }
 
         if (array_key_exists('enabled', $options)) {
@@ -70,6 +76,9 @@ class PixelExampleFactory extends AbstractExampleFactory
         $resolver
             ->setDefined('pixel_id')
             ->setAllowedTypes('pixel_id', 'numeric')
+
+            ->setDefined('access_token')
+            ->setAllowedTypes('access_token', 'string')
 
             ->setDefined('enabled')
             ->setAllowedTypes('enabled', 'bool')
