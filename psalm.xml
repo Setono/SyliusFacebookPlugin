@@ -28,12 +28,7 @@
     </plugins>
     <issueHandlers>
         <PluginIssue name="QueryBuilderSetParameter" errorLevel="info"/>
-        <UnnecessaryVarAnnotation
-            errorLevel="suppress"/> <!-- We only use 'unnecessary' var annotations when we want to help PhpStorm :) -->
-        <DeprecatedMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Component\HttpFoundation\RequestStack::getMasterRequest"/>
-            </errorLevel>
-        </DeprecatedMethod>
+        <!-- We only use 'unnecessary' var annotations when we want to help PhpStorm :) -->
+        <UnnecessaryVarAnnotation errorLevel="suppress"/>
     </issueHandlers>
 </psalm>

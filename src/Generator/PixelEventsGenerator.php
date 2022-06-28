@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookPlugin\Generator;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Setono\MainRequestTrait\MainRequestTrait;
 use Setono\SyliusFacebookPlugin\Context\PixelContextInterface;
 use Setono\SyliusFacebookPlugin\DataMapper\DataMapperInterface;
 use Setono\SyliusFacebookPlugin\Factory\PixelEventFactoryInterface;
@@ -14,6 +15,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class PixelEventsGenerator implements PixelEventsGeneratorInterface
 {
+    use MainRequestTrait;
+
     private PixelContextInterface $pixelContext;
 
     private RequestStack $requestStack;
@@ -49,7 +52,7 @@ final class PixelEventsGenerator implements PixelEventsGeneratorInterface
     {
         $serverSideEvent = $this->serverSideFactory->create($eventName);
         $this->dataMapper->map($source, $serverSideEvent, [
-            'request' => $request ?? $this->requestStack->getMasterRequest(),
+            'request' => $request ?? $this->getMainRequestFromRequestStack($this->requestStack),
             'event' => $eventName,
         ]);
 
