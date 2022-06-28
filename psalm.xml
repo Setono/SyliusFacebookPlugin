@@ -17,13 +17,19 @@
     </projectFiles>
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+            <!-- Symfony 4 container XML -->
             <containerXml>tests/Application/var/cache/test/ApplicationTests_Setono_SyliusFacebookPlugin_Application_KernelTestDebugContainer.xml</containerXml>
+
+            <!-- Symfony 5 container XML -->
+            <containerXml>tests/Application/var/cache/test/Tests_Setono_SyliusFacebookPlugin_Application_KernelTestDebugContainer.xml</containerXml>
         </pluginClass>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
-        <PluginIssue name="QueryBuilderSetParameter" errorLevel="info" />
-        <UnnecessaryVarAnnotation errorLevel="suppress"/> <!-- We only use 'unnecessary' var annotations when we want to help PhpStorm :) -->
+        <PluginIssue name="QueryBuilderSetParameter" errorLevel="info"/>
+        <UnnecessaryVarAnnotation
+            errorLevel="suppress"/> <!-- We only use 'unnecessary' var annotations when we want to help PhpStorm :) -->
         <DeprecatedMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Symfony\Component\HttpFoundation\RequestStack::getMasterRequest"/>
