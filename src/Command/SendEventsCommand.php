@@ -142,8 +142,6 @@ final class SendEventsCommand extends DelayAwareCommand
     private function getWorkflow(PixelEventInterface $pixelEvent): WorkflowInterface
     {
         if (null === $this->workflow) {
-            Assert::true($this->workflowRegistry->has($pixelEvent, SendPixelEventWorkflow::NAME));
-
             $this->workflow = $this->workflowRegistry->get($pixelEvent, SendPixelEventWorkflow::NAME);
         }
 

@@ -1,4 +1,0 @@
-suites:
-    main:
-        namespace: Setono\SyliusFacebookPlugin
-        psr4_prefix: Setono\SyliusFacebookPlugin
