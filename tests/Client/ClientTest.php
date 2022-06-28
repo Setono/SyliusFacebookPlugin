@@ -88,14 +88,14 @@ final class ClientTest extends TestCase
 
         $response = new MockResponse('{"events_received": 1}');
         $httpClient = $this->getHttpClient($response);
-        $client = new Client($httpClient, 'v12.0', $this->accessToken, $this->testEventCode);
+        $client = new Client($httpClient, 'v13.0', $this->accessToken, $this->testEventCode);
         $eventsReceived = $client->sendPixelEvent($pixelEvent);
 
         if ($this->live) {
             self::assertSame(1, $eventsReceived);
         } else {
             self::assertSame('POST', $response->getRequestMethod());
-            self::assertSame(sprintf('https://graph.facebook.com/v12.0/%s/events', $this->pixelId), $response->getRequestUrl());
+            self::assertSame(sprintf('https://graph.facebook.com/v13.0/%s/events', $this->pixelId), $response->getRequestUrl());
 
             $requestOptions = $response->getRequestOptions();
 

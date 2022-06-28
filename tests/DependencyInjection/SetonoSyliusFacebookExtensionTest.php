@@ -26,7 +26,7 @@ final class SetonoSyliusFacebookExtensionTest extends AbstractExtensionTestCase
             'access_token' => 'ACCESS_TOKEN',
         ]);
 
-        $this->assertContainerBuilderHasParameter('setono_sylius_facebook.api_version', 'v12.0');
+        $this->assertContainerBuilderHasParameter('setono_sylius_facebook.api_version', 'v13.0');
         $this->assertContainerBuilderHasParameter('setono_sylius_facebook.access_token', 'ACCESS_TOKEN');
         $this->assertContainerBuilderHasParameter('setono_sylius_facebook.test_event_code', null);
         $this->assertContainerBuilderHasParameter('setono_sylius_facebook.send_delay', 300);
