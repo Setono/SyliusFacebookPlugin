@@ -55,7 +55,6 @@
         "psalm/plugin-symfony": "^3.0",
         "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^2.2",
-        "setono/sylius-behat-pack": "^0.2",
         "sylius/admin-api-bundle": "^1.11",
         "sylius/sylius": "~1.10.14",
         "symfony/debug-bundle": "^4.4 || ^5.4",
