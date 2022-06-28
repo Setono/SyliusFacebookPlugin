@@ -16,50 +16,52 @@
         "doctrine/dbal": "^2.10.2",
         "doctrine/orm": "^2.6",
         "facebook/php-business-sdk": "^12.0",
-        "fakerphp/faker": "^1.6",
-        "knplabs/knp-menu": "^3.0",
-        "psr/log": "^1.1",
-        "setono/bot-detection-bundle": "^1.1",
+        "fakerphp/faker": "^1.19",
+        "knplabs/knp-menu": "^3.3",
+        "psr/log": "^1.1 || ^2.0 || ^3.0",
+        "setono/bot-detection-bundle": "^1.7",
         "setono/client-id-bundle": "^0.2",
         "setono/client-id-contracts": "^0.2",
         "setono/consent-bundle": "^0.1",
         "setono/consent-contracts": "^0.1",
         "sylius/resource-bundle": "^1.6",
-        "symfony/config": "^4.4 || ^5.0",
-        "symfony/console": "^4.4 || ^5.0",
-        "symfony/dependency-injection": "^4.4 || ^5.0",
-        "symfony/event-dispatcher": "^4.4 || ^5.0",
-        "symfony/form": "^4.4 || ^5.0",
-        "symfony/http-client": "^4.4 || ^5.0",
+        "symfony/config": "^4.4 || ^5.4",
+        "symfony/console": "^4.4 || ^5.4",
+        "symfony/dependency-injection": "^4.4 || ^5.4",
+        "symfony/event-dispatcher": "^4.4 || ^5.4",
+        "symfony/form": "^4.4 || ^5.4",
+        "symfony/http-client": "^4.4 || ^5.4",
         "symfony/http-client-contracts": "^2.4",
-        "symfony/http-foundation": "^4.4 || ^5.0.7",
-        "symfony/http-kernel": "^4.4 || ^5.1.5",
-        "symfony/lock": "^4.4 || ^5.0",
-        "symfony/options-resolver": "^4.4 || ^5.0",
-        "symfony/routing": "^4.4 || ^5.0",
-        "symfony/security-bundle": "^4.4 || ^5.0",
-        "symfony/uid": "^4.4 || ^5.0",
-        "symfony/workflow": "^4.4 || ^5.0",
+        "symfony/http-foundation": "^4.4 || ^5.4",
+        "symfony/http-kernel": "^4.4 || ^5.4",
+        "symfony/lock": "^4.4 || ^5.4",
+        "symfony/options-resolver": "^4.4 || ^5.4",
+        "symfony/routing": "^4.4 || ^5.4",
+        "symfony/security-bundle": "^4.4 || ^5.4",
+        "symfony/uid": "^4.4 || ^5.4",
+        "symfony/workflow": "^4.4 || ^5.4",
         "twig/twig": "^2.0 || ^3.0",
-        "webmozart/assert": "^1.10"
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
+        "api-platform/core": "^2.6",
         "doctrine/doctrine-bundle": "^1.12.9",
-        "friendsofphp/proxy-manager-lts": "^1.0",
+        "friendsofsymfony/oauth-server-bundle": ">2.0.0-alpha.0 ^2.0@dev",
+        "lexik/jwt-authentication-bundle": "^2.15",
         "matthiasnoback/symfony-config-test": "^4.3",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
-        "phpspec/phpspec": "^6.3",
         "phpunit/phpunit": "^9.5",
-        "psalm/plugin-phpunit": "^0.16.0",
-        "psalm/plugin-symfony": "^2.4",
+        "psalm/plugin-phpunit": "^0.17",
+        "psalm/plugin-symfony": "^3.0",
         "roave/security-advisories": "dev-latest",
-        "setono/code-quality-pack": "^2.1.2",
-        "setono/sylius-behat-pack": "^0.1",
-        "sylius/sylius": "~1.7.0",
-        "symfony/debug-bundle": "^5.1",
-        "symfony/dotenv": "^5.2",
-        "symfony/intl": "^4.4 || ^5.0",
-        "symfony/web-profiler-bundle": "^5.0"
+        "setono/code-quality-pack": "^2.2",
+        "setono/sylius-behat-pack": "^0.2",
+        "sylius/admin-api-bundle": "^1.11",
+        "sylius/sylius": "~1.10.14",
+        "symfony/debug-bundle": "^4.4 || ^5.4",
+        "symfony/dotenv": "^4.4 || ^5.4",
+        "symfony/intl": "^4.4 || ^5.4",
+        "symfony/web-profiler-bundle": "^4.4 || ^5.4"
     },
     "prefer-stable": true,
     "autoload": {
@@ -76,12 +78,12 @@
         ]
     },
     "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "ergebnis/composer-normalize": true,
+            "symfony/thanks": false
+        },
         "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
     },
     "scripts": {
         "analyse": [
@@ -91,7 +93,6 @@
         "check-style": "ecs check --ansi",
         "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/ApplicationTests_Setono_SyliusFacebookPlugin_Application_KernelTestDebugContainer.xml ]] || tests/Application/bin/console cache:warmup --env=test",
         "fix-style": "ecs check --ansi --fix",
-        "phpspec": "phpspec run --ansi",
         "phpunit": "phpunit"
     }
 }
