@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-
     <mapped-superclass name="Setono\SyliusFacebookPlugin\Model\Pixel"
                        table="setono_sylius_facebook__pixel">
-
         <indexes>
             <index columns="enabled"/>
         </indexes>
@@ -24,14 +22,12 @@
         <many-to-many field="channels" target-entity="Sylius\Component\Channel\Model\ChannelInterface">
             <join-table name="setono_sylius_facebook__pixel_channels">
                 <join-columns>
-                    <join-column name="pixel_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+                    <join-column name="pixel_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
                 </join-columns>
                 <inverse-join-columns>
-                    <join-column name="channel_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+                    <join-column name="channel_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
-
     </mapped-superclass>
-
 </doctrine-mapping>
