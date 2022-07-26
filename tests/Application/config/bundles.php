@@ -61,4 +61,5 @@ return [
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Setono\BotDetectionBundle\SetonoBotDetectionBundle::class => ['all' => true],
     Setono\MetaConversionsApiBundle\SetonoMetaConversionsApiBundle::class => ['all' => true],
+    Setono\TagBagBundle\SetonoTagBagBundle::class => ['all' => true],
 ];
