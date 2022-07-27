@@ -26,13 +26,13 @@ in `config/bundles.php` file of your project before (!) `SyliusGridBundle`:
 ```php
 <?php
 $bundles = [
-    Setono\ClientIdBundle\SetonoClientIdBundle::class => ['all' => true],
-    Setono\ConsentBundle\SetonoConsentBundle::class => ['all' => true],
     Setono\BotDetectionBundle\SetonoBotDetectionBundle::class => ['all' => true],
     Setono\SyliusFacebookPlugin\SetonoSyliusFacebookPlugin::class => ['all' => true],
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
 ];
 ```
+
+If you want to enable consent (i.e. cookie / gdpr) you can install the [consent bundle](https://github.com/Setono/ConsentBundle).
 
 ### Step 3: Configure plugin
 
@@ -43,33 +43,7 @@ imports:
     
     # Uncomment next line if you want to load some example pixels via fixtures
     # - { resource: "@SetonoSyliusFacebookPlugin/Resources/config/app/fixtures.yaml" }
-
-setono_sylius_facebook:
-    access_token: '%env(FACEBOOK_ACCESS_TOKEN)%'
 ```
-
-```dotenv
-# .env
-###> setono/sylius-facebook-plugin ###
-FACEBOOK_ACCESS_TOKEN=<YOUR TOKEN>
-###< setono/sylius-facebook-plugin ###
-```
-
-Warning! This plugin uses
-https://github.com/Setono/ConsentBundle
-and data will not be sent to Facebook by default.
-
-To workaround that on dev environment - you have to configure ConsentBundle like this:
-
-```yaml
-# config/packages/dev/setono_consent.yaml
-setono_consent:
-    marketing_granted: true
-```
-
-This configuration will make the marketing consent true by default, 
-which means that if you don’t handle consents you will send all events 
-to Facebook by default (which could be against GDPR or other laws related to marketing)
 
 ### Step 4: Import routing
 
