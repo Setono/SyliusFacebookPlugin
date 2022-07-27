@@ -18,6 +18,7 @@ class PixelFixture extends AbstractResourceFixture
     {
         $node = $resourceNode->children();
         $node->scalarNode('pixel_id')->cannotBeEmpty();
+        $node->scalarNode('access_token')->cannotBeEmpty();
         $node->booleanNode('enabled')->defaultTrue();
         $node->arrayNode('channels')->scalarPrototype();
     }

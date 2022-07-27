@@ -7,8 +7,7 @@ use ComposerUnused\ComposerUnused\Configuration\NamedFilter;
 
 return static function (Configuration $config): Configuration {
     return $config
-        ->addNamedFilter(NamedFilter::fromString('setono/consent-bundle'))
-        ->addNamedFilter(NamedFilter::fromString('symfony/http-client'))
-        ->addNamedFilter(NamedFilter::fromString('symfony/lock'))
+        ->addNamedFilter(NamedFilter::fromString('doctrine/orm'))
+        ->addNamedFilter(NamedFilter::fromString('symfony/routing'))
     ;
 };

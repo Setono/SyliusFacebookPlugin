@@ -13,14 +13,3 @@ setono_sylius_facebook_admin_pixel:
             index:
                 icon: 'facebook'
     type: sylius.resource
-
-setono_sylius_facebook_admin_pixel_reset_failed_events:
-    path: /{id}/events/failed/reset
-    methods: [PATCH]
-    defaults:
-        _controller: setono_sylius_facebook.controller.action.pixel.reset_failed_events
-        _sylius:
-            section: admin
-            permission: true
-            redirect:
-                route: setono_sylius_facebook_admin_pixel_index

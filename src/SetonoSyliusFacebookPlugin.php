@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin;
 
-use Setono\SyliusFacebookPlugin\DependencyInjection\Compiler\RegisterDataMappersPass;
+use Setono\SyliusFacebookPlugin\DependencyInjection\Compiler\OverrideDefaultPixelProviderPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -25,6 +25,6 @@ final class SetonoSyliusFacebookPlugin extends AbstractResourceBundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new RegisterDataMappersPass());
+        $container->addCompilerPass(new OverrideDefaultPixelProviderPass());
     }
 }

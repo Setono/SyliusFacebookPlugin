@@ -14,8 +14,8 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="pixelId" column="pixel_id" unique="true"/>
-        <field name="customAccessToken" column="custom_access_token" nullable="true"/>
+        <field name="pixelId" unique="true"/>
+        <field name="accessToken"/>
 
         <field name="enabled" column="enabled" type="boolean"/>
 

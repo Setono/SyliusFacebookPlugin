@@ -6,7 +6,8 @@ sylius_fixtures:
                     options:
                         custom:
                             fake_pixel_active:
-                                pixel_id: '%env(FACEBOOK_PIXEL_DEFAULT)%'
+                                pixel_id: '%env(FACEBOOK_PIXEL_ID)%'
+                                access_token: '%env(FACEBOOK_ACCESS_TOKEN)%'
                                 enabled: true
                                 channels:
                                     - 'FASHION_WEB'

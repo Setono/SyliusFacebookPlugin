@@ -1,7 +1,0 @@
-<script>
-{%- if parameters is defined -%}
-    fbq('{{ method }}', '{{ event }}', {{ parameters|raw }});
-{%- else -%}
-    fbq('{{ method }}', '{{ event }}');
-{%- endif -%}
-</script>
