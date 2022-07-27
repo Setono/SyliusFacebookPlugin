@@ -66,19 +66,8 @@ When you create a pixel in Facebook you receive a pixel id.
 Now create a new pixel in your Sylius shop by navigating to `/admin/pixels/new`.
 Remember to enable the pixel and enable the channels you want to track. 
 
-### Step 7. Configure cron
-
-- Add `bin/console setono:sylius-facebook:send-pixel-events` command to your crontab.
-
-    Schedule must be hourly or more frequently. 
-    See [notes](https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api#batch-requests).
-
-- Add `bin/console setono:sylius-facebook:cleanup` command to your crontab.
-
-    Schedule must be daily or less frequently.
-
-### Step 8: You're ready!
-The events that are tracked are located in the [EventListener folder](src/EventListener).
+### Step 7: You're ready!
+The events that are tracked are located in the [EventSubscriber folder](src/EventSubscriber).
 
 ## Related links
 - https://developers.facebook.com/docs/marketing-api/audiences/guides/dynamic-product-audiences/#setuppixel
