@@ -14,7 +14,7 @@
         "ext-json": "*",
         "doctrine/collections": "^1.6",
         "doctrine/dbal": "^2.13",
-        "doctrine/orm": "^2.12",
+        "doctrine/orm": "^2.13",
         "facebook/php-business-sdk": "^13.0",
         "fakerphp/faker": "^1.19",
         "knplabs/knp-menu": "^3.3",
