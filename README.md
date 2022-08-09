@@ -22,9 +22,18 @@ in `config/bundles.php` file of your project before (!) `SyliusGridBundle`:
 ```php
 <?php
 $bundles = [
-    Setono\BotDetectionBundle\SetonoBotDetectionBundle::class => ['all' => true],
+    // the plugin must be added ABOVE the SyliusGridBundle
     Setono\SyliusFacebookPlugin\SetonoSyliusFacebookPlugin::class => ['all' => true],
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
+    
+    // used for filtering bot requests
+    Setono\BotDetectionBundle\SetonoBotDetectionBundle::class => ['all' => true],
+    
+    // this is the underlying bundle we use to track events
+    Setono\MetaConversionsApiBundle\SetonoMetaConversionsApiBundle::class => ['all' => true],
+    
+    // OPTIONAL: See note below
+    // Setono\ConsentBundle\SetonoConsentBundle => ['all' => true],
 ];
 ```
 
