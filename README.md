@@ -4,19 +4,15 @@
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
 
-Track user behavior in Facebook.
+Track ecommerce events in your store and send them to Facebook to enable your marketing efforts inside Facebook.
 
 ## Installation
 
 ### Step 1: Download the plugin
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
-
 ```bash
 $ composer require setono/sylius-facebook-plugin
 ```
-
-This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
 
 ### Step 2: Enable the plugin
 
@@ -32,7 +28,7 @@ $bundles = [
 ];
 ```
 
-If you want to enable consent (i.e. cookie / gdpr) you can install the [consent bundle](https://github.com/Setono/ConsentBundle).
+**OPTIONAL**: If you want to enable consent (i.e. cookie / GDPR) you can install the [consent bundle](https://github.com/Setono/ConsentBundle).
 
 ### Step 3: Configure plugin
 
@@ -63,11 +59,16 @@ $ php bin/console doctrine:migrations:migrate
 ### Step 6: Create a pixel
 When you create a pixel in Facebook you receive a pixel id.
 
-Now create a new pixel in your Sylius shop by navigating to `/admin/pixels/new`.
+Now create a new pixel in your Sylius shop by navigating to `/admin/facebook/pixels/new`.
 Remember to enable the pixel and enable the channels you want to track. 
 
 ### Step 7: You're ready!
-The events that are tracked are located in the [EventSubscriber folder](src/EventSubscriber).
+The events that are tracked are located in the [EventSubscriber folder](src/EventSubscriber), but here's a list:
+- `ViewContent` (i.e. product page views)
+- `AddToCart`
+- `InitiateCheckout`
+- `Purchase`
+- `ViewCategory` (this is a custom event that tracks taxon views)
 
 ## Related links
 - https://developers.facebook.com/docs/marketing-api/audiences/guides/dynamic-product-audiences/#setuppixel
@@ -78,8 +79,7 @@ The events that are tracked are located in the [EventSubscriber folder](src/Even
 
 ## Contribute
 Ways you can contribute:
-* Translate [messages](src/Resources/translations/messages.en.yaml) and [validators](src/Resources/translations/validators.en.yaml) to your mother tongue
-* Create Behat tests that verifies the scripts are outputted on the respective pages
+* Translate [messages](src/Resources/translations/messages.en.yaml) to your mother tongue
 * Create new event subscribers that handle [Facebook events](https://developers.facebook.com/docs/facebook-pixel/reference/) which are not implemented
 
 Thank you!
