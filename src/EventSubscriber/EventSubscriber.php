@@ -8,7 +8,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Setono\MetaConversionsApiBundle\Event\ConversionApiEventRaised;
+use Setono\MetaConversionsApiBundle\Event\ConversionsApiEventRaised;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Throwable;
 
@@ -39,7 +39,7 @@ abstract class EventSubscriber implements EventSubscriberInterface, LoggerAwareI
                 return;
             }
 
-            $this->eventDispatcher->dispatch(new ConversionApiEventRaised($event));
+            $this->eventDispatcher->dispatch(new ConversionsApiEventRaised($event));
         } catch (Throwable $e) {
             $this->logger->error($e->getMessage());
         }
