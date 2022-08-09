@@ -22,6 +22,7 @@
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
         "setono/meta-conversions-api-bundle": "^0.1",
+        "setono/meta-conversions-api-php-sdk": "^0.2",
         "sylius/resource-bundle": "^1.6",
         "symfony/config": "^5.4",
         "symfony/dependency-injection": "^5.4",
