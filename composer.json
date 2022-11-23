@@ -17,7 +17,7 @@
         "doctrine/collections": "^1.6",
         "doctrine/dbal": "^2.13",
         "doctrine/orm": "^2.12",
-        "fakerphp/faker": "^1.19",
+        "fakerphp/faker": "^1.20",
         "knplabs/knp-menu": "^3.3",
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
