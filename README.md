@@ -58,20 +58,34 @@ setono_sylius_facebook:
     resource: "@SetonoSyliusFacebookPlugin/Resources/config/routes.yaml"
 ```
 
-### Step 5: Update your database schema
+### Step 5: Choose your HTTP client implementation 
+
+Either you can install the default ones :
+```bash
+composer require kriswallsmith/buzz nyholm/psr7
+```
+Or write your own HTTP client and call :
+```php
+Client::setHttpClient()
+Client::setRequestFactory()
+Client::setResponseFactory()
+Client::setStreamFactory()
+```
+
+### Step 6: Update your database schema
 
 ```bash
 $ php bin/console doctrine:migrations:diff
 $ php bin/console doctrine:migrations:migrate
 ```
 
-### Step 6: Create a pixel
+### Step 7: Create a pixel
 When you create a pixel in Facebook you receive a pixel id.
 
 Now create a new pixel in your Sylius shop by navigating to `/admin/facebook/pixels/new`.
 Remember to enable the pixel and enable the channels you want to track. 
 
-### Step 7: You're ready!
+### Step 8: You're ready!
 The events that are tracked are located in the [EventSubscriber folder](src/EventSubscriber), but here's a list:
 - `ViewContent` (i.e. product page views)
 - `AddToCart`
