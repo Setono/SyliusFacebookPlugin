@@ -44,7 +44,7 @@
         "nyholm/psr7": "^1.5",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.18",
-        "psalm/plugin-symfony": "^3.1",
+        "psalm/plugin-symfony": "^5.0",
         "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^2.2",
         "setono/tag-bag": "^2.0",
