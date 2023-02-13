@@ -38,7 +38,7 @@
         "api-platform/core": "^2.7",
         "friendsofsymfony/oauth-server-bundle": ">2.0.0-alpha.0 ^2.0@dev",
         "kriswallsmith/buzz": "^1.2",
-        "lexik/jwt-authentication-bundle": "^2.16",
+        "lexik/jwt-authentication-bundle": "^2.18",
         "matthiasnoback/symfony-config-test": "^4.3",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "nyholm/psr7": "^1.5",
