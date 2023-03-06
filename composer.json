@@ -47,7 +47,7 @@
         "psalm/plugin-symfony": "^3.1",
         "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^2.2",
-        "setono/tag-bag": "^2.0",
+        "setono/tag-bag": "^2.2",
         "setono/tag-bag-bundle": "^3.0",
         "sylius/admin-api-bundle": "^1.11",
         "sylius/sylius": "~1.10.14",
