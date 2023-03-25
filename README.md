@@ -11,7 +11,7 @@ Track ecommerce events in your store and send them to Facebook to enable your ma
 ### Step 1: Download the plugin
 
 ```bash
-$ composer require setono/sylius-facebook-plugin
+composer require setono/sylius-facebook-plugin
 ```
 
 ### Step 2: Enable the plugin
