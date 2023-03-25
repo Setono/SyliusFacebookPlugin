@@ -7,7 +7,6 @@ use ComposerUnused\ComposerUnused\Configuration\NamedFilter;
 
 return static function (Configuration $config): Configuration {
     return $config
-        ->addNamedFilter(NamedFilter::fromString('doctrine/orm'))
         ->addNamedFilter(NamedFilter::fromString('symfony/routing'))
     ;
 };
