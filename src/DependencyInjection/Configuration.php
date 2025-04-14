@@ -8,7 +8,6 @@ use Setono\SyliusFacebookPlugin\Doctrine\ORM\PixelRepository;
 use Setono\SyliusFacebookPlugin\Form\Type\PixelType;
 use Setono\SyliusFacebookPlugin\Model\Pixel;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
-use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Factory\Factory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -23,14 +22,6 @@ final class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
-        /** @psalm-suppress MixedMethodCall, PossiblyUndefinedMethod, PossiblyNullReference */
-        $rootNode
-            ->addDefaultsIfNotSet()
-            ->children()
-                ->scalarNode('driver')
-                    ->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)
-        ;
-
         $this->addResourcesSection($rootNode);
 
         return $treeBuilder;
@@ -38,7 +29,7 @@ final class Configuration implements ConfigurationInterface
 
     private function addResourcesSection(ArrayNodeDefinition $node): void
     {
-        /** @psalm-suppress MixedMethodCall, PossiblyUndefinedMethod, PossiblyNullReference */
+        /** @psalm-suppress MixedMethodCall,PossiblyUndefinedMethod,PossiblyNullReference,UndefinedInterfaceMethod */
         $node
             ->children()
                 ->arrayNode('resources')

@@ -32,7 +32,7 @@ final class ProductAddedToCartEvent extends Event
         $orderItem = $this->findOrderItem($order, $addedOrderItem);
 
         $this->customData->value = self::formatAmount(
-            (int) round(($orderItem->getTotal() / $orderItem->getQuantity()) * $addedOrderItem->getQuantity())
+            (int) round(($orderItem->getTotal() / $orderItem->getQuantity()) * $addedOrderItem->getQuantity()),
         );
         $this->customData->currency = $order->getCurrencyCode();
 
@@ -43,7 +43,7 @@ final class ProductAddedToCartEvent extends Event
             $this->customData->contents[] = new Content(
                 (string) $product->getCode(),
                 $addedOrderItem->getQuantity(),
-                self::formatAmount((int) round($orderItem->getTotal() / $orderItem->getQuantity()))
+                self::formatAmount((int) round($orderItem->getTotal() / $orderItem->getQuantity())),
             );
         }
     }

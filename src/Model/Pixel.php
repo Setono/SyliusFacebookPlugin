@@ -21,7 +21,6 @@ class Pixel implements PixelInterface
 
     /**
      * @var Collection|BaseChannelInterface[]
-     *
      * @psalm-var Collection<array-key, BaseChannelInterface>
      */
     protected Collection $channels;

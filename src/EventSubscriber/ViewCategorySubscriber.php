@@ -27,7 +27,7 @@ final class ViewCategorySubscriber extends EventSubscriber
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         LocaleContextInterface $localeContext,
-        TaxonRepositoryInterface $taxonRepository
+        TaxonRepositoryInterface $taxonRepository,
     ) {
         parent::__construct($eventDispatcher);
 

@@ -23,7 +23,7 @@ final class PixelContext implements PixelContextInterface
 
     public function __construct(
         ChannelContextInterface $channelContext,
-        PixelRepositoryInterface $pixelRepository
+        PixelRepositoryInterface $pixelRepository,
     ) {
         $this->channelContext = $channelContext;
         $this->pixelRepository = $pixelRepository;

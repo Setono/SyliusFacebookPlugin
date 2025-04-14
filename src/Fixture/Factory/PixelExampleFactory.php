@@ -27,7 +27,7 @@ class PixelExampleFactory extends AbstractExampleFactory
 
     public function __construct(
         FactoryInterface $pixelFactory,
-        ChannelRepositoryInterface $channelRepository
+        ChannelRepositoryInterface $channelRepository,
     ) {
         $this->pixelFactory = $pixelFactory;
         $this->channelRepository = $channelRepository;

@@ -18,7 +18,7 @@ final class PurchaseSubscriber extends EventSubscriber
 
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
     ) {
         parent::__construct($eventDispatcher);
 
