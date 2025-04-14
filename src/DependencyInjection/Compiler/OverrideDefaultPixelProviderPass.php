@@ -21,7 +21,7 @@ final class OverrideDefaultPixelProviderPass implements CompilerPassInterface
 
         $container->setAlias(
             'setono_meta_conversions_api.pixel_provider.default',
-            'setono_sylius_facebook.provider.doctrine_based_pixel_provider'
+            'setono_sylius_facebook.provider.doctrine_based_pixel_provider',
         );
     }
 }

@@ -18,7 +18,7 @@ final class StartCheckoutSubscriber extends EventSubscriber
 
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
-        CartContextInterface $cartContext
+        CartContextInterface $cartContext,
     ) {
         parent::__construct($eventDispatcher);
 

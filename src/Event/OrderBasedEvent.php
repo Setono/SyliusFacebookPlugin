@@ -69,7 +69,7 @@ abstract class OrderBasedEvent extends Event
             $contents[] = new Content(
                 (string) $variant->getCode(),
                 $item->getQuantity(),
-                self::formatAmount($item->getDiscountedUnitPrice())
+                self::formatAmount($item->getDiscountedUnitPrice()),
             );
         }
 
