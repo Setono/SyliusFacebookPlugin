@@ -1,0 +1,16 @@
+setono_sylius_facebook:
+    form:
+        pixel:
+            access_token: Tilgangstoken
+            access_token_placeholder: Sett inn Facebook-tilgangstoken for denne pikselen
+            pixel_id: Piksel-ID
+            pixel_id_help: Få den fra https://www.facebook.com/events_manager2
+            pixel_id_placeholder: Sett inn din piksel-ID...
+    ui:
+        edit_pixel: Rediger Facebook-piksel
+        facebook: Facebook
+        manage_pixels: Administrer Facebook-piksler
+        new_pixel: Ny Facebook-piksel
+        no_channels: Ingen kanaler
+        pixel_id: Piksel-ID
+        pixels: Facebook-piksler

@@ -1,0 +1,16 @@
+setono_sylius_facebook:
+    form:
+        pixel:
+            access_token: Åtkomsttoken
+            access_token_placeholder: Infoga Facebook-åtkomsttoken för denna pixel
+            pixel_id: Pixel-ID
+            pixel_id_help: Hämta det från https://www.facebook.com/events_manager2
+            pixel_id_placeholder: Infoga ditt pixel-ID...
+    ui:
+        edit_pixel: Redigera Facebook-pixel
+        facebook: Facebook
+        manage_pixels: Hantera Facebook-pixlar
+        new_pixel: Ny Facebook-pixel
+        no_channels: Inga kanaler
+        pixel_id: Pixel-ID
+        pixels: Facebook-pixlar

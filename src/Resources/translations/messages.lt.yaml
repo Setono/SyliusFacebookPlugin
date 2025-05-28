@@ -1,0 +1,16 @@
+setono_sylius_facebook:
+    form:
+        pixel:
+            access_token: Prieigos raktas
+            access_token_placeholder: Įveskite Facebook prieigos raktą šiam pikseliui
+            pixel_id: Pikselio ID
+            pixel_id_help: Gaukite jį iš https://www.facebook.com/events_manager2
+            pixel_id_placeholder: Įveskite savo pikselio ID...
+    ui:
+        edit_pixel: Redaguoti Facebook pikselį
+        facebook: Facebook
+        manage_pixels: Tvarkyti Facebook pikselius
+        new_pixel: Naujas Facebook pikselis
+        no_channels: Nėra kanalų
+        pixel_id: Pikselio ID
+        pixels: Facebook pikseliai

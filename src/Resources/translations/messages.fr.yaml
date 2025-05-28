@@ -1,0 +1,16 @@
+setono_sylius_facebook:
+    form:
+        pixel:
+            access_token: Jeton d'accès
+            access_token_placeholder: Insérez le jeton d'accès Facebook pour ce pixel
+            pixel_id: ID du pixel
+            pixel_id_help: Obtenez-le sur https://www.facebook.com/events_manager2
+            pixel_id_placeholder: Insérez votre ID de pixel...
+    ui:
+        edit_pixel: Modifier le pixel Facebook
+        facebook: Facebook
+        manage_pixels: Gérer les pixels Facebook
+        new_pixel: Nouveau pixel Facebook
+        no_channels: Aucun canal
+        pixel_id: ID du pixel
+        pixels: Pixels Facebook
