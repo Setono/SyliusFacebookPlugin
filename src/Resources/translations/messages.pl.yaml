@@ -2,15 +2,15 @@ setono_sylius_facebook:
     form:
         pixel:
             access_token: Token dostępu
-            access_token_placeholder: Wprowadź token dostępu Facebook dla tego piksela
+            access_token_placeholder: Wprowadź token dostępu Facebooka dla tego piksela
             pixel_id: ID piksela
-            pixel_id_help: Uzyskaj go z https://www.facebook.com/events_manager2
-            pixel_id_placeholder: Wprowadź swoje ID piksela...
+            pixel_id_help: Możesz go uzyskać na stronie https://www.facebook.com/events_manager2
+            pixel_id_placeholder: Wprowadź ID swojego piksela...
     ui:
         edit_pixel: Edytuj piksel Facebooka
         facebook: Facebook
         manage_pixels: Zarządzaj pikselami Facebooka
-        new_pixel: Nowy piksel Facebooka
+        new_pixel: Dodaj nowy piksel Facebooka
         no_channels: Brak kanałów
         pixel_id: ID piksela
         pixels: Piksele Facebooka
