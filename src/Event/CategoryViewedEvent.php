@@ -39,8 +39,6 @@ final class CategoryViewedEvent extends Event
 
     private function getBreadcrumb(TaxonInterface $taxon): string
     {
-        return implode(' > ', array_map(static function (TaxonInterface $taxon) {
-            return $taxon->getName();
-        }, $this->getBreadcrumbs($taxon)));
+        return implode(' > ', array_map(static fn (TaxonInterface $taxon) => $taxon->getName(), $this->getBreadcrumbs($taxon)));
     }
 }

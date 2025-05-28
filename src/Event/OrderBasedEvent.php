@@ -22,9 +22,7 @@ abstract class OrderBasedEvent extends Event
         $this->customData->contentType = 'product';
         $this->customData->contentIds = $this->getContentIds($order);
         $this->customData->contents = $this->getContents($order);
-        $this->customData->numItems = array_sum($order->getItems()->map(function (OrderItemInterface $orderItem): int {
-            return $orderItem->getQuantity();
-        })->toArray());
+        $this->customData->numItems = array_sum($order->getItems()->map(static fn (OrderItemInterface $orderItem): int => $orderItem->getQuantity())->toArray());
 
         $this->populateCustomerInformation($order);
         $this->populateBillingInformation($order);

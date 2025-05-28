@@ -23,12 +23,9 @@ abstract class EventSubscriber implements EventSubscriberInterface, LoggerAwareI
 {
     private LoggerInterface $logger;
 
-    private EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(EventDispatcherInterface $eventDispatcher)
+    public function __construct(private readonly EventDispatcherInterface $eventDispatcher)
     {
         $this->logger = new NullLogger();
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function track(): void

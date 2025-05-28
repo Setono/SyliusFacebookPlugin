@@ -11,14 +11,10 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 
 final class DoctrineBasedPixelProvider implements PixelProviderInterface
 {
-    private PixelRepositoryInterface $pixelRepository;
-
-    private ChannelContextInterface $channelContext;
-
-    public function __construct(PixelRepositoryInterface $pixelRepository, ChannelContextInterface $channelContext)
-    {
-        $this->pixelRepository = $pixelRepository;
-        $this->channelContext = $channelContext;
+    public function __construct(
+        private readonly PixelRepositoryInterface $pixelRepository,
+        private readonly ChannelContextInterface $channelContext,
+    ) {
     }
 
     public function getPixels(): array

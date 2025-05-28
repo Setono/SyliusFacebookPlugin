@@ -14,15 +14,11 @@ use Webmozart\Assert\Assert;
 
 final class AddToCartSubscriber extends EventSubscriber
 {
-    private CartContextInterface $cartContext;
-
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
-        CartContextInterface $cartContext,
+        private readonly CartContextInterface $cartContext,
     ) {
         parent::__construct($eventDispatcher);
-
-        $this->cartContext = $cartContext;
     }
 
     public static function getSubscribedEvents(): array

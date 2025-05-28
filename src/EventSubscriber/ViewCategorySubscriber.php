@@ -20,19 +20,12 @@ use Traversable;
  */
 final class ViewCategorySubscriber extends EventSubscriber
 {
-    private LocaleContextInterface $localeContext;
-
-    private TaxonRepositoryInterface $taxonRepository;
-
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
-        LocaleContextInterface $localeContext,
-        TaxonRepositoryInterface $taxonRepository,
+        private readonly LocaleContextInterface $localeContext,
+        private readonly TaxonRepositoryInterface $taxonRepository,
     ) {
         parent::__construct($eventDispatcher);
-
-        $this->localeContext = $localeContext;
-        $this->taxonRepository = $taxonRepository;
     }
 
     public static function getSubscribedEvents(): array

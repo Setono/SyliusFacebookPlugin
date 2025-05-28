@@ -17,21 +17,14 @@ use Webmozart\Assert\Assert;
 
 class PixelExampleFactory extends AbstractExampleFactory
 {
-    private FactoryInterface $pixelFactory;
+    private readonly Generator $faker;
 
-    private ChannelRepositoryInterface $channelRepository;
-
-    private Generator $faker;
-
-    private OptionsResolver $optionsResolver;
+    private readonly OptionsResolver $optionsResolver;
 
     public function __construct(
-        FactoryInterface $pixelFactory,
-        ChannelRepositoryInterface $channelRepository,
+        private readonly FactoryInterface $pixelFactory,
+        private readonly ChannelRepositoryInterface $channelRepository,
     ) {
-        $this->pixelFactory = $pixelFactory;
-        $this->channelRepository = $channelRepository;
-
         $this->faker = Factory::create();
 
         $this->optionsResolver = new OptionsResolver();

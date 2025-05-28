@@ -17,16 +17,10 @@ final class PixelContext implements PixelContextInterface
      */
     private ?array $pixels = null;
 
-    private ChannelContextInterface $channelContext;
-
-    private PixelRepositoryInterface $pixelRepository;
-
     public function __construct(
-        ChannelContextInterface $channelContext,
-        PixelRepositoryInterface $pixelRepository,
+        private readonly ChannelContextInterface $channelContext,
+        private readonly PixelRepositoryInterface $pixelRepository,
     ) {
-        $this->channelContext = $channelContext;
-        $this->pixelRepository = $pixelRepository;
     }
 
     public function getPixels(): array

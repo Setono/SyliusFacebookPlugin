@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Channel\Model\ChannelInterface as BaseChannelInterface;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 
-class Pixel implements PixelInterface
+class Pixel implements PixelInterface, \Stringable
 {
     use ToggleableTrait;
 

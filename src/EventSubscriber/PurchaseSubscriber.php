@@ -14,15 +14,11 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class PurchaseSubscriber extends EventSubscriber
 {
-    private OrderRepositoryInterface $orderRepository;
-
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
-        OrderRepositoryInterface $orderRepository,
+        private readonly OrderRepositoryInterface $orderRepository,
     ) {
         parent::__construct($eventDispatcher);
-
-        $this->orderRepository = $orderRepository;
     }
 
     public static function getSubscribedEvents(): array
