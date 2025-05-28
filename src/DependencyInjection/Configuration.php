@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\DependencyInjection;
 
-use Setono\SyliusFacebookPlugin\Doctrine\ORM\PixelRepository;
 use Setono\SyliusFacebookPlugin\Form\Type\PixelType;
 use Setono\SyliusFacebookPlugin\Model\Pixel;
+use Setono\SyliusFacebookPlugin\Repository\PixelRepository;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Component\Resource\Factory\Factory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
