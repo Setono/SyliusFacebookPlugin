@@ -75,8 +75,8 @@ Client::setStreamFactory()
 ### Step 6: Update your database schema
 
 ```bash
-$ php bin/console doctrine:migrations:diff
-$ php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
 ```
 
 ### Step 7: Create a pixel
