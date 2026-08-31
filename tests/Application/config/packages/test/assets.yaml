@@ -1,0 +1,8 @@
+# The frontend is not built when running the test suite (e.g. in CI), so do not require the Webpack manifests
+framework:
+    assets:
+        packages:
+            shop:
+                json_manifest_path: ~
+            admin:
+                json_manifest_path: ~

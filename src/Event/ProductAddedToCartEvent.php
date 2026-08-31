@@ -10,7 +10,6 @@ use Setono\MetaConversionsApi\Event\Event;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ProductInterface;
-use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Webmozart\Assert\Assert;
 
 final class ProductAddedToCartEvent extends Event
@@ -78,19 +77,8 @@ final class ProductAddedToCartEvent extends Event
 
     private function getTaxonName(ProductInterface $product): ?string
     {
-        $taxon = $product->getMainTaxon();
-        if (null !== $taxon) {
-            return $taxon->getName();
-        }
+        $taxon = $product->getMainTaxon() ?? $product->getTaxons()->first();
 
-        $taxons = $product->getTaxons();
-        if ($taxons->isEmpty()) {
-            return null;
-        }
-
-        $taxon = $taxons->first();
-        Assert::isInstanceOf($taxon, TaxonInterface::class);
-
-        return $taxon->getName();
+        return false === $taxon ? null : $taxon->getName();
     }
 }

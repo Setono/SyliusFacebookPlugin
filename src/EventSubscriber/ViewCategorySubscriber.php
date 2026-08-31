@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusFacebookPlugin\EventSubscriber;
 
+use IteratorIterator;
+use LimitIterator;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Setono\SyliusFacebookPlugin\Event\CategoryViewedEvent;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
@@ -69,23 +71,14 @@ final class ViewCategorySubscriber extends EventSubscriber
 
         $codes = [];
 
-        $i = 0;
-        $max = 10;
-
         /** @var mixed $datum */
-        foreach ($data as $datum) {
-            if ($i >= $max) {
-                break;
-            }
-
+        foreach (new LimitIterator(new IteratorIterator($data), 0, 10) as $datum) {
             if ($datum instanceof ProductInterface) {
                 $code = $datum->getCode();
                 if (null !== $code) {
                     $codes[] = $code;
                 }
             }
-
-            ++$i;
         }
 
         return $codes;

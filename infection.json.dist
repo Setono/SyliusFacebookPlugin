@@ -12,5 +12,25 @@
         }
     },
     "minMsi": 100.00,
-    "minCoveredMsi": 100.00
+    "minCoveredMsi": 100.00,
+    "mutators": {
+        "@default": true,
+        "CastString": {
+            "ignore": [
+                "Setono\\SyliusFacebookPlugin\\Event\\*",
+                "Setono\\SyliusFacebookPlugin\\Provider\\DoctrineBasedPixelProvider::getPixels"
+            ]
+        },
+        "MethodCallRemoval": {
+            "ignore": [
+                "Setono\\SyliusFacebookPlugin\\Fixture\\Factory\\PixelExampleFactory::create",
+                "Setono\\SyliusFacebookPlugin\\Repository\\PixelRepository::findEnabledByChannel"
+            ]
+        },
+        "ProtectedVisibility": {
+            "ignore": [
+                "Setono\\SyliusFacebookPlugin\\Event\\FormatAmountTrait::formatAmount"
+            ]
+        }
+    }
 }
