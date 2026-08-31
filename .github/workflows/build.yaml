@@ -236,6 +236,14 @@ jobs:
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
+            -   name: "Setup Node"
+                uses: "actions/setup-node@v7"
+                with:
+                    node-version-file: "tests/Application/.nvmrc"
+
+            -   name: "Build frontend assets"
+                run: "(cd tests/Application && yarn install && yarn build)"
+
             -   name: "Lint container"
                 run: "(cd tests/Application && bin/console lint:container)"
 
@@ -280,6 +288,14 @@ jobs:
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
+            -   name: "Setup Node"
+                uses: "actions/setup-node@v7"
+                with:
+                    node-version-file: "tests/Application/.nvmrc"
+
+            -   name: "Build frontend assets"
+                run: "(cd tests/Application && yarn install && yarn build)"
+
             -   name: "Start MySQL"
                 run: "sudo /etc/init.d/mysql start"
 
@@ -322,6 +338,14 @@ jobs:
                 uses: "ramsey/composer-install@v3"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
+
+            -   name: "Setup Node"
+                uses: "actions/setup-node@v7"
+                with:
+                    node-version-file: "tests/Application/.nvmrc"
+
+            -   name: "Build frontend assets"
+                run: "(cd tests/Application && yarn install && yarn build)"
 
             -   name: "Start MySQL"
                 run: "sudo /etc/init.d/mysql start"

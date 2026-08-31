@@ -1,3 +1,0 @@
-# The frontend is not built when running the test suite (e.g. in CI), so do not fail on missing entrypoints
-webpack_encore:
-    strict_mode: false
