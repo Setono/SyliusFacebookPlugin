@@ -4,16 +4,8 @@ sylius_shop:
     requirements:
         _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
 
-# Same routes as /Resources/config/routing/payum.yml, but importing both the XML and the YAML variants:
-# payum/payum-bundle 2.7.0 only ships YAML routing files, while Sylius (and payum-bundle < 2.7 / >= 2.7.1) uses the XML ones
-sylius_shop_payum_authorize:
-    resource: "@PayumBundle/Resources/config/routing/authorize.{xml,yaml}"
-
-sylius_shop_payum_capture:
-    resource: "@PayumBundle/Resources/config/routing/capture.{xml,yaml}"
-
-sylius_shop_payum_notify:
-    resource: "@PayumBundle/Resources/config/routing/notify.{xml,yaml}"
+sylius_shop_payum:
+    resource: "@SyliusShopBundle/Resources/config/routing/payum.yml"
 
 sylius_shop_default_locale:
     path: /
