@@ -8,6 +8,6 @@ trait FormatAmountTrait
 {
     protected static function formatAmount(int $amount): float
     {
-        return round($amount / 100, 2);
+        return $amount / 100;
     }
 }
