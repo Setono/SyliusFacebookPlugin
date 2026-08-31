@@ -32,11 +32,14 @@ abstract class EventSubscriber implements EventSubscriberInterface, LoggerAwareI
     }
 
     /**
-     * @param TEvent $event
+     * The event dispatcher calls this method with the originating event as the first argument
      */
-    public function track(object $event): void
+    public function track(): void
     {
         try {
+            /** @var TEvent $event */
+            $event = func_get_arg(0);
+
             $conversionsApiEvent = $this->callback()($event);
             if (null === $conversionsApiEvent) {
                 return;
