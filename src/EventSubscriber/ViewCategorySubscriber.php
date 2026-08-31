@@ -17,9 +17,14 @@ use Traversable;
 /**
  * See https://developers.facebook.com/docs/marketing-api/audiences/guides/dynamic-product-audiences/#setuppixel
  * for reference of the 'ViewCategory' custom event
+ *
+ * @extends EventSubscriber<ResourceControllerEvent>
  */
 final class ViewCategorySubscriber extends EventSubscriber
 {
+    /**
+     * @param TaxonRepositoryInterface<TaxonInterface> $taxonRepository
+     */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         private readonly LocaleContextInterface $localeContext,

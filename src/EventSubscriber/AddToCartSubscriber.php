@@ -12,6 +12,9 @@ use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Webmozart\Assert\Assert;
 
+/**
+ * @extends EventSubscriber<ResourceControllerEvent>
+ */
 final class AddToCartSubscriber extends EventSubscriber
 {
     public function __construct(

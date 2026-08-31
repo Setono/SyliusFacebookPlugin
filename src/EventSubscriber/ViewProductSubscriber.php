@@ -9,6 +9,9 @@ use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Core\Model\ProductInterface;
 use Webmozart\Assert\Assert;
 
+/**
+ * @extends EventSubscriber<ResourceControllerEvent>
+ */
 final class ViewProductSubscriber extends EventSubscriber
 {
     public static function getSubscribedEvents(): array

@@ -19,10 +19,7 @@ class Pixel implements PixelInterface, \Stringable
 
     protected ?string $accessToken = null;
 
-    /**
-     * @var Collection|BaseChannelInterface[]
-     * @psalm-var Collection<array-key, BaseChannelInterface>
-     */
+    /** @var Collection<array-key, BaseChannelInterface> */
     protected Collection $channels;
 
     public function __construct()

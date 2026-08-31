@@ -25,9 +25,7 @@ final class PixelContext implements PixelContextInterface
 
     public function getPixels(): array
     {
-        if (null === $this->pixels) {
-            $this->pixels = $this->pixelRepository->findEnabledByChannel($this->channelContext->getChannel());
-        }
+        $this->pixels ??= $this->pixelRepository->findEnabledByChannel($this->channelContext->getChannel());
 
         return $this->pixels;
     }

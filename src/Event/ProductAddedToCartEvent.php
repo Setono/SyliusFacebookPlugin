@@ -88,7 +88,6 @@ final class ProductAddedToCartEvent extends Event
             return null;
         }
 
-        /** @var mixed|TaxonInterface $taxon */
         $taxon = $taxons->first();
         Assert::isInstanceOf($taxon, TaxonInterface::class);
 
