@@ -21,6 +21,10 @@ class PixelExampleFactory extends AbstractExampleFactory
 
     private readonly OptionsResolver $optionsResolver;
 
+    /**
+     * @param FactoryInterface<PixelInterface> $pixelFactory
+     * @param ChannelRepositoryInterface<ChannelInterface> $channelRepository
+     */
     public function __construct(
         private readonly FactoryInterface $pixelFactory,
         private readonly ChannelRepositoryInterface $channelRepository,
@@ -31,18 +35,24 @@ class PixelExampleFactory extends AbstractExampleFactory
         $this->configureOptions($this->optionsResolver);
     }
 
+    /**
+     * @param array<array-key, mixed> $options
+     */
     public function create(array $options = []): PixelInterface
     {
         $options = $this->optionsResolver->resolve($options);
 
-        /** @var PixelInterface $pixel */
         $pixel = $this->pixelFactory->createNew();
         if (array_key_exists('pixel_id', $options)) {
+            Assert::numeric($options['pixel_id']);
+
             $pixel->setPixelId((string) $options['pixel_id']);
         }
 
         if (array_key_exists('access_token', $options)) {
-            $pixel->setAccessToken((string) $options['access_token']);
+            Assert::string($options['access_token']);
+
+            $pixel->setAccessToken($options['access_token']);
         } else {
             $pixel->setAccessToken($this->faker->randomAscii);
         }
@@ -54,6 +64,8 @@ class PixelExampleFactory extends AbstractExampleFactory
         }
 
         if (array_key_exists('channels', $options)) {
+            Assert::isIterable($options['channels']);
+
             foreach ($options['channels'] as $channel) {
                 Assert::isInstanceOf($channel, ChannelInterface::class);
 

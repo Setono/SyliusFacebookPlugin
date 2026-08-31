@@ -26,6 +26,9 @@ final class CategoryViewedEvent extends Event
         $this->customData->contentCategory = $this->getBreadcrumb($taxon);
     }
 
+    /**
+     * @return list<TaxonInterface>
+     */
     private function getBreadcrumbs(TaxonInterface $taxon): array
     {
         $breadcrumbs = [];

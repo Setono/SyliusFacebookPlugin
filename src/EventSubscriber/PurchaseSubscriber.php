@@ -12,8 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * @extends EventSubscriber<RequestEvent>
+ */
 final class PurchaseSubscriber extends EventSubscriber
 {
+    /**
+     * @param OrderRepositoryInterface<OrderInterface> $orderRepository
+     */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         private readonly OrderRepositoryInterface $orderRepository,

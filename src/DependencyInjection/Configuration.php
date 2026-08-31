@@ -29,7 +29,6 @@ final class Configuration implements ConfigurationInterface
 
     private function addResourcesSection(ArrayNodeDefinition $node): void
     {
-        /** @psalm-suppress MixedMethodCall,PossiblyUndefinedMethod,PossiblyNullReference,UndefinedInterfaceMethod */
         $node
             ->children()
                 ->arrayNode('resources')

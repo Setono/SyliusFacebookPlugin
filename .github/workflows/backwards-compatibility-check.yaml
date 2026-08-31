@@ -13,7 +13,7 @@ jobs:
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v7"
                 with:
                     fetch-depth: 0
 
@@ -25,6 +25,11 @@ jobs:
 
             -   name: "Install tool"
                 run: "composer global require roave/backward-compatibility-check"
+
+            # Sylius 1.x depends on api-platform/core ^2.7, which has known security advisories. Composer >= 2.10 refuses to
+            # install such versions by default, and the baseline (the base branch) cannot opt out itself, so opt out globally
+            -   name: "Allow installing packages with known security advisories"
+                run: "composer config --global policy.advisories.block false"
 
             -   name: "Check for BC breaks"
                 run: "~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/${{ github.event.pull_request.base.ref }} --format=github-actions"

@@ -8,6 +8,9 @@ use Setono\SyliusFacebookPlugin\Model\PixelInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
+/**
+ * @extends RepositoryInterface<PixelInterface>
+ */
 interface PixelRepositoryInterface extends RepositoryInterface
 {
     /**

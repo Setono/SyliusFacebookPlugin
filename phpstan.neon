@@ -1,0 +1,34 @@
+parameters:
+    level: max
+
+    paths:
+        - src
+        - tests
+
+    excludePaths:
+        - tests/Application/*
+
+    bootstrapFiles:
+        - vendor/autoload.php
+
+    # Symfony Configuration
+    symfony:
+        consoleApplicationLoader: tests/PHPStan/console_application.php
+
+    # Doctrine Configuration
+    doctrine:
+        repositoryClass: Doctrine\ORM\EntityRepository
+        objectManagerLoader: tests/PHPStan/object_manager.php
+        # Sylius resources keep required fields nullable until they are set through the form (e.g. Pixel::$pixelId)
+        allowNullablePropertyForRequiredField: true
+
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
+
+    ignoreErrors:
+        # Sylius maps associations to interfaces (e.g. ChannelInterface) and resolves them to the host application's
+        # concrete entity at runtime via resolve_target_entities. The interface is therefore the correct static type,
+        # even though phpstan-doctrine compares against the resolved concrete class.
+        -
+            identifier: doctrine.associationType
+            path: src/Model/*

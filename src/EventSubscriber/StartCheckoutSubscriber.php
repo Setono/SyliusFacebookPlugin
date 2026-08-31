@@ -12,6 +12,9 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Webmozart\Assert\Assert;
 
+/**
+ * @extends EventSubscriber<RequestEvent>
+ */
 final class StartCheckoutSubscriber extends EventSubscriber
 {
     public function __construct(
