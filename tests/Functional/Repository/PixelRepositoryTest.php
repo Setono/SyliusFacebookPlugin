@@ -30,6 +30,23 @@ final class PixelRepositoryTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function it_finds_the_enabled_pixels_of_all_channels(): void
+    {
+        $web = self::createChannel('WEB');
+        $mobile = self::createChannel('MOBILE');
+
+        self::createPixel('1000', true, $web);
+        self::createPixel('2000', false, $web);
+        self::createPixel('3000', true, $mobile);
+        self::createPixel('4000', true, $web, $mobile);
+        self::createPixel('5000', true);
+
+        self::assertSame(['1000', '3000', '4000', '5000'], self::pixelIds(self::getPixelRepository()->findEnabled()));
+    }
+
+    /**
+     * @test
+     */
     public function it_finds_no_pixels_for_a_channel_without_pixels(): void
     {
         $channel = self::createChannel('WEB');
