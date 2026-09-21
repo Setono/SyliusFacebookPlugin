@@ -21,8 +21,8 @@ dependency's requirement is not inherited:
 
 ```bash
 composer require setono/sylius-facebook-plugin:^3.0@beta \
-    setono/meta-conversions-api-bundle:^1.0@alpha \
-    setono/meta-conversions-api-php-sdk:^2.0@alpha
+    setono/meta-conversions-api-bundle:^1.0@beta \
+    setono/meta-conversions-api-php-sdk:^2.0@beta
 ```
 
 The SDK depends on [php-http/discovery](https://github.com/php-http/discovery), which contains a Composer plugin.

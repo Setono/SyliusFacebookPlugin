@@ -16,8 +16,17 @@ that uses the plugin:
 
     ```bash
     composer require setono/sylius-facebook-plugin:^3.0@beta \
-        setono/meta-conversions-api-bundle:^1.0@alpha \
-        setono/meta-conversions-api-php-sdk:^2.0@alpha
+        setono/meta-conversions-api-bundle:^1.0@beta \
+        setono/meta-conversions-api-php-sdk:^2.0@beta
+    ```
+
+   If you installed `v3.0.0-beta.2` with the `@alpha` flags it asked for, change them to `@beta` and update the two
+   packages together. `v1.0.0-alpha.1` of the bundle does not work with the betas of the SDK, and Composer allowed
+   that pair when only the SDK was updated. The plugin now requires releases that work together
+   (`^1.0.0-beta.1` and `^2.0.0-beta.2`), so that pair cannot be resolved anymore:
+
+    ```bash
+    composer update setono/sylius-facebook-plugin setono/meta-conversions-api-bundle setono/meta-conversions-api-php-sdk
     ```
 
    The SDK pulls in `php-http/discovery`, which contains a Composer plugin. Add `"php-http/discovery": false` (or
