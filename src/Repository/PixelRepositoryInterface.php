@@ -14,6 +14,13 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 interface PixelRepositoryInterface extends RepositoryInterface
 {
     /**
+     * Returns the pixels that are enabled, whatever channels they are enabled on
+     *
+     * @return array<array-key, PixelInterface>
+     */
+    public function findEnabled(): array;
+
+    /**
      * Returns the pixels that are enabled and enabled on the given channel
      *
      * @return array<array-key, PixelInterface>

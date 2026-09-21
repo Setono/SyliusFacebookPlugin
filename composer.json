@@ -19,8 +19,8 @@
         "knplabs/knp-menu": "^3.3",
         "psr/event-dispatcher": "^1.0",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
-        "setono/meta-conversions-api-bundle": "~0.1.5",
-        "setono/meta-conversions-api-php-sdk": "~0.2.4",
+        "setono/meta-conversions-api-bundle": "^1.0@alpha",
+        "setono/meta-conversions-api-php-sdk": "^2.0@alpha",
         "sylius/channel": "^1.0",
         "sylius/channel-bundle": "^1.0",
         "sylius/core": "^1.0",
@@ -86,6 +86,7 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
             "infection/extension-installer": true,
+            "php-http/discovery": false,
             "phpstan/extension-installer": true,
             "symfony/thanks": false
         },

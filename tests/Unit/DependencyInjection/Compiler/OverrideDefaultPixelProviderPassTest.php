@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusFacebookPlugin\Tests\Unit\DependencyInjection\Compiler;
 
 use PHPUnit\Framework\TestCase;
+use Setono\MetaConversionsApiBundle\Provider\PixelProviderInterface;
 use Setono\SyliusFacebookPlugin\DependencyInjection\Compiler\OverrideDefaultPixelProviderPass;
 use Setono\SyliusFacebookPlugin\Provider\DoctrineBasedPixelProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,10 +26,10 @@ final class OverrideDefaultPixelProviderPassTest extends TestCase
 
         (new OverrideDefaultPixelProviderPass())->process($container);
 
-        self::assertTrue($container->hasAlias('setono_meta_conversions_api.pixel_provider.default'));
+        self::assertTrue($container->hasAlias(PixelProviderInterface::class));
         self::assertSame(
             'setono_sylius_facebook.provider.doctrine_based_pixel_provider',
-            (string) $container->getAlias('setono_meta_conversions_api.pixel_provider.default'),
+            (string) $container->getAlias(PixelProviderInterface::class),
         );
     }
 
@@ -41,6 +42,6 @@ final class OverrideDefaultPixelProviderPassTest extends TestCase
 
         (new OverrideDefaultPixelProviderPass())->process($container);
 
-        self::assertFalse($container->hasAlias('setono_meta_conversions_api.pixel_provider.default'));
+        self::assertFalse($container->hasAlias(PixelProviderInterface::class));
     }
 }

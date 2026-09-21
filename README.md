@@ -14,6 +14,31 @@ Track ecommerce events in your store and send them to Facebook to enable your ma
 composer require setono/sylius-facebook-plugin
 ```
 
+The plugin builds on the [Meta Conversions API bundle](https://github.com/Setono/MetaConversionsApiBundle) and the
+[Meta Conversions API PHP SDK](https://github.com/Setono/meta-conversions-api-php-sdk). Until their next stable
+releases are out you have to allow their pre-releases in your own `composer.json`, because a stability flag on a
+dependency's requirement is not inherited:
+
+```bash
+composer require setono/sylius-facebook-plugin:^3.0@beta \
+    setono/meta-conversions-api-bundle:^1.0@alpha \
+    setono/meta-conversions-api-php-sdk:^2.0@alpha
+```
+
+The SDK depends on [php-http/discovery](https://github.com/php-http/discovery), which contains a Composer plugin.
+Composer asks whether to allow it, and either answer works. To skip the prompt, e.g. in CI, declare it in your
+`composer.json`:
+
+```json
+{
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
+    }
+}
+```
+
 ### Step 2: Enable the plugin
 
 Then, enable the plugin by adding it to the list of registered plugins/bundles
@@ -58,19 +83,30 @@ setono_sylius_facebook:
     resource: "@SetonoSyliusFacebookPlugin/Resources/config/routes.yaml"
 ```
 
-### Step 5: Choose your HTTP client implementation 
+### Step 5 (recommended): Send the events asynchronously
 
-Either you can install the default ones :
-```bash
-composer require kriswallsmith/buzz nyholm/psr7
+Events are sent to Meta with your application's HTTP client (`psr18.http_client`), which a Sylius application already
+ships with, so requests show up in the profiler and honour your timeouts.
+
+By default an event is sent while the page that raised it is rendered. To take that request off your visitors' page
+loads, route the command to a Messenger transport:
+
+```yaml
+# config/packages/messenger.yaml
+framework:
+    messenger:
+        routing:
+            'Setono\MetaConversionsApiBundle\Message\Command\SendEvent': main
 ```
-Or write your own HTTP client and call :
-```php
-Client::setHttpClient()
-Client::setRequestFactory()
-Client::setResponseFactory()
-Client::setStreamFactory()
-```
+
+Neither the access token nor any unhashed personal data is written to the transport. The access tokens are added back
+from the pixels you have created in the admin when the worker sends the event, so an event for a pixel that was
+disabled or removed in the meantime is not sent.
+
+The command is dispatched on your default bus, `sylius.command_bus` in a Sylius application. Set
+`setono_meta_conversions_api.server_side.message_bus` to use another one. See the
+[bundle's documentation](https://github.com/Setono/MetaConversionsApiBundle#configuration) for all the options:
+consent, client side tracking, user agent filters and a dedicated HTTP client.
 
 ### Step 6: Update your database schema
 
@@ -92,6 +128,24 @@ The events that are tracked are located in the [EventSubscriber folder](src/Even
 - `InitiateCheckout`
 - `Purchase`
 - `ViewCategory` (this is a custom event that tracks taxon views)
+
+## Test the integration
+
+Find the test event code in the _Test events_ tab of Meta's Events Manager and append it to any URL of your shop:
+`https://example.com/?_testEventCode=TEST12345`. It is stored in the session, so the events of the following page
+views show up in Events Manager too. `?_testEventCode=` (empty) clears it again.
+
+The query parameter is only honoured when `kernel.debug` is true. To use it in production, enable it explicitly:
+
+```yaml
+# config/packages/setono_meta_conversions_api.yaml
+setono_meta_conversions_api:
+    test_event_code:
+        query_parameter: true
+```
+
+Events are sent to the Graph API version of the installed `facebook/php-business-sdk` (v26.0 with 26.x). Run
+`composer update facebook/php-business-sdk` to move to a newer version.
 
 ## Related links
 - https://developers.facebook.com/docs/marketing-api/audiences/guides/dynamic-product-audiences/#setuppixel

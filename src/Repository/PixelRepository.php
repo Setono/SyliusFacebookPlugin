@@ -11,6 +11,18 @@ use Webmozart\Assert\Assert;
 
 class PixelRepository extends EntityRepository implements PixelRepositoryInterface
 {
+    public function findEnabled(): array
+    {
+        /** @var array<array-key, PixelInterface> $result */
+        $result = $this->createQueryBuilder('o')
+            ->andWhere('o.enabled = true')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
+    }
+
     public function findEnabledByChannel(ChannelInterface $channel): array
     {
         $result = $this->createQueryBuilder('o')

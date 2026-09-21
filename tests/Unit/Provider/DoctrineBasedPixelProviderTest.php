@@ -12,6 +12,8 @@ use Setono\SyliusFacebookPlugin\Provider\DoctrineBasedPixelProvider;
 use Setono\SyliusFacebookPlugin\Repository\PixelRepositoryInterface;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Model\Channel;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 final class DoctrineBasedPixelProviderTest extends TestCase
 {
@@ -36,8 +38,9 @@ final class DoctrineBasedPixelProviderTest extends TestCase
 
         $pixelRepository = $this->prophesize(PixelRepositoryInterface::class);
         $pixelRepository->findEnabledByChannel($channel)->willReturn([$pixelWithAccessToken, $pixelWithoutAccessToken]);
+        $pixelRepository->findEnabled()->shouldNotBeCalled();
 
-        $provider = new DoctrineBasedPixelProvider($pixelRepository->reveal(), $channelContext->reveal());
+        $provider = new DoctrineBasedPixelProvider($pixelRepository->reveal(), $channelContext->reveal(), self::requestStackWithRequest());
 
         self::assertEquals([
             new ConversionsApiPixel('123', 'access_token'),
@@ -58,8 +61,39 @@ final class DoctrineBasedPixelProviderTest extends TestCase
         $pixelRepository = $this->prophesize(PixelRepositoryInterface::class);
         $pixelRepository->findEnabledByChannel($channel)->willReturn([]);
 
-        $provider = new DoctrineBasedPixelProvider($pixelRepository->reveal(), $channelContext->reveal());
+        $provider = new DoctrineBasedPixelProvider($pixelRepository->reveal(), $channelContext->reveal(), self::requestStackWithRequest());
 
         self::assertSame([], $provider->getPixels());
+    }
+
+    /**
+     * The bundle asks for the pixels again when an event is sent, to add back the access tokens.
+     * In a Messenger worker there is no request, and asking Sylius for the channel would throw
+     *
+     * @test
+     */
+    public function it_provides_every_enabled_pixel_when_there_is_no_request(): void
+    {
+        $pixel = new Pixel();
+        $pixel->setPixelId('123');
+        $pixel->setAccessToken('access_token');
+
+        $channelContext = $this->prophesize(ChannelContextInterface::class);
+        $channelContext->getChannel()->shouldNotBeCalled();
+
+        $pixelRepository = $this->prophesize(PixelRepositoryInterface::class);
+        $pixelRepository->findEnabled()->willReturn([$pixel]);
+
+        $provider = new DoctrineBasedPixelProvider($pixelRepository->reveal(), $channelContext->reveal(), new RequestStack());
+
+        self::assertEquals([new ConversionsApiPixel('123', 'access_token')], $provider->getPixels());
+    }
+
+    private static function requestStackWithRequest(): RequestStack
+    {
+        $requestStack = new RequestStack();
+        $requestStack->push(Request::create('https://example.com'));
+
+        return $requestStack;
     }
 }

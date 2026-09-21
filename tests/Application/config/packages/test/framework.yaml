@@ -2,3 +2,6 @@ framework:
     test: ~
     session:
         storage_factory_id: session.storage.factory.mock_file
+    http_client:
+        # Records the requests instead of sending them, so that the tests can assert on what would be sent to Meta
+        mock_response_factory: Setono\SyliusFacebookPlugin\Tests\Functional\Http\RecordingResponseFactory
